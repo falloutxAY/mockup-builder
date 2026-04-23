@@ -26,12 +26,42 @@ A two-agent system powered by **GitHub Copilot** (or any AI agent with Playwrigh
 ## Prerequisites
 
 - [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli/) (or VS Code with Copilot Chat)
-- [Playwright MCP server](https://github.com/anthropics/playwright-mcp) configured in your Copilot environment
-- Node.js (for local preview server)
+- [Playwright MCP server](https://github.com/microsoft/playwright-mcp) (`@playwright/mcp`) configured in your Copilot environment — see setup below
+- Node.js 18+ (the Playwright MCP runs via `npx`, and you'll also need it for the local preview server)
 
 ## Quick Start
 
-### 1. Install the skills
+### 1. Configure the Playwright MCP server
+
+Both agents drive a real browser via the [Playwright MCP](https://github.com/microsoft/playwright-mcp) server. Add it to your Copilot environment.
+
+**Copilot CLI** — edit `~/.copilot/mcp-config.json` (Windows: `%USERPROFILE%\.copilot\mcp-config.json`) and add under `mcpServers`:
+
+```json
+"playwright": {
+  "type": "stdio",
+  "command": "npx",
+  "args": ["@playwright/mcp@latest", "--browser", "msedge"]
+}
+```
+
+Or use the slash command: `/mcp add` and follow the prompts.
+
+**VS Code** — edit `%APPDATA%\Code\User\mcp.json` (macOS/Linux: `~/.config/Code/User/mcp.json`) and add the same entry under `servers` (note the different top-level key):
+
+```json
+"playwright": {
+  "type": "stdio",
+  "command": "npx",
+  "args": ["@playwright/mcp@latest", "--browser", "msedge"]
+}
+```
+
+> **Tip:** keep both files in sync. The CLI uses `mcpServers`, VS Code uses `servers`, but each server entry has the same shape.
+
+Swap `msedge` for `chrome`, `firefox`, or `webkit` if you prefer a different browser. Omit `--browser` to use the Playwright default (Chromium).
+
+### 2. Install the skills
 
 Copy the skill folders into your Copilot skills directory:
 
@@ -47,7 +77,7 @@ Copy-Item -Recurse skills\mockup-extract $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-build $env:USERPROFILE\.copilot\skills\
 ```
 
-### 2. Extract a design system from any URL
+### 3. Extract a design system from any URL
 
 In Copilot CLI or VS Code Copilot Chat:
 
@@ -63,7 +93,7 @@ The agent will:
 - Extract colors, fonts, spacing, border radius, shadows from computed styles
 - Produce `design-guide.md` (structured design system) and `base-styles.css` (ready-to-use CSS)
 
-### 3. Generate mockups
+### 4. Generate mockups
 
 ```
 /mockup-build
@@ -79,7 +109,7 @@ The agent will:
 - Build a standalone HTML file using the extracted design tokens
 - Preview it with Playwright and show you a screenshot
 
-### 4. Iterate
+### 5. Iterate
 
 ```
 "Make the form two columns instead of one"
