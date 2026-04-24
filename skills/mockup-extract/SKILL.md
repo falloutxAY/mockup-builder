@@ -21,15 +21,18 @@ The user provides:
 
 ## Output location
 
-All output goes to `~/mockup/` (create if missing):
+All output goes to the `output/` folder in the current workspace (create if missing):
 ```
-mockup/
+output/
 ├── design-guide.md     ← structured design system doc
 ├── base-styles.css     ← CSS custom properties + component classes
 ├── reference/          ← screenshots from the live app
 │   ├── page-1.png
 │   └── page-2.png
-└── AGENTS.md           ← (leave untouched if exists)
+└── mockups/            ← built by mockup-build agent (leave untouched)
+    ├── <name>.html
+    ├── screenshots/
+    └── tools/
 ```
 
 ## Extraction workflow
@@ -37,7 +40,7 @@ mockup/
 ### Step 1: Navigate & screenshot
 1. Use `browser_navigate` to open the URL.
 2. If it lands on a login page, **stop and ask the user** — don't guess credentials.
-3. Take a full-page screenshot → save to `mockup/reference/`.
+3. Take a full-page screenshot → save to `output/reference/`.
 4. Take an accessibility snapshot to understand the page structure.
 
 ### Step 2: Handle iframes
@@ -102,7 +105,7 @@ Click on elements to reveal additional UI states:
 - Hover buttons → note hover states
 - Open dropdowns → capture menu styles
 
-Take a screenshot after each interaction → save to `reference/`.
+Take a screenshot after each interaction → save to `output/reference/`.
 
 ### Step 5: Convert RGB to Hex
 All colors in the guide should be hex (`#242424`), not `rgb()`. Convert:
