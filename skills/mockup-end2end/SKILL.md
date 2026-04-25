@@ -45,14 +45,14 @@ Screen Inventory
 ─────────────────────────────────────────────────────
 #  File name                    Description
 ─────────────────────────────────────────────────────
-1  index.html                   Demo index / launch page
-2  list.html                    Entity list view (main entry)
-3  detail.html                  Entity detail / edit form
-4  detail--delete-confirm.html  Delete confirmation dialog overlay
-5  detail--success.html         Post-save success state
-6  settings.html                Settings page
+1  list.html                    Entity list view (main journey entry)
+2  detail.html                  Entity detail / edit form
+3  detail--delete-confirm.html  Delete confirmation dialog overlay
+4  detail--success.html         Post-save success state
+5  settings.html                Settings page
 ─────────────────────────────────────────────────────
 Estimated build time: ~5 minutes
+Note: index.html (demo launch pad) is always auto-generated in Step 4.
 ```
 
 Ask: "Does this cover the flow you have in mind, or should I add/remove screens before I start building?"
@@ -63,14 +63,14 @@ Wait for confirmation (or adjustments) before proceeding to Step 3.
 
 Build each file in the Screen Inventory in order. For each file:
 
-1. Write the full HTML to `output/mockups/<file-name>.html`.
+1. Write the full HTML to `output/mockups/<name>.html` (e.g. `detail.html`, `list.html`).
 2. Include navigation links that connect to adjacent screens (use relative paths).
 3. Add inline JavaScript only for interactions that can't be done with CSS:
    - Showing/hiding modal overlays
    - Simulating form submission → redirect to success screen
    - Toast / notification dismissal
 4. Use **consistent placeholder data** across all screens (same names, IDs, dates — the demo should feel like one coherent dataset).
-5. Screenshot each file and save to `output/mockups/screenshots/<file-name>.png`.
+5. Note the file in the Screen Inventory as ✓ done.
 
 ### Step 4: Build the demo index
 
@@ -99,7 +99,7 @@ When the user gives feedback:
 - **Journey-level feedback** ("add an error state for the form"): update the Screen Inventory, build the new file(s), add them to `index.html`.
 - **Screen-level feedback** ("the button on detail.html should be red"): edit only that file, re-screenshot, update the index thumbnail.
 - Always re-screenshot affected files and show the update.
-- Ask: "Anything else, or are you happy with the demo?"
+- Ask: "What would you like to adjust?"
 
 ## HTML rules
 

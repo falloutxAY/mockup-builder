@@ -8,8 +8,9 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 
 1. **Extract** a design system from any live web app (colors, fonts, spacing, components)
 2. **Generate** realistic HTML/CSS mockups that match the app's look-and-feel
-3. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
-4. **Iterate** with natural language feedback in seconds
+3. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
+4. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+5. **Iterate** with natural language feedback in seconds
 
 ```
 ┌─────────────────┐       ┌──────────────┐       ┌──────────────────┐
@@ -18,16 +19,24 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 └─────────────────┘       └──────────────┘       └────────┬─────────┘
                                                           │
 ┌─────────────────┐       ┌──────────────┐                │
-│  User provides   │──────▶│  Agent 2:    │◀───────────────┤
-│  requirements    │       │  Build       │                │
+│  User provides   │──────▶│  Agent 2:    │◀───────────────┘
+│  requirements    │       │  Build       │
 │  + feedback      │       │  (single)    │──────▶ HTML/CSS mockup
-└─────────────────┘       └──────────────┘                │
-                                                          │
-┌─────────────────┐       ┌──────────────┐                │
-│  User provides   │──────▶│  Agent 3:    │◀───────────────┘
-│  journey desc.   │       │  End-to-End  │
-│  + feedback      │       │  Demo        │──────▶ Multi-screen demo
-└─────────────────┘       └──────────────┘        with navigation
+└─────────────────┘       └──────────────┘
+
+┌─────────────────┐       ┌──────────────┐
+│  User provides   │──────▶│  Agent 3:    │
+│  requirements    │       │  WOW Mode    │──────▶ Stunning HTML/CSS mockup
+│  + theme hint    │       │  (no design  │        (gradients, animations,
+└─────────────────┘       │   system     │         glassmorphism, delight)
+                          │   needed)    │
+                          └──────────────┘
+
+┌─────────────────┐       ┌──────────────┐
+│  User provides   │──────▶│  Agent 4:    │
+│  journey desc.   │       │  End-to-End  │──────▶ Multi-screen demo
+│  + feedback      │       │  Demo        │        with navigation
+└─────────────────┘       └──────────────┘
 ```
 
 ## Prerequisites
@@ -76,6 +85,7 @@ Copy the skill folders into your Copilot skills directory:
 # Copy skills to your Copilot config
 cp -r skills/mockup-extract ~/.copilot/skills/
 cp -r skills/mockup-build ~/.copilot/skills/
+cp -r skills/mockup-wow ~/.copilot/skills/
 cp -r skills/mockup-end2end ~/.copilot/skills/
 ```
 
@@ -83,6 +93,7 @@ Or on Windows:
 ```powershell
 Copy-Item -Recurse skills\mockup-extract $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-build $env:USERPROFILE\.copilot\skills\
+Copy-Item -Recurse skills\mockup-wow $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-end2end $env:USERPROFILE\.copilot\skills\
 ```
 
@@ -118,7 +129,7 @@ The agent will:
 - Build a standalone HTML file using the extracted design tokens
 - Preview it with Playwright and show you a screenshot
 
-### 5. Build an end-to-end demo (new!)
+### 5. WOW Mode — build without a design system (new!)
 
 Need a complete, clickable, multi-screen demo instead of a single page?
 
@@ -140,10 +151,10 @@ The agent will:
 - Present a Screen Inventory for approval
 - Build every screen as a separate HTML file with consistent data
 - Link all screens together with navigation and inline JavaScript interactions (modals, confirmations, form submissions)
-- Generate a `index.html` launch pad that shows all screens with thumbnails
+- Generate an `index.html` launch pad that shows all screens with thumbnails
 - Screenshot every screen and show them all at once
 
-### 6. Iterate
+### 7. Iterate
 
 ```
 "Make the form two columns instead of one"
@@ -152,6 +163,31 @@ The agent will:
 ```
 
 Each iteration takes ~30 seconds for small changes.
+
+### 6. Build an end-to-end demo (new!)
+
+When you want something breathtaking and innovative without extracting an existing design:
+
+```
+/mockup-wow
+
+Build a project dashboard with real-time activity feed, team presence, and KPI cards.
+Make it dark mode with a vibrant accent.
+```
+
+The agent will:
+- Invent a stunning color palette and typography pair
+- Build an innovative layout (bento grid, split hero, or floating nav)
+- Apply glassmorphism, gradient buttons, entrance animations, and micro-interactions
+- Use realistic placeholder data — not "Lorem ipsum"
+- Preview with Playwright and show a screenshot
+
+**Example trigger phrases:**
+- "surprise me"
+- "wow mode"
+- "make it beautiful"
+- "best possible UX"
+- "no constraints, just make it amazing"
 
 ## Project Structure
 
@@ -163,8 +199,10 @@ mockup-builder/
 │   │   └── SKILL.md                    ← Agent 1: design extraction prompt
 │   ├── mockup-build/
 │   │   └── SKILL.md                    ← Agent 2: single-page mockup builder prompt
+│   ├── mockup-wow/
+│   │   └── SKILL.md                    ← Agent 3: WOW mode — stunning UI from scratch
 │   └── mockup-end2end/
-│       └── SKILL.md                    ← Agent 3: end-to-end demo builder prompt
+│       └── SKILL.md                    ← Agent 4: end-to-end demo builder prompt
 ├── docs/
 │   ├── design-guide-template.md        ← template for the design guide output
 │   └── architecture.md                 ← detailed system architecture
@@ -197,7 +235,18 @@ Uses Playwright to:
 4. Previews with Playwright, screenshots, and shows the result
 5. Iterates on natural language feedback
 
-### Agent 3: End-to-End Demo Builder (`/mockup-end2end`)
+### Agent 3: WOW Mode (`/mockup-wow`)
+
+Requires no extracted design system. Creates stunning, innovative UX from scratch:
+
+1. Chooses an award-worthy color palette, typography pair, and layout archetype
+2. Applies modern CSS techniques: glassmorphism, gradient buttons, mesh backgrounds, layered shadows
+3. Adds entrance animations (`fadeUp`, `slideIn`), hover micro-interactions, and delight details
+4. Uses realistic placeholder data with plausible domain content
+5. Previews with Playwright, screenshots, and shows the result
+6. Iterates on feedback with the same speed as Agent 2
+
+### Agent 4: End-to-End Demo Builder (`/mockup-end2end`)
 
 > ⚠️ Warns user upfront — this mode thinks and builds significantly longer than a single-page mockup.
 
@@ -212,7 +261,7 @@ Uses Playwright to:
 
 ### Handoff contract
 
-The two agents are decoupled — they communicate through files:
+Agent 1 is decoupled from both builder agents — they communicate through the same files:
 - `design-guide.md` — human-readable design system documentation
 - `base-styles.css` — machine-usable CSS with all tokens as custom properties
 

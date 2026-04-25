@@ -2,7 +2,7 @@
 
 ## System Design
 
-Mockup Builder is a three-agent system. Agent 1 (extraction) and Agents 2 & 3 (building) are decoupled through a file-based handoff contract.
+Mockup Builder is a four-agent system. Agent 1 (extraction) and Agents 2 & 4 (building) are decoupled through a file-based handoff contract. Agent 3 (WOW Mode) operates independently — no extraction step required.
 
 ```
                           ┌─────────────────────────────┐
@@ -17,6 +17,15 @@ Mockup Builder is a three-agent system. Agent 1 (extraction) and Agents 2 & 3 (b
   URL / screenshots                                              HTML mockups
   from user                                                      + screenshots
                                                                  to user
+
+  ┌───────────┐
+  │ Agent 3:  │──────────────────────────────────────────────▶ HTML mockups
+  │ WOW Mode  │    (no extraction step; invents design         + screenshots
+  └───────────┘     from first principles)                     to user
+       ▲
+       │
+  requirements +
+  optional theme hint
 ```
 
 ### Why files, not API calls?
@@ -77,6 +86,8 @@ await frame.evaluate(() => { /* extract styles */ });
 ### Build workflow
 
 ```
+ask design-discovery questions (≤3) + offer one proactive suggestion
+  → translate informal language → design vocabulary
 read design-guide.md
   → understand color palette, typography, spacing
 read base-styles.css
@@ -85,12 +96,24 @@ receive user requirements
   → choose layout template
   → compose page with existing CSS classes
   → add realistic placeholder data
+  → inject Design Vocabulary Overlay snippet
   → write mockups/<name>.html
   → start http-server (if not running)
   → navigate Playwright to localhost
-  → screenshot → show to user
-  → iterate on feedback (edit → re-screenshot → show)
+  → screenshot → show to user + "Show Labels" tip
+  → iterate on feedback (translate → edit → re-screenshot → show + name change)
 ```
+
+### Design Vocabulary Overlay
+
+Every mockup includes a floating **"Show Labels"** toggle (bottom-right corner). When activated it:
+
+1. Scans the DOM for all known component classes and ARIA roles
+2. Stamps each element with a `data-dv` attribute containing its design system name
+3. Renders a small chip label and dashed outline on each labelled element via CSS `::before`
+4. Shows a one-time legend panel explaining how to use the names in feedback
+
+This closes the vocabulary gap: users who don't know design terminology can click the toggle, read the labels, and give precise feedback like "change the `.btn-primary` to `.btn-secondary`" instead of "make the blue button look less important".
 
 ### HTML output constraints
 
@@ -102,7 +125,49 @@ receive user requirements
 - Responsive: flexbox/grid, works at 1440px and 1024px
 
 
-## Agent 3: End-to-End Demo Builder
+## Agent 3: WOW Mode
+
+### Design-first workflow
+
+```
+receive user requirements + optional theme hint
+  → pick color palette (Aurora Dark / Sunrise / Ocean / Forest / etc.)
+  → pick typography pair (Google Fonts)
+  → pick layout archetype (bento grid / split hero / sidebar-nav / etc.)
+  → announce choices in one sentence
+  → write single self-contained HTML file with all CSS inline
+      - CSS custom properties in :root
+      - entrance animations (fadeUp, slideIn)
+      - gradient / glassmorphism components
+      - realistic domain-specific placeholder data
+  → save to mockups/<name>-wow.html
+  → start http-server (if not running)
+  → screenshot → show to user
+  → iterate on feedback
+```
+
+### What makes WOW different from Build
+
+| Aspect | Agent 2: Build | Agent 3: WOW |
+|--------|---------------|--------------|
+| Design source | Extracted from existing app | Invented from first principles |
+| Color palette | Matches target app exactly | Award-worthy signature palette |
+| Typography | Matches target app | Google Fonts — expressive and modern |
+| Animations | Minimal (hover transitions) | Entrance animations, shimmer, micro-interactions |
+| Layout | Faithful to extracted templates | Innovative (bento, floating nav, split hero) |
+| Cards | Plain or lightly styled | Glassmorphism, layered shadows, glow |
+| Delight | Realistic data + hover states | Keyboard shortcuts, presence indicators, progress glows |
+| CSS architecture | References `base-styles.css` | Fully self-contained `:root` custom properties |
+
+### WOW HTML output constraints
+
+- All CSS in `<style>` block (+ Google Fonts `<link>` allowed)
+- No external framework dependencies
+- Responsive via `clamp()`, flexbox, and CSS grid
+- WCAG AA contrast minimum
+- Minimal vanilla JS only when needed (tabs, modals, toggles)
+
+## Agent 4: End-to-End Demo Builder
 
 ### End-to-end build workflow
 
@@ -142,16 +207,17 @@ output/mockups/
     └── detail--success.png
 ```
 
-### Key differences from Agent 2
+### Key differences between builder agents
 
-| Concern              | Agent 2 (single)          | Agent 3 (end-to-end)                        |
-|----------------------|---------------------------|---------------------------------------------|
-| Output files         | One HTML file             | Multiple HTML files + index.html            |
-| JavaScript           | Minimal / none            | Inline JS for nav, modals, form redirects   |
-| Placeholder data     | Per-screen                | Consistent dataset across all screens       |
-| Planning phase       | None                      | Screen Inventory → user approval            |
-| Build time           | ~30 s per small change    | Several minutes for full journey            |
-| Iteration granularity| Page-level                | Journey-level or screen-level               |
+| Concern              | Agent 2 (single)          | Agent 3 (WOW)                               | Agent 4 (end-to-end)                        |
+|----------------------|---------------------------|---------------------------------------------|---------------------------------------------|
+| Design source        | Extracted design system   | Invented from first principles              | Extracted design system                     |
+| Output files         | One HTML file             | One HTML file (self-contained)              | Multiple HTML files + index.html            |
+| JavaScript           | Minimal / none            | Minimal (tabs, modals, toggles)             | Inline JS for nav, modals, form redirects   |
+| Placeholder data     | Per-screen                | Domain-specific, realistic                  | Consistent dataset across all screens       |
+| Planning phase       | None                      | Announces palette/layout choice             | Screen Inventory → user approval            |
+| Build time           | ~30 s per small change    | ~30 s per small change                      | Several minutes for full journey            |
+| Iteration            | Page-level                | Page-level                                  | Journey-level or screen-level               |
 
 ## Output directory structure
 
@@ -162,16 +228,18 @@ output/mockups/
 ├── reference/               ← Agent 1 output (screenshots from live app)
 │   ├── home.png
 │   └── detail.png
-└── mockups/                 ← Agent 2 / Agent 3 output (HTML mockup files)
-    ├── settings-page.html   ← Agent 2: single-page mockups
-    ├── dashboard-v2.html
-    ├── index.html           ← Agent 3: demo launch pad
-    ├── list.html            ← Agent 3: multi-screen demo files
-    ├── detail.html
-    ├── detail--delete-confirm.html
-    ├── detail--success.html
-    └── screenshots/         ← screenshots for both agents
+└── mockups/                 ← Agent 2 / 3 / 4 output (HTML mockup files)
+    ├── settings-page.html       ← Agent 2: single-page mockup (extracted design)
+    ├── dashboard-v2.html        ← Agent 2
+    ├── dashboard-wow.html       ← Agent 3: WOW mode (invented design)
+    ├── index.html               ← Agent 4: demo launch pad
+    ├── list.html                ← Agent 4: multi-screen demo files
+    ├── detail.html              ← Agent 4
+    ├── detail--delete-confirm.html  ← Agent 4
+    ├── detail--success.html     ← Agent 4
+    └── screenshots/             ← screenshots for all agents
         ├── settings-page.png
+        ├── dashboard-wow.png
         ├── index.png
         └── list.png
 ```
