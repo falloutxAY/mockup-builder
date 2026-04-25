@@ -136,8 +136,10 @@ mockup-builder/
     ├── design-guide.md
     ├── base-styles.css
     ├── reference/
-    ├── mockups/
-    └── screenshots/
+    └── mockups/
+        ├── <name>.html
+        ├── screenshots/
+        └── tools/
 ```
 
 ## How It Works
@@ -185,7 +187,7 @@ If the target URL requires login:
 
 ### Output location
 
-By default, output goes to `~/mockup/`. To change this, edit the output path in both `SKILL.md` files.
+By default, output goes to `output/` in the current workspace. To change this, edit the output path in both `SKILL.md` files.
 
 ### Adding components
 
@@ -195,8 +197,8 @@ If the extracted design system doesn't cover a component you need, Agent 2 will 
 
 For multiple apps, use separate output directories:
 ```
-~/mockup-app-a/    ← Design system for App A
-~/mockup-app-b/    ← Design system for App B
+output-app-a/    ← Design system for App A
+output-app-b/    ← Design system for App B
 ```
 
 ## License

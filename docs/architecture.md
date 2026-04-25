@@ -104,18 +104,19 @@ receive user requirements
 ## Output directory structure
 
 ```
-~/mockup/
+output/
 ├── design-guide.md          ← Agent 1 output (human-readable design system)
 ├── base-styles.css          ← Agent 1 output (CSS custom properties + classes)
 ├── reference/               ← Agent 1 output (screenshots from live app)
 │   ├── home.png
 │   └── detail.png
-├── mockups/                 ← Agent 2 output (HTML mockup files)
-│   ├── settings-page.html
-│   └── dashboard-v2.html
-└── screenshots/             ← Agent 2 output (screenshots of mockups)
-    ├── settings-page.png
-    └── dashboard-v2.png
+└── mockups/                 ← Agent 2 output
+    ├── settings-page.html
+    ├── dashboard-v2.html
+    ├── screenshots/         ← screenshots of mockups
+    │   ├── settings-page.png
+    │   └── dashboard-v2.png
+    └── tools/               ← helper scripts (e.g. Playwright screenshot scripts)
 ```
 
 ## Extensibility

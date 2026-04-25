@@ -37,7 +37,7 @@ Based on the user's requirements:
 2. Navigate Playwright to `http://localhost:8765/mockups/<name>.html`
 3. Take a screenshot → save to `output/mockups/screenshots/<name>.png`
 4. Save any helper scripts (e.g. Playwright screenshot scripts) to `output/mockups/tools/`.
-4. Show to user.
+5. Show to user.
 
 ### Step 4: Iterate on feedback
 When the user gives feedback:
