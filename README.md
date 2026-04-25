@@ -8,8 +8,8 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 
 1. **Extract** a design system from any live web app (colors, fonts, spacing, components)
 2. **Generate** realistic HTML/CSS mockups that match the app's look-and-feel
-3. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
-4. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+3. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+4. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
 5. **Iterate** with natural language feedback in seconds
 
 ```
@@ -49,7 +49,7 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 
 ### 1. Configure the Playwright MCP server
 
-Both agents drive a real browser via the [Playwright MCP](https://github.com/microsoft/playwright-mcp) server. Add it to your Copilot environment.
+All agents drive a real browser via the [Playwright MCP](https://github.com/microsoft/playwright-mcp) server. Add it to your Copilot environment.
 
 **Copilot CLI** — edit `~/.copilot/mcp-config.json` (Windows: `%USERPROFILE%\.copilot\mcp-config.json`) and add under `mcpServers`:
 
@@ -129,7 +129,7 @@ The agent will:
 - Build a standalone HTML file using the extracted design tokens
 - Preview it with Playwright and show you a screenshot
 
-### 5. WOW Mode — build without a design system (new!)
+### 5. Build an end-to-end demo
 
 Need a complete, clickable, multi-screen demo instead of a single page?
 
@@ -154,7 +154,7 @@ The agent will:
 - Generate an `index.html` launch pad that shows all screens with thumbnails
 - Screenshot every screen and show them all at once
 
-### 6. Build an end-to-end demo (new!)
+### 6. WOW Mode — build without a design system
 
 When you want something breathtaking and innovative without extracting an existing design:
 
@@ -178,6 +178,7 @@ The agent will:
 - "make it beautiful"
 - "best possible UX"
 - "no constraints, just make it amazing"
+
 ### 7. Iterate
 
 ```
@@ -210,8 +211,10 @@ mockup-builder/
     ├── design-guide.md
     ├── base-styles.css
     ├── reference/
-    ├── mockups/
-    └── screenshots/
+    └── mockups/
+        ├── <name>.html
+        ├── screenshots/
+        └── tools/
 ```
 
 ## How It Works
@@ -283,7 +286,7 @@ If the target URL requires login:
 
 ### Output location
 
-By default, output goes to `~/mockup/`. To change this, edit the output path in both `SKILL.md` files.
+By default, output goes to the `output/` folder in the current workspace. To change this, edit the output path in all four `SKILL.md` files.
 
 ### Adding components
 

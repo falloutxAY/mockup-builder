@@ -12,11 +12,17 @@ Mockup Builder is a four-agent system. Agent 1 (extraction) and Agents 2 & 4 (bu
   │ Agent 1:  │──writes──▶│  base-styles.css            │──reads──▶│ Agent 2:  │
   │ Extract   │           │  reference/*.png            │           │ Build     │
   └───────────┘           │                             │           └───────────┘
-       ▲                  └─────────────────────────────┘                │
-       │                                                                │
-  URL / screenshots                                              HTML mockups
-  from user                                                      + screenshots
-                                                                 to user
+       ▲                  └──────────────┬──────────────┘                │
+       │                                │                               │
+  URL / screenshots                     │reads                   HTML mockups
+  from user                             ▼                         + screenshots
+                                  ┌───────────┐                        │
+                                  │ Agent 4:  │──▶ Multi-screen demo   │
+                                  │ End-to-End│    + index.html        │
+                                  └───────────┘                        │
+                                       ▲                               │
+                                       │ journey description           ▼
+                                                                  to user
 
   ┌───────────┐
   │ Agent 3:  │──────────────────────────────────────────────▶ HTML mockups
@@ -222,7 +228,7 @@ output/mockups/
 ## Output directory structure
 
 ```
-~/mockup/
+output/
 ├── design-guide.md          ← Agent 1 output (human-readable design system)
 ├── base-styles.css          ← Agent 1 output (CSS custom properties + classes)
 ├── reference/               ← Agent 1 output (screenshots from live app)
@@ -237,11 +243,12 @@ output/mockups/
     ├── detail.html              ← Agent 4
     ├── detail--delete-confirm.html  ← Agent 4
     ├── detail--success.html     ← Agent 4
-    └── screenshots/             ← screenshots for all agents
-        ├── settings-page.png
-        ├── dashboard-wow.png
-        ├── index.png
-        └── list.png
+    ├── screenshots/             ← screenshots for all agents
+    │   ├── settings-page.png
+    │   ├── dashboard-wow.png
+    │   ├── index.png
+    │   └── list.png
+    └── tools/                   ← helper scripts (e.g. Playwright screenshot scripts)
 ```
 
 ## Extensibility
