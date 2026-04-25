@@ -8,8 +8,8 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 
 1. **Extract** a design system from any live web app (colors, fonts, spacing, components)
 2. **Generate** realistic HTML/CSS mockups that match the app's look-and-feel
-3. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
-4. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+3. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+4. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
 5. **Iterate** with natural language feedback in seconds
 
 ```
