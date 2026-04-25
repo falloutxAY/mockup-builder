@@ -154,16 +154,6 @@ The agent will:
 - Generate an `index.html` launch pad that shows all screens with thumbnails
 - Screenshot every screen and show them all at once
 
-### 7. Iterate
-
-```
-"Make the form two columns instead of one"
-"Add a danger zone section at the bottom with a delete account button"
-"The spacing feels too tight — add more breathing room"
-```
-
-Each iteration takes ~30 seconds for small changes.
-
 ### 6. Build an end-to-end demo (new!)
 
 When you want something breathtaking and innovative without extracting an existing design:
@@ -188,6 +178,16 @@ The agent will:
 - "make it beautiful"
 - "best possible UX"
 - "no constraints, just make it amazing"
+### 7. Iterate
+
+```
+"Make the form two columns instead of one"
+"Add a danger zone section at the bottom with a delete account button"
+"The spacing feels too tight — add more breathing room"
+```
+
+Each iteration takes ~30 seconds for small changes.
+
 
 ## Project Structure
 
