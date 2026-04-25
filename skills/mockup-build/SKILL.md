@@ -57,7 +57,7 @@ Target: **< 30 seconds per small iteration** (color tweak, spacing change, text 
 - **Realistic data**: plausible names, emails, dates, numbers, status labels.
 - **Interactive touches**: hover states on buttons (CSS only), cursor changes, focus outlines on inputs.
 - **Accessible**: proper contrast, alt text, visible focus indicators.
-- **No JavaScript** unless the user asks for interactive behavior (tabs, modals, accordion). When needed, keep it minimal and inline. **Exception**: always include the click-to-copy button on overlay/dialog names (see component cheatsheet) — it uses a one-liner `navigator.clipboard.writeText(…)` and requires no extra dependencies.
+- **No JavaScript** unless the user asks for interactive behavior (tabs, modals, accordion). When needed, keep it minimal and inline. **Exception**: always include the click-to-copy button on overlay/dialog names (see component cheatsheet) — it uses a small inline snippet around `navigator.clipboard.writeText(…)` and requires no extra dependencies.
 - **No framework dependencies**: opens in any browser with no build step.
 
 ## Component usage cheatsheet
