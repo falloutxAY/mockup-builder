@@ -4,11 +4,12 @@
 
 ## What this is
 
-A two-agent system powered by **GitHub Copilot** (or any AI agent with Playwright access) that lets you:
+A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwright access) that lets you:
 
 1. **Extract** a design system from any live web app (colors, fonts, spacing, components)
 2. **Generate** realistic HTML/CSS mockups that match the app's look-and-feel
-3. **Iterate** with natural language feedback in seconds
+3. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+4. **Iterate** with natural language feedback in seconds
 
 ```
 ┌─────────────────┐       ┌──────────────┐       ┌──────────────────┐
@@ -17,10 +18,16 @@ A two-agent system powered by **GitHub Copilot** (or any AI agent with Playwrigh
 └─────────────────┘       └──────────────┘       └────────┬─────────┘
                                                           │
 ┌─────────────────┐       ┌──────────────┐                │
-│  User provides   │──────▶│  Agent 2:    │◀───────────────┘
-│  requirements    │       │  Build       │
-│  + feedback      │       │              │──────▶ HTML/CSS mockup
-└─────────────────┘       └──────────────┘
+│  User provides   │──────▶│  Agent 2:    │◀───────────────┤
+│  requirements    │       │  Build       │                │
+│  + feedback      │       │  (single)    │──────▶ HTML/CSS mockup
+└─────────────────┘       └──────────────┘                │
+                                                          │
+┌─────────────────┐       ┌──────────────┐                │
+│  User provides   │──────▶│  Agent 3:    │◀───────────────┘
+│  journey desc.   │       │  End-to-End  │
+│  + feedback      │       │  Demo        │──────▶ Multi-screen demo
+└─────────────────┘       └──────────────┘        with navigation
 ```
 
 ## Prerequisites
@@ -69,12 +76,14 @@ Copy the skill folders into your Copilot skills directory:
 # Copy skills to your Copilot config
 cp -r skills/mockup-extract ~/.copilot/skills/
 cp -r skills/mockup-build ~/.copilot/skills/
+cp -r skills/mockup-end2end ~/.copilot/skills/
 ```
 
 Or on Windows:
 ```powershell
 Copy-Item -Recurse skills\mockup-extract $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-build $env:USERPROFILE\.copilot\skills\
+Copy-Item -Recurse skills\mockup-end2end $env:USERPROFILE\.copilot\skills\
 ```
 
 ### 3. Extract a design system from any URL
@@ -109,7 +118,32 @@ The agent will:
 - Build a standalone HTML file using the extracted design tokens
 - Preview it with Playwright and show you a screenshot
 
-### 5. Iterate
+### 5. Build an end-to-end demo (new!)
+
+Need a complete, clickable, multi-screen demo instead of a single page?
+
+```
+/mockup-end2end
+
+Build an end-to-end demo for the project management feature:
+- Project list view
+- Project detail / edit form
+- Delete confirmation dialog
+- Post-save success screen
+```
+
+> ⚠️ **This mode thinks and builds longer.** The agent will plan the full user journey and present a Screen Inventory for your approval before writing a single line of HTML. Expect several minutes of build time for a complete flow.
+
+The agent will:
+- Warn you upfront and wait for confirmation before starting
+- Map the entire user journey (happy path + branch states)
+- Present a Screen Inventory for approval
+- Build every screen as a separate HTML file with consistent data
+- Link all screens together with navigation and inline JavaScript interactions (modals, confirmations, form submissions)
+- Generate a `index.html` launch pad that shows all screens with thumbnails
+- Screenshot every screen and show them all at once
+
+### 6. Iterate
 
 ```
 "Make the form two columns instead of one"
@@ -127,8 +161,10 @@ mockup-builder/
 ├── skills/
 │   ├── mockup-extract/
 │   │   └── SKILL.md                    ← Agent 1: design extraction prompt
-│   └── mockup-build/
-│       └── SKILL.md                    ← Agent 2: mockup builder prompt
+│   ├── mockup-build/
+│   │   └── SKILL.md                    ← Agent 2: single-page mockup builder prompt
+│   └── mockup-end2end/
+│       └── SKILL.md                    ← Agent 3: end-to-end demo builder prompt
 ├── docs/
 │   ├── design-guide-template.md        ← template for the design guide output
 │   └── architecture.md                 ← detailed system architecture
@@ -160,6 +196,19 @@ Uses Playwright to:
 3. Uses realistic placeholder data (not "Lorem ipsum")
 4. Previews with Playwright, screenshots, and shows the result
 5. Iterates on natural language feedback
+
+### Agent 3: End-to-End Demo Builder (`/mockup-end2end`)
+
+> ⚠️ Warns user upfront — this mode thinks and builds significantly longer than a single-page mockup.
+
+1. Reads the design guide and CSS
+2. **Plans the full user journey** — maps every screen, branch state, and interactive moment
+3. **Presents a Screen Inventory** for the user to approve before building starts
+4. Builds every screen as a separate HTML file with consistent placeholder data across all files
+5. Links screens together with navigation links and inline JavaScript (modals, confirmations, form submissions → redirect)
+6. Generates `output/mockups/index.html` — a thumbnail launch pad for the complete demo
+7. Screenshots every screen and presents them all at once
+8. Iterates at the journey level (add/remove screens) or screen level (tweak individual files)
 
 ### Handoff contract
 
