@@ -77,6 +77,8 @@ await frame.evaluate(() => { /* extract styles */ });
 ### Build workflow
 
 ```
+ask design-discovery questions (≤3) + offer one proactive suggestion
+  → translate informal language → design vocabulary
 read design-guide.md
   → understand color palette, typography, spacing
 read base-styles.css
@@ -85,12 +87,24 @@ receive user requirements
   → choose layout template
   → compose page with existing CSS classes
   → add realistic placeholder data
+  → inject Design Vocabulary Overlay snippet
   → write mockups/<name>.html
   → start http-server (if not running)
   → navigate Playwright to localhost
-  → screenshot → show to user
-  → iterate on feedback (edit → re-screenshot → show)
+  → screenshot → show to user + "Show Labels" tip
+  → iterate on feedback (translate → edit → re-screenshot → show + name change)
 ```
+
+### Design Vocabulary Overlay
+
+Every mockup includes a floating **"Show Labels"** toggle (bottom-right corner). When activated it:
+
+1. Scans the DOM for all known component classes and ARIA roles
+2. Stamps each element with a `data-dv` attribute containing its design system name
+3. Renders a small chip label and dashed outline on each labelled element via CSS `::before`
+4. Shows a one-time legend panel explaining how to use the names in feedback
+
+This closes the vocabulary gap: users who don't know design terminology can click the toggle, read the labels, and give precise feedback like "change the `.btn-primary` to `.btn-secondary`" instead of "make the blue button look less important".
 
 ### HTML output constraints
 
