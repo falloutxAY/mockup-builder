@@ -4,12 +4,13 @@
 
 ## What this is
 
-A three-agent system powered by **GitHub Copilot** (or any AI agent with Playwright access) that lets you:
+A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwright access) that lets you:
 
 1. **Extract** a design system from any live web app (colors, fonts, spacing, components)
 2. **Generate** realistic HTML/CSS mockups that match the app's look-and-feel
 3. **WOW Mode** — build stunning, innovative UI from scratch with no design system required
-4. **Iterate** with natural language feedback in seconds
+4. **Build end-to-end demos** — complete, multi-screen clickable journeys with navigation and interactions
+5. **Iterate** with natural language feedback in seconds
 
 ```
 ┌─────────────────┐       ┌──────────────┐       ┌──────────────────┐
@@ -20,7 +21,7 @@ A three-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 ┌─────────────────┐       ┌──────────────┐                │
 │  User provides   │──────▶│  Agent 2:    │◀───────────────┘
 │  requirements    │       │  Build       │
-│  + feedback      │       │              │──────▶ HTML/CSS mockup
+│  + feedback      │       │  (single)    │──────▶ HTML/CSS mockup
 └─────────────────┘       └──────────────┘
 
 ┌─────────────────┐       ┌──────────────┐
@@ -30,6 +31,12 @@ A three-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 └─────────────────┘       │   system     │         glassmorphism, delight)
                           │   needed)    │
                           └──────────────┘
+
+┌─────────────────┐       ┌──────────────┐
+│  User provides   │──────▶│  Agent 4:    │
+│  journey desc.   │       │  End-to-End  │──────▶ Multi-screen demo
+│  + feedback      │       │  Demo        │        with navigation
+└─────────────────┘       └──────────────┘
 ```
 
 ## Prerequisites
@@ -79,6 +86,7 @@ Copy the skill folders into your Copilot skills directory:
 cp -r skills/mockup-extract ~/.copilot/skills/
 cp -r skills/mockup-build ~/.copilot/skills/
 cp -r skills/mockup-wow ~/.copilot/skills/
+cp -r skills/mockup-end2end ~/.copilot/skills/
 ```
 
 Or on Windows:
@@ -86,6 +94,7 @@ Or on Windows:
 Copy-Item -Recurse skills\mockup-extract $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-build $env:USERPROFILE\.copilot\skills\
 Copy-Item -Recurse skills\mockup-wow $env:USERPROFILE\.copilot\skills\
+Copy-Item -Recurse skills\mockup-end2end $env:USERPROFILE\.copilot\skills\
 ```
 
 ### 3. Extract a design system from any URL
@@ -120,17 +129,32 @@ The agent will:
 - Build a standalone HTML file using the extracted design tokens
 - Preview it with Playwright and show you a screenshot
 
-### 5. Iterate
+### 5. WOW Mode — build without a design system (new!)
+
+Need a complete, clickable, multi-screen demo instead of a single page?
 
 ```
-"Make the form two columns instead of one"
-"Add a danger zone section at the bottom with a delete account button"
-"The spacing feels too tight — add more breathing room"
+/mockup-end2end
+
+Build an end-to-end demo for the project management feature:
+- Project list view
+- Project detail / edit form
+- Delete confirmation dialog
+- Post-save success screen
 ```
 
-Each iteration takes ~30 seconds for small changes.
+> ⚠️ **This mode thinks and builds longer.** The agent will plan the full user journey and present a Screen Inventory for your approval before writing a single line of HTML. Expect several minutes of build time for a complete flow.
 
-### 6. WOW Mode — build without a design system
+The agent will:
+- Warn you upfront and wait for confirmation before starting
+- Map the entire user journey (happy path + branch states)
+- Present a Screen Inventory for approval
+- Build every screen as a separate HTML file with consistent data
+- Link all screens together with navigation and inline JavaScript interactions (modals, confirmations, form submissions)
+- Generate an `index.html` launch pad that shows all screens with thumbnails
+- Screenshot every screen and show them all at once
+
+### 6. Build an end-to-end demo (new!)
 
 When you want something breathtaking and innovative without extracting an existing design:
 
@@ -154,6 +178,16 @@ The agent will:
 - "make it beautiful"
 - "best possible UX"
 - "no constraints, just make it amazing"
+### 7. Iterate
+
+```
+"Make the form two columns instead of one"
+"Add a danger zone section at the bottom with a delete account button"
+"The spacing feels too tight — add more breathing room"
+```
+
+Each iteration takes ~30 seconds for small changes.
+
 
 ## Project Structure
 
@@ -164,9 +198,11 @@ mockup-builder/
 │   ├── mockup-extract/
 │   │   └── SKILL.md                    ← Agent 1: design extraction prompt
 │   ├── mockup-build/
-│   │   └── SKILL.md                    ← Agent 2: mockup builder prompt
-│   └── mockup-wow/
-│       └── SKILL.md                    ← Agent 3: WOW mode — stunning UI from scratch
+│   │   └── SKILL.md                    ← Agent 2: single-page mockup builder prompt
+│   ├── mockup-wow/
+│   │   └── SKILL.md                    ← Agent 3: WOW mode — stunning UI from scratch
+│   └── mockup-end2end/
+│       └── SKILL.md                    ← Agent 4: end-to-end demo builder prompt
 ├── docs/
 │   ├── design-guide-template.md        ← template for the design guide output
 │   └── architecture.md                 ← detailed system architecture
@@ -210,9 +246,22 @@ Requires no extracted design system. Creates stunning, innovative UX from scratc
 5. Previews with Playwright, screenshots, and shows the result
 6. Iterates on feedback with the same speed as Agent 2
 
+### Agent 4: End-to-End Demo Builder (`/mockup-end2end`)
+
+> ⚠️ Warns user upfront — this mode thinks and builds significantly longer than a single-page mockup.
+
+1. Reads the design guide and CSS
+2. **Plans the full user journey** — maps every screen, branch state, and interactive moment
+3. **Presents a Screen Inventory** for the user to approve before building starts
+4. Builds every screen as a separate HTML file with consistent placeholder data across all files
+5. Links screens together with navigation links and inline JavaScript (modals, confirmations, form submissions → redirect)
+6. Generates `output/mockups/index.html` — a thumbnail launch pad for the complete demo
+7. Screenshots every screen and presents them all at once
+8. Iterates at the journey level (add/remove screens) or screen level (tweak individual files)
+
 ### Handoff contract
 
-The two agents are decoupled — they communicate through files:
+Agent 1 is decoupled from both builder agents — they communicate through the same files:
 - `design-guide.md` — human-readable design system documentation
 - `base-styles.css` — machine-usable CSS with all tokens as custom properties
 
