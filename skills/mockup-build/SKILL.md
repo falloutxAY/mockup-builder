@@ -104,7 +104,7 @@ Use these classes from `base-styles.css`:
   <div class="dialog">
     <div class="dialog-header">
       <h2 class="dialog-title">Edit User Profile Settings</h2>
-      <button class="btn-copy" title="Copy name to clipboard"
+      <button type="button" class="btn-copy" title="Copy name to clipboard"
         onclick="navigator.clipboard.writeText(this.closest('.dialog').querySelector('.dialog-title').textContent).then(()=>{this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),1500)}).catch(()=>{this.classList.add('copy-error');setTimeout(()=>this.classList.remove('copy-error'),1500)})">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="5" y="5" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
