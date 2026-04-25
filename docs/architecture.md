@@ -2,7 +2,7 @@
 
 ## System Design
 
-Mockup Builder is a three-agent system. Agents 1 and 2 are decoupled through a file-based handoff contract. Agent 3 operates independently — no extraction step required.
+Mockup Builder is a four-agent system. Agent 1 (extraction) and Agents 2 & 4 (building) are decoupled through a file-based handoff contract. Agent 3 (WOW Mode) operates independently — no extraction step required.
 
 ```
                           ┌─────────────────────────────┐
@@ -12,11 +12,17 @@ Mockup Builder is a three-agent system. Agents 1 and 2 are decoupled through a f
   │ Agent 1:  │──writes──▶│  base-styles.css            │──reads──▶│ Agent 2:  │
   │ Extract   │           │  reference/*.png            │           │ Build     │
   └───────────┘           │                             │           └───────────┘
-       ▲                  └─────────────────────────────┘                │
-       │                                                                │
-  URL / screenshots                                              HTML mockups
-  from user                                                      + screenshots
-                                                                 to user
+       ▲                  └──────────────┬──────────────┘                │
+       │                                │                               │
+  URL / screenshots                     │reads                   HTML mockups
+  from user                             ▼                         + screenshots
+                                  ┌───────────┐                        │
+                                  │ Agent 4:  │──▶ Multi-screen demo   │
+                                  │ End-to-End│    + index.html        │
+                                  └───────────┘                        │
+                                       ▲                               │
+                                       │ journey description           ▼
+                                                                  to user
 
   ┌───────────┐
   │ Agent 3:  │──────────────────────────────────────────────▶ HTML mockups
@@ -33,7 +39,7 @@ Mockup Builder is a three-agent system. Agents 1 and 2 are decoupled through a f
 1. **Human-editable**: you can manually tweak the design guide before generating mockups.
 2. **Debuggable**: if a mockup looks wrong, check the guide — the problem is always in one of two places.
 3. **Reusable**: the CSS works outside this system — drop it into any project.
-4. **Agent-agnostic**: any AI that reads markdown and writes HTML can be Agent 2.
+4. **Agent-agnostic**: any AI that reads markdown and writes HTML can be Agent 2 or Agent 3.
 
 ## Agent 1: Design Extraction
 
@@ -81,7 +87,7 @@ await frame.evaluate(() => { /* extract styles */ });
 | `input`, `[role="textbox"]`| Input border, radius, height, font          |
 | `h1`–`h6`                | Heading hierarchy (size, weight, color)      |
 
-## Agent 2: Mockup Builder
+## Agent 2: Mockup Builder (Single-Page)
 
 ### Build workflow
 
@@ -123,6 +129,7 @@ This closes the vocabulary gap: users who don't know design terminology can clic
 - Semantic: uses proper HTML5 elements and ARIA roles
 - Accessible: proper contrast, focus indicators
 - Responsive: flexbox/grid, works at 1440px and 1024px
+
 
 ## Agent 3: WOW Mode
 
@@ -166,6 +173,58 @@ receive user requirements + optional theme hint
 - WCAG AA contrast minimum
 - Minimal vanilla JS only when needed (tabs, modals, toggles)
 
+## Agent 4: End-to-End Demo Builder
+
+### End-to-end build workflow
+
+> ⚠️ This mode warns the user upfront and waits for confirmation — it builds significantly longer than a single-page mockup.
+
+```
+warn user → wait for confirmation
+  → read design-guide.md + base-styles.css
+  → receive user journey description
+  → plan Screen Inventory (all screens + branch states)
+  → present Screen Inventory → wait for approval
+  → for each screen:
+      → write mockups/<name>.html
+      → add navigation links to sibling screens
+      → add inline JavaScript for modals / confirmations / form submissions
+      → use consistent placeholder data across all screens
+      → screenshot → save to mockups/screenshots/<name>.png
+  → write mockups/index.html (launch pad with thumbnails + flow diagram)
+  → screenshot index → show all screenshots to user
+  → iterate (journey-level: add screens / screen-level: edit one file)
+```
+
+### Multi-screen output structure
+
+```
+output/mockups/
+├── index.html                   ← Demo launch pad (thumbnails + flow)
+├── list.html                    ← Entity list view
+├── detail.html                  ← Detail / edit form
+├── detail--delete-confirm.html  ← Delete confirmation overlay
+├── detail--success.html         ← Post-save success state
+└── screenshots/
+    ├── index.png
+    ├── list.png
+    ├── detail.png
+    ├── detail--delete-confirm.png
+    └── detail--success.png
+```
+
+### Key differences between builder agents
+
+| Concern              | Agent 2 (single)          | Agent 3 (WOW)                               | Agent 4 (end-to-end)                        |
+|----------------------|---------------------------|---------------------------------------------|---------------------------------------------|
+| Design source        | Extracted design system   | Invented from first principles              | Extracted design system                     |
+| Output files         | One HTML file             | One HTML file (self-contained)              | Multiple HTML files + index.html            |
+| JavaScript           | Minimal / none            | Minimal (tabs, modals, toggles)             | Inline JS for nav, modals, form redirects   |
+| Placeholder data     | Per-screen                | Domain-specific, realistic                  | Consistent dataset across all screens       |
+| Planning phase       | None                      | Announces palette/layout choice             | Screen Inventory → user approval            |
+| Build time           | ~30 s per small change    | ~30 s per small change                      | Several minutes for full journey            |
+| Iteration            | Page-level                | Page-level                                  | Journey-level or screen-level               |
+
 ## Output directory structure
 
 ```
@@ -175,14 +234,20 @@ output/
 ├── reference/               ← Agent 1 output (screenshots from live app)
 │   ├── home.png
 │   └── detail.png
-└── mockups/                 ← Agent 2 + Agent 3 output
-    ├── settings-page.html       ← Agent 2 (matches extracted design)
+└── mockups/                 ← Agent 2 / 3 / 4 output (HTML mockup files)
+    ├── settings-page.html       ← Agent 2: single-page mockup (extracted design)
     ├── dashboard-v2.html        ← Agent 2
-    ├── dashboard-wow.html       ← Agent 3 (WOW mode — invented design)
-    ├── screenshots/             ← Agent 2 + Agent 3 screenshots
+    ├── dashboard-wow.html       ← Agent 3: WOW mode (invented design)
+    ├── index.html               ← Agent 4: demo launch pad
+    ├── list.html                ← Agent 4: multi-screen demo files
+    ├── detail.html              ← Agent 4
+    ├── detail--delete-confirm.html  ← Agent 4
+    ├── detail--success.html     ← Agent 4
+    ├── screenshots/             ← screenshots for all agents
     │   ├── settings-page.png
-    │   ├── dashboard-v2.png
-    │   └── dashboard-wow.png
+    │   ├── dashboard-wow.png
+    │   ├── index.png
+    │   └── list.png
     └── tools/                   ← helper scripts (e.g. Playwright screenshot scripts)
 ```
 
