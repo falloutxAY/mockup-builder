@@ -2,7 +2,7 @@
 
 ## System Design
 
-Mockup Builder is a two-agent system where Agent 1 (extraction) and Agent 2 (building) are decoupled through a file-based handoff contract.
+Mockup Builder is a three-agent system. Agents 1 and 2 are decoupled through a file-based handoff contract. Agent 3 operates independently — no extraction step required.
 
 ```
                           ┌─────────────────────────────┐
@@ -17,6 +17,15 @@ Mockup Builder is a two-agent system where Agent 1 (extraction) and Agent 2 (bui
   URL / screenshots                                              HTML mockups
   from user                                                      + screenshots
                                                                  to user
+
+  ┌───────────┐
+  │ Agent 3:  │──────────────────────────────────────────────▶ HTML mockups
+  │ WOW Mode  │    (no extraction step; invents design         + screenshots
+  └───────────┘     from first principles)                     to user
+       ▲
+       │
+  requirements +
+  optional theme hint
 ```
 
 ### Why files, not API calls?
@@ -101,6 +110,48 @@ receive user requirements
 - Accessible: proper contrast, focus indicators
 - Responsive: flexbox/grid, works at 1440px and 1024px
 
+## Agent 3: WOW Mode
+
+### Design-first workflow
+
+```
+receive user requirements + optional theme hint
+  → pick color palette (Aurora Dark / Sunrise / Ocean / Forest / etc.)
+  → pick typography pair (Google Fonts)
+  → pick layout archetype (bento grid / split hero / sidebar-nav / etc.)
+  → announce choices in one sentence
+  → write single self-contained HTML file with all CSS inline
+      - CSS custom properties in :root
+      - entrance animations (fadeUp, slideIn)
+      - gradient / glassmorphism components
+      - realistic domain-specific placeholder data
+  → save to mockups/<name>-wow.html
+  → start http-server (if not running)
+  → screenshot → show to user
+  → iterate on feedback
+```
+
+### What makes WOW different from Build
+
+| Aspect | Agent 2: Build | Agent 3: WOW |
+|--------|---------------|--------------|
+| Design source | Extracted from existing app | Invented from first principles |
+| Color palette | Matches target app exactly | Award-worthy signature palette |
+| Typography | Matches target app | Google Fonts — expressive and modern |
+| Animations | Minimal (hover transitions) | Entrance animations, shimmer, micro-interactions |
+| Layout | Faithful to extracted templates | Innovative (bento, floating nav, split hero) |
+| Cards | Plain or lightly styled | Glassmorphism, layered shadows, glow |
+| Delight | Realistic data + hover states | Keyboard shortcuts, presence indicators, progress glows |
+| CSS architecture | References `base-styles.css` | Fully self-contained `:root` custom properties |
+
+### WOW HTML output constraints
+
+- All CSS in `<style>` block (+ Google Fonts `<link>` allowed)
+- No external framework dependencies
+- Responsive via `clamp()`, flexbox, and CSS grid
+- WCAG AA contrast minimum
+- Minimal vanilla JS only when needed (tabs, modals, toggles)
+
 ## Output directory structure
 
 ```
@@ -110,12 +161,14 @@ receive user requirements
 ├── reference/               ← Agent 1 output (screenshots from live app)
 │   ├── home.png
 │   └── detail.png
-├── mockups/                 ← Agent 2 output (HTML mockup files)
-│   ├── settings-page.html
-│   └── dashboard-v2.html
-└── screenshots/             ← Agent 2 output (screenshots of mockups)
+├── mockups/                 ← Agent 2 + Agent 3 output (HTML mockup files)
+│   ├── settings-page.html       ← Agent 2 (matches extracted design)
+│   ├── dashboard-v2.html        ← Agent 2
+│   └── dashboard-wow.html       ← Agent 3 (WOW mode — invented design)
+└── screenshots/             ← Agent 2 + Agent 3 output (screenshots of mockups)
     ├── settings-page.png
-    └── dashboard-v2.png
+    ├── dashboard-v2.png
+    └── dashboard-wow.png
 ```
 
 ## Extensibility
