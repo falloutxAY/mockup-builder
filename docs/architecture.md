@@ -169,20 +169,21 @@ receive user requirements + optional theme hint
 ## Output directory structure
 
 ```
-~/mockup/
+output/
 ├── design-guide.md          ← Agent 1 output (human-readable design system)
 ├── base-styles.css          ← Agent 1 output (CSS custom properties + classes)
 ├── reference/               ← Agent 1 output (screenshots from live app)
 │   ├── home.png
 │   └── detail.png
-├── mockups/                 ← Agent 2 + Agent 3 output (HTML mockup files)
-│   ├── settings-page.html       ← Agent 2 (matches extracted design)
-│   ├── dashboard-v2.html        ← Agent 2
-│   └── dashboard-wow.html       ← Agent 3 (WOW mode — invented design)
-└── screenshots/             ← Agent 2 + Agent 3 output (screenshots of mockups)
-    ├── settings-page.png
-    ├── dashboard-v2.png
-    └── dashboard-wow.png
+└── mockups/                 ← Agent 2 + Agent 3 output
+    ├── settings-page.html       ← Agent 2 (matches extracted design)
+    ├── dashboard-v2.html        ← Agent 2
+    ├── dashboard-wow.html       ← Agent 3 (WOW mode — invented design)
+    ├── screenshots/             ← Agent 2 + Agent 3 screenshots
+    │   ├── settings-page.png
+    │   ├── dashboard-v2.png
+    │   └── dashboard-wow.png
+    └── tools/                   ← helper scripts (e.g. Playwright screenshot scripts)
 ```
 
 ## Extensibility

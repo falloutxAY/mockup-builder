@@ -174,8 +174,10 @@ mockup-builder/
     ├── design-guide.md
     ├── base-styles.css
     ├── reference/
-    ├── mockups/
-    └── screenshots/
+    └── mockups/
+        ├── <name>.html
+        ├── screenshots/
+        └── tools/
 ```
 
 ## How It Works
@@ -234,7 +236,7 @@ If the target URL requires login:
 
 ### Output location
 
-By default, output goes to `~/mockup/`. To change this, edit the output path in both `SKILL.md` files.
+By default, output goes to the `output/` folder in the current workspace. To change this, edit the output path in all three `SKILL.md` files.
 
 ### Adding components
 
