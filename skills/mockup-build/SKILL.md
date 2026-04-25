@@ -252,6 +252,7 @@ After the first screenshot, add a one-liner:
 - **Interactive touches**: hover states on buttons (CSS only), cursor changes, focus outlines on inputs.
 - **Accessible**: proper contrast, alt text, visible focus indicators.
 - **Design Vocabulary Overlay**: always include the overlay snippet — paste just before `</body>`.
+- **No JavaScript** unless the user asks for interactive behavior (tabs, modals, accordion). When needed, keep it minimal and inline. **Exception**: always include the click-to-copy button on overlay/dialog names (see component cheatsheet) — it uses a small inline snippet around `navigator.clipboard.writeText(…)` and requires no extra dependencies.
 - **No framework dependencies**: opens in any browser with no build step.
 - **JavaScript**: the overlay uses inline JS. For other interactive behavior (tabs, modals, accordion), only add JS if the user asks. Keep it minimal and inline.
 
@@ -294,10 +295,20 @@ Use these classes from `base-styles.css`:
 </div>
 <label class="form-label">Field <span class="required">*</span></label>
 
-<!-- Dialog -->
+<!-- Dialog (with click-to-copy name button for easy agent-chat pasting) -->
 <div class="dialog-overlay">
   <div class="dialog">
-    <h2 class="dialog-title">Title</h2>
+    <div class="dialog-header">
+      <h2 class="dialog-title">Edit User Profile Settings</h2>
+      <button type="button" class="btn-copy" title="Copy name to clipboard"
+        onclick="const btn=this;const reset=()=>{clearTimeout(btn._copyT);btn.classList.remove('copied','copy-error')};const show=(s)=>{reset();btn.classList.add(s);btn._copyT=setTimeout(()=>btn.classList.remove('copied','copy-error'),1500)};const wt=navigator.clipboard?.writeText;if(!wt){show('copy-error');return;}wt.call(navigator.clipboard,btn.closest('.dialog').querySelector('.dialog-title').textContent).then(()=>show('copied')).catch(()=>show('copy-error'))">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="5" y="5" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M3 11H2.5A1.5 1.5 0 0 1 1 9.5v-7A1.5 1.5 0 0 1 2.5 1h7A1.5 1.5 0 0 1 11 2.5V3" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span class="btn-copy-label">Copy name</span>
+      </button>
+    </div>
     <p class="dialog-body">Content</p>
     <div class="dialog-actions">
       <button class="btn btn-secondary">Cancel</button>
@@ -337,6 +348,52 @@ Use these classes from `base-styles.css`:
     <!-- section content -->
   </div>
 </div>
+```
+
+### Copy-button styles (include in `<style>` when using the dialog copy button)
+
+```css
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-secondary, #555);
+  background: transparent;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.btn-copy:hover {
+  background: var(--color-surface-secondary, #f0f0f0);
+  border-color: var(--color-border-strong, #999);
+  color: var(--color-text-primary, #111);
+}
+.btn-copy.copied {
+  color: var(--color-success, #107c10);
+  border-color: var(--color-success, #107c10);
+}
+.btn-copy.copied .btn-copy-label::before {
+  content: "✓ ";
+}
+.btn-copy.copy-error {
+  color: var(--color-danger, #c4000a);
+  border-color: var(--color-danger, #c4000a);
+}
+.btn-copy.copy-error .btn-copy-label::before {
+  content: "✗ ";
+}
 ```
 
 ## When the design guide doesn't cover something
