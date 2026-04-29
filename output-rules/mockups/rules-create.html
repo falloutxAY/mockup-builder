@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Business Rule — ZavaStadium Ontology</title>
   <link rel="stylesheet" href="../base-styles.css">
+  <link rel="stylesheet" href="../fluent-icons.css">
   <style>
     .shell { grid-template-rows: var(--header-height) 1fr auto; }
     .body { display: flex; grid-column: 1 / -1; min-height: 0; }
@@ -16,11 +17,26 @@
 
     .nl-editor { width: 100%; min-height: 80px; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-base); line-height: 22px; color: var(--color-text-primary); background: var(--color-surface); outline: none; }
     .nl-editor:focus { border-bottom: 2px solid var(--color-primary); }
-    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; cursor: pointer; }
-    .nl-entity-type { color: var(--color-entity-1); text-decoration-color: var(--color-entity-1); }
-    .nl-entity-type-2 { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); }
-    .nl-property { color: #8764B8; text-decoration-color: #8764B8; }
-    .nl-relationship { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); text-decoration-style: dashed; }
+    /* Fluent v9: All recognized concepts use brand-color dotted underline + Tooltip on hover */
+    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--color-primary); text-underline-offset: 3px; cursor: pointer; color: var(--color-text-primary); position: relative; }
+    .nl-entity:hover { background: var(--color-state-verified-bg); border-radius: var(--radius-sm); }
+    .nl-entity .nl-tooltip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--color-header-bg); color: #fff; font-size: var(--font-size-xs); font-weight: 400; padding: 4px 8px; border-radius: var(--radius-md); white-space: nowrap; z-index: 100; pointer-events: none; box-shadow: var(--shadow-popup); }
+    .nl-entity:hover .nl-tooltip { display: block; }
+
+    /* Intellisense autocomplete popup — Fluent v9: Combobox (freeform) + OptionGroup + Option */
+    .nl-autocomplete { position: absolute; z-index: 200; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: 0 2px 4px rgba(0,0,0,0.14), 0 0 2px rgba(0,0,0,0.12); min-width: 280px; max-width: 340px; max-height: 260px; overflow-y: auto; font-size: var(--font-size-base); padding: var(--space-xxs) 0; }
+    /* Fluent OptionGroup label */
+    .nl-autocomplete-header { padding: 5px var(--space-sm) 4px; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); }
+    /* Fluent Option row */
+    .nl-autocomplete-item { display: flex; align-items: center; gap: var(--space-xs); padding: 5px var(--space-sm); cursor: pointer; min-height: 32px; border-radius: var(--radius-md); margin: 0 var(--space-xxs); }
+    .nl-autocomplete-item:hover { background: var(--color-hover-bg); }
+    .nl-autocomplete-item.active { background: var(--color-selected-row); outline: 2px solid var(--color-primary); outline-offset: -2px; }
+    /* Fluent Option content — icon + text + secondary */
+    .nl-autocomplete-item .ac-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-primary); font-size: var(--font-size-sm); }
+    .nl-autocomplete-item .ac-name { flex: 1; color: var(--color-text-primary); font-size: var(--font-size-base); }
+    .nl-autocomplete-item .ac-type { font-size: var(--font-size-sm); color: var(--color-text-muted); white-space: nowrap; }
+    /* Fluent "no matches" option */
+    .nl-autocomplete-empty { padding: 8px var(--space-sm); font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic; }
 
     .attached-section { margin-top: var(--space-md); }
     .attached-label { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); }
@@ -29,34 +45,38 @@
     .concept-row-label { font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.4px; min-width: 90px; padding-top: 4px; flex-shrink: 0; }
     .concept-row-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
     #chipGroup { display: flex; flex-direction: column; gap: var(--space-xs); }
-    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
-    .chip-property { background: #F3EEFA; color: #8764B8; }
-    .chip-relationship { background: var(--color-entity-2-bg); color: var(--color-entity-2); }
+    .chip-entitytype { background: var(--color-state-verified-bg); color: var(--color-primary); } /* Fluent v9: Tag appearance="brand" */
+    .chip-property { background: var(--color-tag-bg); color: var(--color-text-primary); } /* Fluent v9: Tag appearance="filled" */
+    .chip-relationship { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); } /* Fluent v9: Tag appearance="outline" */
     .learn-more { font-size: var(--font-size-sm); color: var(--color-link); margin-top: var(--space-xxs); display: inline-block; }
     .section-header-row { display: flex; align-items: baseline; gap: var(--space-xs); margin-bottom: var(--space-xxs); }
 
-    /* Concept Browser */
-    .concept-browser-overlay { position: fixed; inset: 0; z-index: 500; }
-    .concept-browser { position: absolute; top: 460px; left: 160px; display: flex; border: 1px solid var(--color-border); border-radius: var(--radius-dialog); box-shadow: var(--shadow-popup); background: var(--color-surface); overflow: hidden; font-size: var(--font-size-sm); z-index: 501; max-height: 360px; }
-    .concept-browser-panel { width: 260px; display: flex; flex-direction: column; overflow: hidden; }
-    .concept-browser-panel + .concept-browser-panel { border-left: 1px solid var(--color-border-subtle); }
+    /* Concept Browser — Fluent v9: Dialog (non-modal) + SearchBox + List + Checkbox + Divider + Button */
+    .concept-browser-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 500; display: flex; align-items: center; justify-content: center; }
+    .concept-browser { display: flex; flex-direction: column; border-radius: var(--radius-dialog); box-shadow: 0 4px 24px rgba(0,0,0,0.18); background: var(--color-surface); overflow: hidden; font-size: var(--font-size-sm); z-index: 501; max-height: 440px; width: 560px; }
+    .concept-browser-title { display: flex; align-items: center; justify-content: space-between; padding: var(--space-md) var(--space-lg) var(--space-sm); }
+    .concept-browser-title h3 { font-size: var(--font-size-lg); font-weight: 600; color: var(--color-text-primary); margin: 0; }
+    .concept-browser-title .dialog-close { background: none; border: none; font-size: var(--font-size-lg); color: var(--color-text-secondary); cursor: pointer; padding: var(--space-xxs); line-height: 1; border-radius: var(--radius-md); }
+    .concept-browser-title .dialog-close:hover { background: var(--color-hover-bg); color: var(--color-text-primary); }
+    .concept-browser-body { display: flex; flex: 1; min-height: 0; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+    .concept-browser-panel { width: 280px; display: flex; flex-direction: column; overflow: hidden; }
+    .concept-browser-panel + .concept-browser-panel { border-left: 1px solid var(--color-border-subtle); overflow-y: auto; }
     .concept-browser-search { padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--color-border-subtle); }
-    .concept-browser-search input { width: 100%; height: 28px; padding: 0 var(--space-xs) 0 28px; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-sm); color: var(--color-text-primary); background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23A19F9D' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") no-repeat 8px center; outline: none; }
-    .concept-browser-list { overflow-y: auto; flex: 1; }
-    .concept-browser-row { display: flex; align-items: center; gap: var(--space-xs); padding: 7px var(--space-sm); cursor: pointer; user-select: none; }
+    .concept-browser-search input { width: 100%; height: 32px; padding: 0 var(--space-xs) 0 32px; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-base); color: var(--color-text-primary); background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23A19F9D' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") no-repeat 10px center; outline: none; }
+    .concept-browser-search input:focus { border-color: var(--color-border); border-bottom: 2px solid var(--color-primary); }
+    .concept-browser-list { overflow-y: auto; flex: 1; padding: var(--space-xxs) 0; }
+    .concept-browser-row { display: flex; align-items: center; gap: var(--space-xs); padding: 6px var(--space-sm); cursor: pointer; user-select: none; border-radius: var(--radius-md); margin: 1px var(--space-xxs); min-height: 36px; }
     .concept-browser-row:hover { background: var(--color-hover-bg); }
-    .concept-browser-row.selected { background: var(--color-selected-row); }
-    .concept-browser-row .cb-name { flex: 1; color: var(--color-text-primary); font-size: var(--font-size-sm); }
-    .concept-browser-row .cb-count { color: var(--color-text-muted); font-size: var(--font-size-xs); margin-left: auto; }
-    .concept-browser-row .cb-arrow { color: var(--color-text-muted); font-size: 10px; }
-    .cb-check { width: 16px; height: 16px; border: 1px solid var(--color-border); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--color-surface); }
-    .cb-check.checked { background: var(--color-primary); border-color: var(--color-primary); color: #fff; font-size: 11px; }
-    .concept-browser-divider { padding: 6px var(--space-sm) 4px; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-top: 1px solid var(--color-border-subtle); margin-top: 2px; }
-    .concept-browser-divider:first-child { border-top: none; margin-top: 0; }
-    .concept-browser-footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-xs); padding: var(--space-xs) var(--space-sm); border-top: 1px solid var(--color-border-subtle); background: var(--color-surface); }
-    .concept-browser-footer .change-count { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-right: auto; }
+    .concept-browser-row.selected { background: var(--color-selected-row); outline: 2px solid var(--color-primary); outline-offset: -2px; }
+    .concept-browser-row .cb-name { flex: 1; color: var(--color-text-primary); font-size: var(--font-size-base); }
+    .concept-browser-row .cb-count { color: var(--color-text-muted); font-size: var(--font-size-sm); margin-left: auto; }
+    .concept-browser-row .cb-arrow { color: var(--color-text-muted); font-size: 12px; }
+    .concept-browser-divider { padding: 8px var(--space-sm) 4px; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); }
+    .concept-browser-divider:not(:first-child) { border-top: 1px solid var(--color-border-subtle); margin-top: var(--space-xxs); padding-top: var(--space-sm); }
+    .concept-browser-footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-xs); padding: var(--space-sm) var(--space-lg); }
+    .concept-browser-footer .change-count { font-size: var(--font-size-sm); color: var(--color-text-muted); margin-right: auto; }
     .badge { width: 20px; height: 20px; border-radius: 50%; font-size: var(--font-size-xs); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .badge-entity { background: var(--color-entity-3-bg); color: var(--color-entity-3); }
+    .badge-entity { background: var(--color-state-verified-bg); color: var(--color-primary); }
     .empty-concepts { color: var(--color-text-muted); font-size: var(--font-size-sm); font-style: italic; padding: var(--space-xs) 0; }
   </style>
 </head>
@@ -64,13 +84,13 @@
   <div class="shell">
     <!-- HEADER -->
     <header class="header">
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"><span class="fi fi-navigation" style="color:#fff"></span></button>
       <span class="header-brand">Fabric</span>
-      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace">✕</button></span>
-      <div class="header-search"><span style="margin-right:6px;">🔍</span> Search</div>
+      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace"><span class="fi fi-xs fi-dismiss"></span></button></span>
+      <div class="header-search"><span class="fi fi-sm fi-search" style="margin-right:6px;opacity:0.7"></span> Search</div>
       <div class="header-right">
-        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;" title="Help">?</button>
-        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;" title="Notifications">🔔</button>
+        <button style="background:none;border:none;color:var(--color-header-text);cursor:pointer;padding:4px;" title="Help"><span class="fi fi-sm fi-question"></span></button>
+        <button style="background:none;border:none;color:var(--color-header-text);cursor:pointer;padding:4px;" title="Notifications"><span class="fi fi-sm fi-bell"></span></button>
         <span class="avatar">AY</span>
       </div>
     </header>
@@ -78,13 +98,13 @@
     <!-- BODY -->
     <div class="body">
       <nav class="sidebar" aria-label="Primary navigation">
-        <a class="sidebar-item" title="Home"><span class="icon">🏠</span></a>
-        <a class="sidebar-item active" title="Ontology"><span class="icon">🔷</span></a>
-        <a class="sidebar-item" title="Data"><span class="icon">☁</span></a>
-        <a class="sidebar-item" title="Monitoring"><span class="icon">⏱</span></a>
-        <a class="sidebar-item" title="Analytics"><span class="icon">📊</span></a>
-        <a class="sidebar-item" title="Agents"><span class="icon">🤖</span></a>
-        <a class="sidebar-item" title="Settings"><span class="icon">⚙</span></a>
+        <a class="sidebar-item" title="Home"><span class="fi fi-home"></span></a>
+        <a class="sidebar-item active" title="Ontology"><span class="fi fi-entity"></span></a>
+        <a class="sidebar-item" title="Data"><span class="fi fi-cloud"></span></a>
+        <a class="sidebar-item" title="Monitoring"><span class="fi fi-clock"></span></a>
+        <a class="sidebar-item" title="Analytics"><span class="fi fi-chart"></span></a>
+        <a class="sidebar-item" title="Agents"><span class="fi fi-sparkle"></span></a>
+        <a class="sidebar-item" title="Settings"><span class="fi fi-settings"></span></a>
       </nav>
 
       <main class="main">
@@ -116,8 +136,55 @@
               Describe the rule in plain language. Matching ontology concepts will be highlighted automatically.
               <a class="learn-more" href="#">Learn more</a>
             </p>
-            <div class="nl-editor" contenteditable="true" id="nlEditor" style="min-height:80px;color:var(--color-text-muted);">
-              Describe what must, must not, or should be true…
+
+            <!-- STATE: Blank editor (default) -->
+            <div id="editorBlank">
+              <div class="nl-editor" contenteditable="true" id="nlEditor" style="min-height:80px;color:var(--color-text-muted);">
+                Describe what must, must not, or should be true…
+              </div>
+            </div>
+
+            <!-- STATE: Intellisense active — user has typed "A Staff" -->
+            <div id="editorIntellisense" style="display:none;">
+              <div style="position:relative;">
+                <div class="nl-editor" contenteditable="true" style="min-height:80px;border-bottom:2px solid var(--color-primary);">A Staff<span style="border-right:2px solid var(--color-primary);animation:blink 1s step-end infinite;margin-left:1px;">&ZeroWidthSpace;</span></div>
+
+                <!-- Fluent: Combobox (freeform) dropdown — OptionGroup + Option -->
+                <div class="nl-autocomplete" style="top:calc(100% + 4px);left:16px;" role="listbox" aria-label="Matching ontology concepts">
+                  <!-- OptionGroup: Entity types -->
+                  <div class="nl-autocomplete-header" role="group" aria-label="Entity types">Entity types</div>
+                  <div class="nl-autocomplete-item active" role="option" aria-selected="true">
+                    <span class="ac-icon">🔷</span>
+                    <span class="ac-name">StaffMember</span>
+                    <span class="ac-type">5 properties</span>
+                  </div>
+                  <div class="nl-autocomplete-item" role="option">
+                    <span class="ac-icon">🔷</span>
+                    <span class="ac-name">StaffAssignment</span>
+                    <span class="ac-type">4 properties</span>
+                  </div>
+                  <!-- OptionGroup: Properties -->
+                  <div class="nl-autocomplete-header" role="group" aria-label="Properties">Properties</div>
+                  <div class="nl-autocomplete-item" role="option">
+                    <span class="ac-icon" style="color:var(--color-text-secondary);">≡</span>
+                    <span class="ac-name">staff_id</span>
+                    <span class="ac-type">on StaffMember</span>
+                  </div>
+                  <div class="nl-autocomplete-item" role="option">
+                    <span class="ac-icon" style="color:var(--color-text-secondary);">≡</span>
+                    <span class="ac-name">staffed_by</span>
+                    <span class="ac-type">on Event → StaffAssignment</span>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STATE: After selection — user picked StaffMember, continued typing -->
+            <div id="editorAfterSelect" style="display:none;">
+              <div class="nl-editor" contenteditable="true" style="min-height:80px;">
+                A <span class="nl-entity">StaffMember<span class="nl-tooltip">Entity Type: StaffMember (5 properties)</span></span> assigned to a <span style="border-right:2px solid var(--color-primary);animation:blink 1s step-end infinite;">&ZeroWidthSpace;</span>
+              </div>
             </div>
 
             <!-- Linked ontology concepts (empty state) -->
@@ -161,37 +228,48 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer"><span class="fabric-icon">◆</span><span>Microsoft Fabric</span></footer>
+    <footer class="footer"><span class="fi fi-sm fi-diamond" style="color:var(--color-primary)"></span><span>Microsoft Fabric</span></footer>
 
-    <!-- Concept Browser -->
+    <!-- Concept Browser — Fluent: Dialog (non-modal) -->
     <div class="concept-browser-overlay" id="conceptBrowser" style="display:none;" onclick="closeBrowser(event)">
-      <div class="concept-browser" style="flex-direction:column;" onclick="event.stopPropagation()">
-        <div style="display:flex;flex:1;min-height:0;">
+      <div class="concept-browser" role="dialog" aria-label="Add ontology concepts" onclick="event.stopPropagation()">
+        <!-- Fluent: DialogTitle -->
+        <div class="concept-browser-title">
+          <h3>Add ontology concepts</h3>
+          <button class="dialog-close" aria-label="Close" onclick="cancelBrowser()">✕</button>
+        </div>
+        <!-- Fluent: DialogBody -->
+        <div class="concept-browser-body">
+          <!-- Left panel: entity list — Fluent: List + SearchBox -->
           <div class="concept-browser-panel">
-            <div class="concept-browser-search"><input type="text" placeholder="Search entity types…"></div>
-            <div class="concept-browser-list">
-              <div class="concept-browser-row" onclick="selectEntity(this,'Event')"><span class="badge badge-entity">E</span><span class="cb-name">Event</span><span class="cb-count">7 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'Venue')"><span class="badge badge-entity">E</span><span class="cb-name">Venue</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'StaffMember')"><span class="badge badge-entity">E</span><span class="cb-name">StaffMember</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'SecurityCheckpoint')"><span class="badge badge-entity">E</span><span class="cb-name">SecurityCheckpoint</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'Shuttle')"><span class="badge badge-entity">E</span><span class="cb-name">Shuttle</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'ConcessionStand')"><span class="badge badge-entity">E</span><span class="cb-name">ConcessionStand</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'Gate')"><span class="badge badge-entity">E</span><span class="cb-name">Gate</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'StaffAssignment')"><span class="badge badge-entity">E</span><span class="cb-name">StaffAssignment</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'Entrance')"><span class="badge badge-entity">E</span><span class="cb-name">Entrance</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
-              <div class="concept-browser-row" onclick="selectEntity(this,'ParkingLot')"><span class="badge badge-entity">E</span><span class="cb-name">ParkingLot</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+            <div class="concept-browser-search">
+              <input type="text" placeholder="Search entity types…" aria-label="Search entity types">
+            </div>
+            <div class="concept-browser-list" role="listbox" aria-label="Entity types">
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'Event')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">Event</span></label><span class="cb-count">7 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'Venue')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">Venue</span></label><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'StaffMember')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">StaffMember</span></label><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'SecurityCheckpoint')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">SecurityCheckpoint</span></label><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'Shuttle')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">Shuttle</span></label><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'ConcessionStand')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">ConcessionStand</span></label><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'Gate')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">Gate</span></label><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'StaffAssignment')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">StaffAssignment</span></label><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'Entrance')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">Entrance</span></label><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" role="option" onclick="selectEntity(this,'ParkingLot')"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;" onclick="event.stopPropagation()"><input type="checkbox" style="width:16px;height:16px;"><span class="badge badge-entity">E</span><span class="cb-name">ParkingLot</span></label><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
             </div>
           </div>
+          <!-- Right panel: empty state -->
           <div class="concept-browser-panel" id="rightPanel">
             <div style="padding:var(--space-lg) var(--space-sm);color:var(--color-text-muted);text-align:center;font-size:var(--font-size-sm);">
               Select an entity type to see its properties and relationships.
             </div>
           </div>
         </div>
+        <!-- Fluent: DialogActions -->
         <div class="concept-browser-footer">
           <span class="change-count" id="changeCount"></span>
-          <button class="btn btn-secondary" style="padding:4px 14px;font-size:12px;font-weight:400;" onclick="cancelBrowser()">Cancel</button>
-          <button class="btn btn-primary" style="padding:4px 14px;font-size:12px;" onclick="applyBrowser()">Apply</button>
+          <button class="btn btn-secondary" onclick="cancelBrowser()">Cancel</button>
+          <button class="btn btn-primary" onclick="applyBrowser()">Apply</button>
         </div>
       </div>
     </div>
@@ -223,9 +301,9 @@
       };
       const d = data[name] || { props: [], rels: [] };
       let html = '<div class="concept-browser-divider">Properties</div>';
-      d.props.forEach(p => { html += '<div class="concept-browser-row"><span class="cb-check"></span><span class="cb-name">'+p+'</span></div>'; });
+      d.props.forEach(p => { html += '<div class="concept-browser-row"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;"><input type="checkbox" style="width:16px;height:16px;"><span class="cb-name">'+p+'</span></label></div>'; });
       html += '<div class="concept-browser-divider">Relationships</div>';
-      d.rels.forEach(r => { html += '<div class="concept-browser-row"><span class="cb-check"></span><span class="cb-name">'+r+'</span></div>'; });
+      d.rels.forEach(r => { html += '<div class="concept-browser-row"><label style="display:flex;align-items:center;gap:var(--space-xs);cursor:pointer;flex:1;"><input type="checkbox" style="width:16px;height:16px;"><span class="cb-name">'+r+'</span></label></div>'; });
       panel.innerHTML = html;
     }
     // Clear placeholder on focus
@@ -233,6 +311,30 @@
     editor.addEventListener('focus', function() {
       if(this.style.color === 'var(--color-text-muted)') { this.textContent = ''; this.style.color = 'var(--color-text-primary)'; }
     });
+
+    // Demo switcher for intellisense states
+    function switchEditorState(state) {
+      document.getElementById('editorBlank').style.display = 'none';
+      document.getElementById('editorIntellisense').style.display = 'none';
+      document.getElementById('editorAfterSelect').style.display = 'none';
+      document.querySelectorAll('.demo-switcher button').forEach(b => b.classList.remove('active'));
+      document.getElementById('editor' + state.charAt(0).toUpperCase() + state.slice(1)).style.display = 'block';
+      event.target.classList.add('active');
+    }
   </script>
+
+  <!-- Demo switcher -->
+  <style>
+    @keyframes blink { 50% { border-color: transparent; } }
+    .demo-switcher { position: fixed; bottom: 20px; right: 24px; z-index: 1000; display: flex; gap: var(--space-xxs); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-dialog); box-shadow: var(--shadow-popup); padding: var(--space-xs); }
+    .demo-switcher button { font-family: var(--font-family); font-size: var(--font-size-sm); padding: 4px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text-primary); cursor: pointer; }
+    .demo-switcher button:hover { background: var(--color-hover-bg); }
+    .demo-switcher button.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  </style>
+  <div class="demo-switcher">
+    <button class="active" onclick="switchEditorState('blank')">Blank</button>
+    <button onclick="switchEditorState('intellisense')">Intellisense</button>
+    <button onclick="switchEditorState('afterSelect')">After select</button>
+  </div>
 </body>
 </html>

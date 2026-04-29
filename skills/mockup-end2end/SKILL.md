@@ -12,6 +12,37 @@ You are an **End-to-End Demo Builder Agent**. Your job is to create a complete, 
 > "This is end-to-end mode. I'll plan the full user journey, then build every screen and interaction state. This takes significantly longer than a single-page mockup — expect several minutes of thinking and building. I'll show you the plan first so you can adjust scope before I start."
 > Then wait for the user to confirm before proceeding.
 
+## Fluent UI React v9 Design Constraint
+
+**All screens must be implementable using Fluent UI React v9 components.** This reduces dev implementation time.
+
+Storybook reference: https://storybooks.fluentui.dev/react/
+
+### Component mapping (use these, not custom equivalents)
+| UI Pattern | Fluent v9 Component |
+|---|---|
+| Data table | **DataGrid** (sortable, row actions via `TableCellActions`) |
+| Search | **SearchBox** |
+| Filter dropdowns | **Menu** + **MenuItemCheckbox** (do NOT mix with **Dropdown**) |
+| Buttons | **Button** (`appearance="primary"` / `"secondary"` / `"subtle"`) |
+| Breadcrumb | **Breadcrumb** + **BreadcrumbItem** |
+| Form fields | **Field** + **Input** |
+| Radio selection | **RadioGroup** + **Radio** |
+| Dialogs (delete, alert) | **Dialog** (`modalType="alert"` or `"modal"`) |
+| Error banners | **MessageBar** (`intent="error"`) |
+| Toast notifications | **Toast** + **Toaster** (`intent="success"`) |
+| Sidebar tree nav | **Tree** + **TreeItem** |
+| Tabs | **TabList** + **Tab** |
+| Tags/chips | **Tag** (`appearance="brand"` entities, `"filled"` properties, `"outline"` relationships) |
+| Metadata input | **TagPicker** (`noPopover`) |
+| Avatar | **Avatar** |
+| Row menu (⋮) | **Menu** + **MenuTrigger** |
+
+### Key rules
+- **Do not mix Menu and Dropdown** on the same surface.
+- **All tags use 3 Fluent appearances** — `brand` (entities), `filled` (properties), `outline` (relationships). Zero custom CSS.
+- **Custom-build only**: NL editor with inline highlights, two-panel concept browser, empty state illustration, pagination.
+
 ## Inputs
 
 1. **Design Guide** — read `output/design-guide.md`
@@ -161,37 +192,43 @@ Use the same names, IDs, and values wherever the same entity appears across scre
 
 ## Component usage cheatsheet
 
-Use these classes from `base-styles.css`:
+Use these classes from `base-styles.css`. Annotated with Fluent v9 component names:
 
 ```html
 <!-- Shell layout -->
 <div class="shell">
   <header class="header">...</header>
   <div class="body">
-    <nav class="sidebar">...</nav>
+    <nav class="sidebar">...</nav> <!-- Fluent: Nav -->
     <main class="main">...</main>
   </div>
 </div>
 
-<!-- Buttons -->
-<button class="btn btn-primary">Primary</button>
-<button class="btn btn-secondary">Secondary</button>
-<button class="btn btn-subtle">Subtle</button>
+<!-- Buttons → Fluent: Button -->
+<button class="btn btn-primary">Primary</button>  <!-- appearance="primary" -->
+<button class="btn btn-secondary">Secondary</button>  <!-- appearance="secondary" -->
+<button class="btn btn-subtle">Subtle</button>  <!-- appearance="subtle" -->
 <button class="btn btn-danger">Danger / Delete</button>
 
-<!-- Table -->
+<!-- Table → Fluent: DataGrid (sortable, with TableCellActions) -->
 <table class="table">
   <thead><tr><th>Column</th></tr></thead>
   <tbody><tr><td>Data</td></tr></tbody>
 </table>
 
-<!-- Tabs -->
+<!-- Tabs → Fluent: TabList + Tab -->
 <div class="tab-list">
   <button class="tab active">Active</button>
   <button class="tab">Inactive</button>
 </div>
 
-<!-- Dialog -->
+<!-- Tags/chips → Fluent: Tag — 3 appearances -->
+<span class="chip chip-entitytype">EntityName</span>  <!-- appearance="brand" (teal) -->
+
+<!-- Filter dropdown → Fluent: Menu + MenuItemCheckbox (NOT Dropdown) -->
+<button class="filter-pill">Filter ▾</button>
+
+<!-- Dialog → Fluent: Dialog (modalType="modal" or "alert") -->
 <div class="dialog-overlay">
   <div class="dialog">
     <h2 class="dialog-title">Title</h2>
@@ -203,19 +240,34 @@ Use these classes from `base-styles.css`:
   </div>
 </div>
 
-<!-- Breadcrumb -->
+<!-- Toast → Fluent: Toast (intent="success") -->
+<div class="toast">
+  <span>Changes saved</span>
+  <button>✕</button>
+</div>
+
+<!-- Breadcrumb → Fluent: Breadcrumb + BreadcrumbItem -->
 <div class="breadcrumb">
   <a href="list.html">Projects</a>
   <span class="breadcrumb-separator">›</span>
   <span class="breadcrumb-current">Contoso Website Redesign</span>
 </div>
 
-<!-- Success / empty state -->
+<!-- Explorer → Fluent: Tree + TreeItem -->
+<aside class="explorer">
+  <div class="explorer-header"><h3>Explorer</h3></div>
+  <div class="explorer-list">
+    <div class="explorer-item selected">Item 1</div>
+    <div class="explorer-item">Item 2</div>
+  </div>
+</aside>
+
+<!-- Empty state (custom — no Fluent component) -->
 <div class="empty-state">
   <p class="empty-state-message">No items found.</p>
+  <button class="btn btn-primary">Create first item</button>
 </div>
 ```
-
 ## When the design guide doesn't cover something
 
 Extrapolate from the existing design language — same colors, fonts, spacing. Call it out briefly so the user knows.

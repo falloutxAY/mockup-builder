@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Delete Confirmation — Business Rule — ZavaStadium</title>
   <link rel="stylesheet" href="../base-styles.css">
+  <link rel="stylesheet" href="../fluent-icons.css">
   <style>
     .shell { grid-template-rows: var(--header-height) 1fr auto; }
     .body { display: flex; grid-column: 1 / -1; min-height: 0; }
@@ -14,21 +15,20 @@
     .header-right { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
     .avatar { width: 28px; height: 28px; border-radius: 50%; background: #5B5FC7; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
     .nl-editor { width: 100%; min-height: 80px; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-base); line-height: 22px; color: var(--color-text-primary); background: var(--color-surface); outline: none; }
-    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
-    .nl-entity-type { color: var(--color-entity-1); text-decoration-color: var(--color-entity-1); }
-    .nl-entity-type-2 { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); }
-    .nl-entity-type-3 { color: var(--color-entity-3); text-decoration-color: var(--color-entity-3); }
-    .nl-property { color: #8764B8; text-decoration-color: #8764B8; }
-    .nl-relationship { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); text-decoration-style: dashed; }
+    /* Fluent v9: All recognized concepts use brand-color dotted underline + Tooltip on hover */
+    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--color-primary); text-underline-offset: 3px; color: var(--color-text-primary); position: relative; }
+    .nl-entity:hover { background: var(--color-state-verified-bg); border-radius: var(--radius-sm); }
+    .nl-entity .nl-tooltip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--color-header-bg); color: #fff; font-size: var(--font-size-xs); font-weight: 400; padding: 4px 8px; border-radius: var(--radius-md); white-space: nowrap; z-index: 100; pointer-events: none; box-shadow: var(--shadow-popup); }
+    .nl-entity:hover .nl-tooltip { display: block; }
     .attached-section { margin-top: var(--space-md); }
     .attached-label { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); }
     .attached-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-sm); }
     .concept-row { display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-xs); width: 100%; }
     .concept-row-label { font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.4px; min-width: 90px; padding-top: 4px; flex-shrink: 0; }
     .concept-row-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
-    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
-    .chip-property { background: #F3EEFA; color: #8764B8; }
-    .chip-relationship { background: var(--color-entity-2-bg); color: var(--color-entity-2); }
+    .chip-entitytype { background: var(--color-state-verified-bg); color: var(--color-primary); } /* Fluent v9: Tag appearance="brand" */
+    .chip-property { background: var(--color-tag-bg); color: var(--color-text-primary); } /* Fluent v9: Tag appearance="filled" */
+    .chip-relationship { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); } /* Fluent v9: Tag appearance="outline" */
     .learn-more { font-size: var(--font-size-sm); color: var(--color-link); margin-top: var(--space-xxs); display: inline-block; }
     .section-header-row { display: flex; align-items: baseline; gap: var(--space-xs); margin-bottom: var(--space-xxs); }
     .btn-danger { background: #D13438; color: #fff; border: none; }
@@ -40,26 +40,26 @@
 <body>
   <div class="shell">
     <header class="header">
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"><span class="fi fi-navigation" style="color:#fff"></span></button>
       <span class="header-brand">Fabric</span>
-      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace">✕</button></span>
-      <div class="header-search"><span style="margin-right:6px;">🔍</span> Search</div>
+      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace"><span class="fi fi-xs fi-dismiss"></span></button></span>
+      <div class="header-search"><span class="fi fi-sm fi-search" style="margin-right:6px;opacity:0.7"></span> Search</div>
       <div class="header-right">
-        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;">?</button>
-        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;">🔔</button>
+        <button style="background:none;border:none;color:var(--color-header-text);cursor:pointer;padding:4px;"><span class="fi fi-sm fi-question"></span></button>
+        <button style="background:none;border:none;color:var(--color-header-text);cursor:pointer;padding:4px;"><span class="fi fi-sm fi-bell"></span></button>
         <span class="avatar">AY</span>
       </div>
     </header>
 
     <div class="body">
       <nav class="sidebar" aria-label="Primary navigation">
-        <a class="sidebar-item" title="Home"><span class="icon">🏠</span></a>
-        <a class="sidebar-item active" title="Ontology"><span class="icon">🔷</span></a>
-        <a class="sidebar-item" title="Data"><span class="icon">☁</span></a>
-        <a class="sidebar-item" title="Monitoring"><span class="icon">⏱</span></a>
-        <a class="sidebar-item" title="Analytics"><span class="icon">📊</span></a>
-        <a class="sidebar-item" title="Agents"><span class="icon">🤖</span></a>
-        <a class="sidebar-item" title="Settings"><span class="icon">⚙</span></a>
+        <a class="sidebar-item" title="Home"><span class="fi fi-home"></span></a>
+        <a class="sidebar-item active" title="Ontology"><span class="fi fi-entity"></span></a>
+        <a class="sidebar-item" title="Data"><span class="fi fi-cloud"></span></a>
+        <a class="sidebar-item" title="Monitoring"><span class="fi fi-clock"></span></a>
+        <a class="sidebar-item" title="Analytics"><span class="fi fi-chart"></span></a>
+        <a class="sidebar-item" title="Agents"><span class="fi fi-sparkle"></span></a>
+        <a class="sidebar-item" title="Settings"><span class="fi fi-settings"></span></a>
       </nav>
 
       <main class="main">
@@ -87,11 +87,11 @@
             <div class="section-header-row"><label class="form-label">Rule definition <span class="required"></span></label></div>
             <p class="form-description">Describe the rule in plain language. Matching ontology concepts will be highlighted automatically. <a class="learn-more" href="#">Learn more</a></p>
             <div class="nl-editor">
-              A <span class="nl-entity nl-entity-type-2" title="Entity Type: StaffMember">StaffMember</span>
-              <span class="nl-entity nl-relationship" title="Relationship: works_at">assigned to</span> a
-              <span class="nl-entity nl-entity-type" title="Entity Type: SecurityCheckpoint">SecurityCheckpoint</span>
+              A <span class="nl-entity">StaffMember<span class="nl-tooltip">Entity Type: StaffMember</span></span>
+              <span class="nl-entity">assigned to<span class="nl-tooltip">Relationship: works_at</span></span> a
+              <span class="nl-entity">SecurityCheckpoint<span class="nl-tooltip">Entity Type: SecurityCheckpoint</span></span>
               must hold a valid
-              <span class="nl-entity nl-property" title="Property: security_clearance (on StaffMember)">security_clearance</span>.
+              <span class="nl-entity">security_clearance<span class="nl-tooltip">Property: security_clearance (on StaffMember)</span></span>.
             </div>
 
             <!-- Linked Ontology Concepts -->
@@ -150,13 +150,13 @@
             <button class="btn btn-primary">Save</button>
             <button class="btn btn-secondary">Cancel</button>
             <div style="margin-left:auto;">
-              <button class="btn" style="background:#D13438;color:#fff;border:none;">🗑 Delete</button>
+              <button class="btn" style="background:#D13438;color:#fff;border:none;"><span class="fi fi-sm fi-delete"></span> Delete</button>
             </div>
           </div>
         </div>
       </main>
     </div>
-    <footer class="footer"><span class="fabric-icon">◆</span><span>Microsoft Fabric</span></footer>
+    <footer class="footer"><span class="fi fi-sm fi-diamond" style="color:var(--color-primary)"></span><span>Microsoft Fabric</span></footer>
   </div>
 
   <!-- Delete confirmation dialog (VISIBLE) -->
@@ -164,13 +164,13 @@
     <div class="dialog">
       <div class="dialog-header">
         <h2 class="dialog-title">Delete business rule?</h2>
-        <button class="dialog-close" onclick="window.location.href='rules-detail.html'">✕</button>
+        <button class="dialog-close" onclick="window.location.href='rules-edit.html'">✕</button>
       </div>
       <p class="dialog-description">
         Are you sure you want to delete <strong>"StaffMembers must have valid security clearance to work at SecurityCheckpoints"</strong>? This action cannot be undone.
       </p>
       <div class="dialog-footer">
-        <button class="btn btn-secondary" onclick="window.location.href='rules-detail.html'">Cancel</button>
+        <button class="btn btn-secondary" onclick="window.location.href='rules-edit.html'">Cancel</button>
         <button class="btn" style="background:#D13438;color:#fff;border:none;" onclick="window.location.href='rules-list--success.html?action=deleted'">Delete</button>
       </div>
     </div>

@@ -3,6 +3,29 @@
    Extracted from screenshot (estimated values)
    ========================================================================== */
 
+/* ==========================================================================
+   Fluent UI React v9 Component Mapping
+   ---------------------------------------------------------------------------
+   DataGrid ......... rules list table (sortable, row actions)
+   SearchBox ........ toolbar search input
+   Menu ............. filter dropdowns (Entity type, Severity) — MenuItemCheckbox
+   Button ........... all buttons (primary / secondary / subtle)
+   Breadcrumb ....... breadcrumb navigation
+   Field + Input .... form fields (rule name)
+   Field + Textarea . rule definition (NL editor is custom contenteditable)
+   RadioGroup ....... severity selector
+   Dialog ........... delete confirmation (alert), validation gate (modal)
+   MessageBar ....... validation blocked banner (intent="error")
+   Toast ............ success notifications (intent="success")
+   Tree ............. explorer sidebar navigation
+   TabList .......... entity type detail tabs
+   Tag .............. chips — brand (entities), filled (properties), outline (relationships)
+   TagPicker ........ metadata tags (noPopover mode)
+   Avatar ........... user avatar
+   Checkbox ......... entity picker list in dialogs
+   Popover .......... concept browser container (custom composite)
+   ========================================================================== */
+
 /* --- CSS Custom Properties --- */
 :root {
   /* Colors — Core */
@@ -458,9 +481,10 @@ textarea.input {
 }
 .chip-close:hover { opacity: 1; }
 
-.chip-entity-1 { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
-.chip-entity-2 { background: var(--color-entity-2-bg); color: var(--color-entity-2); }
-.chip-entity-3 { background: var(--color-entity-3-bg); color: var(--color-entity-3); }
+/* Fluent v9 Tag appearances: brand (entities), filled (properties), outline (relationships) */
+.chip-entity-1 { background: var(--color-state-verified-bg); color: var(--color-primary); } /* Tag appearance="brand" */
+.chip-entity-2 { background: var(--color-tag-bg); color: var(--color-text-primary); } /* Tag appearance="filled" */
+.chip-entity-3 { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); } /* Tag appearance="outline" */
 
 .chip-group {
   display: flex;

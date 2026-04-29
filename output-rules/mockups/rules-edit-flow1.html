@@ -56,19 +56,20 @@
       border-bottom: 2px solid var(--color-primary);
     }
 
-    /* Inline entity highlights in NL text */
+    /* Fluent v9: All recognized concepts use brand-color dotted underline + Tooltip on hover */
     .nl-entity {
       font-weight: 600;
       text-decoration: underline;
       text-decoration-style: dotted;
+      text-decoration-color: var(--color-primary);
       text-underline-offset: 3px;
       cursor: pointer;
+      color: var(--color-text-primary);
+      position: relative;
     }
-    .nl-entity-type { color: var(--color-entity-1); text-decoration-color: var(--color-entity-1); }
-    .nl-entity-type-2 { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); }
-    .nl-entity-type-3 { color: var(--color-entity-3); text-decoration-color: var(--color-entity-3); }
-    .nl-property { color: #8764B8; text-decoration-color: #8764B8; }
-    .nl-relationship { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); text-decoration-style: dashed; }
+    .nl-entity:hover { background: var(--color-state-verified-bg); border-radius: var(--radius-sm); }
+    .nl-entity .nl-tooltip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--color-header-bg); color: #fff; font-size: var(--font-size-xs); font-weight: 400; padding: 4px 8px; border-radius: var(--radius-md); white-space: nowrap; z-index: 100; pointer-events: none; box-shadow: var(--shadow-popup); }
+    .nl-entity:hover .nl-tooltip { display: block; }
 
     /* Attached concepts section */
     .attached-section {
@@ -117,10 +118,10 @@
       gap: var(--space-xs);
     }
 
-    /* Concept type colors for chips */
-    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
-    .chip-property { background: #F3EEFA; color: #8764B8; }
-    .chip-relationship { background: var(--color-entity-2-bg); color: var(--color-entity-2); }
+    /* Fluent v9 Tag appearances: brand (entities), filled (properties), outline (relationships) */
+    .chip-entitytype { background: var(--color-state-verified-bg); color: var(--color-primary); }
+    .chip-property { background: var(--color-tag-bg); color: var(--color-text-primary); }
+    .chip-relationship { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); }
 
     .chip .chip-type-label {
       font-size: 10px;
@@ -130,35 +131,38 @@
       margin-right: 2px;
     }
 
-    /* Concept Browser Panel (Option C) */
+    /* Concept Browser — Fluent v9: Dialog (non-modal) */
     .concept-browser-overlay {
       position: fixed;
       inset: 0;
+      background: rgba(0,0,0,0.4);
       z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .concept-browser {
-      position: absolute;
-      top: 460px;
-      left: 160px;
       display: flex;
-      border: 1px solid var(--color-border);
+      flex-direction: column;
       border-radius: var(--radius-dialog);
-      box-shadow: var(--shadow-popup);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
       background: var(--color-surface);
       overflow: hidden;
       font-size: var(--font-size-sm);
       z-index: 501;
-      max-height: 360px;
+      max-height: 440px;
+      width: 560px;
     }
 
     .concept-browser-panel {
-      width: 260px;
+      width: 280px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
     .concept-browser-panel + .concept-browser-panel {
       border-left: 1px solid var(--color-border-subtle);
+      overflow-y: auto;
     }
 
     .concept-browser-search {
@@ -192,8 +196,8 @@
       user-select: none;
     }
     .concept-browser-row:hover { background: var(--color-hover-bg); }
-    .concept-browser-row.selected { background: var(--color-selected-row); }
-    .concept-browser-row.attached { background: #EEF9F7; }
+    .concept-browser-row.selected { background: var(--color-selected-row); outline: 2px solid var(--color-primary); outline-offset: -2px; }
+    .concept-browser-row.attached { }
 
     .concept-browser-row .cb-name {
       flex: 1;
@@ -214,23 +218,25 @@
       font-size: 10px;
     }
 
-    /* Badge for R (relationship) */
+    /* Badge for R (relationship) — Fluent: Tag appearance="outline" */
     .badge-relationship {
-      background: #F3EEFA;
-      color: #8764B8;
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
     }
 
-    /* Checkbox in browser */
+    /* Fluent: Checkbox */
     .cb-check {
       width: 16px;
       height: 16px;
-      border: 1px solid var(--color-border);
-      border-radius: 2px;
+      border: 1.5px solid var(--color-text-secondary);
+      border-radius: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       background: var(--color-surface);
+      transition: all 0.1s;
     }
     .cb-check.checked {
       background: var(--color-primary);
@@ -239,28 +245,22 @@
       font-size: 11px;
     }
 
-    /* Section divider in right panel */
+    /* Fluent: Divider with label */
     .concept-browser-divider {
-      padding: 6px var(--space-sm) 4px;
+      padding: 8px var(--space-sm) 4px;
       font-size: var(--font-size-xs);
       font-weight: 600;
       color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-top: 1px solid var(--color-border-subtle);
-      margin-top: 2px;
     }
-    .concept-browser-divider:first-child { border-top: none; margin-top: 0; }
+    .concept-browser-divider:not(:first-child) { border-top: 1px solid var(--color-border-subtle); margin-top: var(--space-xxs); padding-top: var(--space-sm); }
 
-    /* Browser footer with Apply / Cancel */
+    /* Fluent: DialogActions */
     .concept-browser-footer {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: var(--space-xs);
-      padding: var(--space-xs) var(--space-sm);
-      border-top: 1px solid var(--color-border-subtle);
-      background: var(--color-surface);
+      padding: var(--space-sm) var(--space-lg);
     }
     .concept-browser-footer .change-count {
       font-size: var(--font-size-xs);
@@ -268,9 +268,9 @@
       margin-right: auto;
     }
 
-    /* Attached indicator on entity row */
+    /* Fluent: Badge size="tiny" for attached indicator */
     .attached-indicator {
-      width: 6px; height: 6px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--color-primary);
       flex-shrink: 0;
@@ -396,13 +396,13 @@
 
             <!-- NL Editor (contenteditable div for demo) -->
             <div class="nl-editor" contenteditable="false">
-              A <span class="nl-entity nl-entity-type" title="Entity Type: Driver">Driver</span>
-              <span class="nl-entity nl-relationship" title="Relationship: assigned_to">assigned to</span> a
-              <span class="nl-entity nl-entity-type-2" title="Entity Type: Truck">Truck</span>
+              A <span class="nl-entity">Driver<span class="nl-tooltip">Entity Type: Driver</span></span>
+              <span class="nl-entity">assigned to<span class="nl-tooltip">Relationship: assigned_to</span></span> a
+              <span class="nl-entity">Truck<span class="nl-tooltip">Entity Type: Truck</span></span>
               must hold a valid
-              <span class="nl-entity nl-entity-type-3" title="Entity Type: Truck License">Truck License</span>
+              <span class="nl-entity">Truck License<span class="nl-tooltip">Entity Type: Truck License</span></span>
               where the
-              <span class="nl-entity nl-property" title="Property: expiry_date (on Truck License)">expiry_date</span>
+              <span class="nl-entity">expiry_date<span class="nl-tooltip">Property: expiry_date (on Truck License)</span></span>
               is in the future.
             </div>
 
@@ -503,28 +503,35 @@
 
     <!-- ===== CONCEPT BROWSER (Option C — Entity-first, then drill) ===== -->
     <div class="concept-browser-overlay" id="conceptBrowser" style="display:none;" onclick="closeBrowser(event)">
-      <div class="concept-browser" style="flex-direction:column;" onclick="event.stopPropagation()">
-        <div style="display:flex;flex:1;min-height:0;">
+      <div class="concept-browser" role="dialog" aria-label="Add ontology concepts" onclick="event.stopPropagation()">
+        <!-- Fluent: DialogTitle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-lg) var(--space-sm);">
+          <h3 style="font-size:var(--font-size-lg);font-weight:600;color:var(--color-text-primary);margin:0;">Add ontology concepts</h3>
+          <button style="background:none;border:none;font-size:var(--font-size-lg);color:var(--color-text-secondary);cursor:pointer;padding:var(--space-xxs);line-height:1;border-radius:var(--radius-md);" aria-label="Close" onclick="cancelBrowser()">✕</button>
+        </div>
+        <!-- Fluent: DialogBody -->
+        <div style="display:flex;flex:1;min-height:0;border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle);">
           <!-- Left panel: Entity Types -->
           <div class="concept-browser-panel">
             <div class="concept-browser-search">
-              <input type="text" placeholder="Search entity types..." id="entitySearch" oninput="filterEntities()">
+              <input type="text" placeholder="Search entity types..." id="entitySearch" oninput="filterEntities()" aria-label="Search entity types">
             </div>
-            <div class="concept-browser-list" id="entityList">
+            <div class="concept-browser-list" id="entityList" role="listbox" aria-label="Entity types">
               <!-- Populated by JS -->
             </div>
           </div>
-          <!-- Right panel: Properties + Relationships of selected entity -->
+          <!-- Right panel: Properties + Relationships -->
           <div class="concept-browser-panel" id="rightPanel">
             <div style="padding:var(--space-lg) var(--space-sm);color:var(--color-text-muted);text-align:center;font-size:var(--font-size-sm);">
               Select an entity type to see its properties and relationships.
             </div>
           </div>
         </div>
+        <!-- Fluent: DialogActions -->
         <div class="concept-browser-footer">
           <span class="change-count" id="changeCount"></span>
-          <button class="btn btn-secondary" style="padding:4px 14px;font-size:12px;font-weight:400;" onclick="cancelBrowser()">Cancel</button>
-          <button class="btn btn-primary" style="padding:4px 14px;font-size:12px;" onclick="applyBrowser()">Apply</button>
+          <button class="btn btn-secondary" onclick="cancelBrowser()">Cancel</button>
+          <button class="btn btn-primary" onclick="applyBrowser()">Apply</button>
         </div>
       </div>
     </div>
@@ -842,42 +849,19 @@
       updateChangeCount();
     }
 
-    // Color assignment for entity types
-    const entityColors = {};
-    const colorPalette = [
-      { bg: "var(--color-entity-1-bg)", fg: "var(--color-entity-1)" },
-      { bg: "var(--color-entity-2-bg)", fg: "var(--color-entity-2)" },
-      { bg: "var(--color-entity-3-bg)", fg: "var(--color-entity-3)" },
-      { bg: "#FFF8E1", fg: "#B5850A" },
-      { bg: "#EDE7F6", fg: "#6A1B9A" },
-      { bg: "#E8F5E9", fg: "#2E7D32" },
-      { bg: "#E3F2FD", fg: "#1565C0" },
-    ];
-    let colorIdx = 0;
-    function getEntityColor(name) {
-      if (!entityColors[name]) {
-        entityColors[name] = colorPalette[colorIdx % colorPalette.length];
-        colorIdx++;
-      }
-      return entityColors[name];
-    }
-    // Pre-assign colors for initial attached entities
-    getEntityColor("Driver");
-    getEntityColor("Truck");
-    getEntityColor("Truck License");
+    // Fluent v9: Chips use Tag appearances — brand (entities), filled (properties), outline (relationships)
+    // No custom color palette needed
 
     function updateChips() {
       const group = document.getElementById("chipGroup");
       let html = "";
 
-      // Entity type row
+      // Entity type row — Tag appearance="brand"
       const entityChips = ontology.filter(e => e.attached);
       if (entityChips.length > 0) {
         let row = `<div class="concept-row"><span class="concept-row-label">Entity types</span><div class="concept-row-chips">`;
         entityChips.forEach(e => {
-          const c = getEntityColor(e.name);
-          row += `<span class="chip" style="background:${c.bg};color:${c.fg};">
-            <span class="chip-type-label">E</span>
+          row += `<span class="chip chip-entitytype">
             ${e.name}
             <button class="chip-close" onclick="removeEntity('${e.name}')" aria-label="Remove ${e.name}">✕</button>
           </span>`;
@@ -886,7 +870,7 @@
         html += row;
       }
 
-      // Property row
+      // Property row — Tag appearance="filled"
       const propChips = [];
       ontology.forEach(e => {
         e.properties.filter(p => p.attached).forEach(p => {
@@ -897,7 +881,6 @@
         let row = `<div class="concept-row"><span class="concept-row-label">Properties</span><div class="concept-row-chips">`;
         propChips.forEach(({ entity, prop }) => {
           row += `<span class="chip chip-property">
-            <span class="chip-type-label">P</span>
             ${entity}.${prop.name}
             <button class="chip-close" onclick="removeProp('${entity}','${prop.name}')" aria-label="Remove ${prop.name}">✕</button>
           </span>`;
@@ -906,7 +889,7 @@
         html += row;
       }
 
-      // Relationship row
+      // Relationship row — Tag appearance="outline"
       const relChips = [];
       ontology.forEach(e => {
         e.relationships.filter(r => r.attached).forEach(r => {
@@ -917,7 +900,6 @@
         let row = `<div class="concept-row"><span class="concept-row-label">Relationships</span><div class="concept-row-chips">`;
         relChips.forEach(({ entity, rel }) => {
           row += `<span class="chip chip-relationship">
-            <span class="chip-type-label">R</span>
             ${rel.name}
             <button class="chip-close" onclick="removeRel('${entity}','${rel.name}')" aria-label="Remove ${rel.name}">✕</button>
           </span>`;

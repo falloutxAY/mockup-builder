@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Business Rules — ZavaStadium Ontology</title>
   <link rel="stylesheet" href="../base-styles.css">
+  <link rel="stylesheet" href="../fluent-icons.css">
   <style>
     .shell { grid-template-columns: var(--sidebar-width) 1fr; grid-template-rows: var(--header-height) auto 1fr auto; }
     .body { display: flex; grid-column: 1 / -1; min-height: 0; }
@@ -25,7 +26,7 @@
     .data-table .col-actions { width: 40px; text-align: center; }
     .rule-name-link { color: var(--color-text-primary); text-decoration: none; cursor: pointer; }
     .rule-name-link:hover { text-decoration: underline; color: var(--color-link); }
-    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
+    .chip-entitytype { background: var(--color-state-verified-bg); color: var(--color-primary); } /* Fluent v9: Tag appearance="brand" */
     .filter-pill-wrapper { position: relative; display: inline-flex; }
     .btn-new-rule { background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); padding: 6px 16px; font-size: var(--font-size-sm); font-weight: 600; cursor: pointer; font-family: var(--font-family); display: inline-flex; align-items: center; gap: var(--space-xxs); }
     .btn-new-rule:hover { background: var(--color-primary-hover); }
@@ -55,48 +56,48 @@
 <body>
   <div class="shell">
     <header class="header">
-      <button class="hamburger" aria-label="Menu">☰</button>
+      <button class="hamburger" aria-label="Menu"><span class="fi fi-navigation" style="color:#fff"></span></button>
       <span class="header-brand">Fabric</span>
-      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace">✕</button></span>
-      <span style="font-size:var(--font-size-sm);color:rgba(255,255,255,0.8);display:inline-flex;align-items:center;gap:4px;">🔒 Confidential\Microsoft FTE <span style="opacity:.5;font-size:10px;">▾</span></span>
-      <div class="header-search"><span style="margin-right:6px;">🔍</span> Search (Alt + Q)</div>
+      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace"><span class="fi fi-xs fi-dismiss"></span></button></span>
+      <span style="font-size:var(--font-size-sm);color:rgba(255,255,255,0.8);display:inline-flex;align-items:center;gap:4px;"><span class="fi fi-sm fi-lock"></span> Confidential\Microsoft FTE <span style="opacity:.5;font-size:10px;">▾</span></span>
+      <div class="header-search"><span class="fi fi-sm fi-search" style="margin-right:6px;opacity:0.7"></span> Search (Alt + Q)</div>
       <div class="header-right">
         <span class="trial-text">Trial activated:<br>18 days left</span>
-        <button class="header-icon" title="Dark mode">◐</button>
-        <button class="header-icon" title="Notifications">🔔</button>
-        <button class="header-icon" title="Settings">⚙</button>
-        <button class="header-icon" title="Help">?</button>
-        <button class="share-btn">↗ Share</button>
+        <button class="header-icon" title="Dark mode"><span class="fi fi-sm fi-moon"></span></button>
+        <button class="header-icon" title="Notifications"><span class="fi fi-sm fi-bell"></span></button>
+        <button class="header-icon" title="Settings"><span class="fi fi-sm fi-settings"></span></button>
+        <button class="header-icon" title="Help"><span class="fi fi-sm fi-question"></span></button>
+        <button class="share-btn"><span class="fi fi-sm fi-share"></span> Share</button>
         <span class="avatar">AY</span>
       </div>
     </header>
 
     <div class="sub-header">
       <span style="font-size:var(--font-size-base);font-weight:600;color:var(--color-text-primary);">Home</span>
-      <button class="sub-header-btn"><span class="icon">⚙</span></button>
-      <button class="sub-header-btn"><span class="icon">＋</span> Add entity type</button>
-      <button class="sub-header-btn copilot-btn"><span class="icon">✨</span> Copilot</button>
+      <button class="sub-header-btn"><span class="fi fi-sm fi-settings"></span></button>
+      <button class="sub-header-btn"><span class="fi fi-sm fi-add"></span> Add entity type</button>
+      <button class="sub-header-btn copilot-btn"><span class="fi fi-sm fi-sparkle" style="color:var(--color-primary)"></span> Copilot</button>
     </div>
 
     <div class="body">
       <nav class="sidebar" aria-label="Primary navigation">
-        <a class="sidebar-item" title="Home"><span class="icon">🏠</span></a>
-        <a class="sidebar-item" title="Workspaces"><span class="icon">📁</span></a>
-        <a class="sidebar-item" title="OneLake"><span class="icon">☁</span></a>
-        <a class="sidebar-item" title="Real-Time"><span class="icon">⚡</span></a>
-        <a class="sidebar-item" title="Monitor"><span class="icon">📊</span></a>
-        <a class="sidebar-item" title="Workloads"><span class="icon">👥</span></a>
-        <a class="sidebar-item" title="Copilot"><span class="icon">🤖</span></a>
+        <a class="sidebar-item" title="Home"><span class="fi fi-home"></span></a>
+        <a class="sidebar-item" title="Workspaces"><span class="fi fi-folder"></span></a>
+        <a class="sidebar-item" title="OneLake"><span class="fi fi-cloud"></span></a>
+        <a class="sidebar-item" title="Real-Time"><span class="fi fi-flash"></span></a>
+        <a class="sidebar-item" title="Monitor"><span class="fi fi-chart"></span></a>
+        <a class="sidebar-item" title="Workloads"><span class="fi fi-people"></span></a>
+        <a class="sidebar-item" title="Copilot"><span class="fi fi-sparkle"></span></a>
         <a class="sidebar-item active" title="ZavaStadium" style="flex-direction:column;font-size:8px;line-height:1.2;">
-          <span class="icon" style="font-size:16px;">🏟</span>
+          <span class="fi fi-building"></span>
           <span style="max-width:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;">Zava<br>Stadium</span>
         </a>
         <div style="flex:1;"></div>
-        <a class="sidebar-item" title="More"><span class="icon">⋯</span></a>
+        <a class="sidebar-item" title="More"><span class="fi fi-more-horizontal"></span></a>
       </nav>
 
       <aside class="explorer">
-        <div class="explorer-header"><span>Explorer</span><button class="panel-toggle" title="Toggle panel">☐</button></div>
+        <div class="explorer-header"><span>Explorer</span><button class="panel-toggle" title="Toggle panel"><span class="fi fi-sm fi-panel-left"></span></button></div>
         <div class="explorer-section">
           <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▾</span><span>Overview</span></div>
           <div class="explorer-section-items">
@@ -109,9 +110,9 @@
           <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▾</span><span>Ontology</span></div>
           <div class="explorer-section-items">
             <div class="explorer-ontology-toolbar">
-              <button class="explorer-add-btn">🔲 Add <span style="font-size:10px;">▾</span></button>
-              <button class="explorer-icon-btn" title="Search">🔍</button>
-              <button class="explorer-icon-btn" title="Filter">≡</button>
+              <button class="explorer-add-btn"><span class="fi fi-sm fi-add"></span> Add <span style="font-size:10px;">▾</span></button>
+              <button class="explorer-icon-btn" title="Search"><span class="fi fi-sm fi-search"></span></button>
+              <button class="explorer-icon-btn" title="Filter"><span class="fi fi-sm fi-filter"></span></button>
             </div>
             <a class="explorer-item selected" href="#">Business rules</a>
             <div class="explorer-section" style="margin-left:8px;">
@@ -135,7 +136,7 @@
         <h2 class="page-title">Business rules</h2>
         <div class="toolbar">
           <div class="toolbar-search">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><span class="fi fi-sm fi-search"></span></span>
             <input type="text" placeholder="Search rules by name">
           </div>
           <div class="filter-pill-wrapper"><button class="filter-pill">Entity type <span class="arrow">▾</span></button></div>
@@ -157,31 +158,31 @@
               <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">All ConcessionStand food items must comply with local health codes</a></td>
               <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">ConcessionStand</span></div></td>
               <td>Advisory</td>
-              <td><button class="row-actions" title="More actions">⋮</button></td>
+              <td><button class="row-actions" title="More actions"><span class="fi fi-sm fi-more-vertical"></span></button></td>
             </tr>
             <tr>
               <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">Every Event must be assigned to a single Venue</a></td>
               <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Event</span><span class="chip chip-sm chip-entitytype">Venue</span></div></td>
               <td>Blocking</td>
-              <td><button class="row-actions" title="More actions">⋮</button></td>
+              <td><button class="row-actions" title="More actions"><span class="fi fi-sm fi-more-vertical"></span></button></td>
             </tr>
             <tr>
               <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">A Gate must have at least 2 StaffAssignments during any Event</a></td>
               <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Gate</span><span class="chip chip-sm chip-entitytype">StaffAssignment</span><span class="chip chip-sm chip-entitytype">Event</span></div></td>
               <td>Advisory</td>
-              <td><button class="row-actions" title="More actions">⋮</button></td>
+              <td><button class="row-actions" title="More actions"><span class="fi fi-sm fi-more-vertical"></span></button></td>
             </tr>
             <tr>
               <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">Shuttles must not operate more than 16 hours in any 24-hour period</a></td>
               <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Shuttle</span></div></td>
               <td>Blocking</td>
-              <td><button class="row-actions" title="More actions">⋮</button></td>
+              <td><button class="row-actions" title="More actions"><span class="fi fi-sm fi-more-vertical"></span></button></td>
             </tr>
             <tr>
               <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">StaffMembers must have valid security clearance to work at SecurityCheckpoints</a></td>
               <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">StaffMember</span><span class="chip chip-sm chip-entitytype">SecurityCheckpoint</span></div></td>
               <td>Blocking</td>
-              <td><button class="row-actions" title="More actions">⋮</button></td>
+              <td><button class="row-actions" title="More actions"><span class="fi fi-sm fi-more-vertical"></span></button></td>
             </tr>
           </tbody>
         </table>
@@ -191,12 +192,12 @@
         </div>
       </main>
     </div>
-    <footer class="footer"><span class="fabric-icon">◆</span><span>Microsoft Fabric</span></footer>
+    <footer class="footer"><span class="fi fi-sm fi-diamond" style="color:var(--color-primary)"></span><span>Microsoft Fabric</span></footer>
   </div>
 
   <!-- Toast notification -->
   <div class="toast" id="toast">
-    <span class="toast-icon">✅</span>
+    <span class="toast-icon"><span class="fi fi-checkmark-circle" style="color:var(--color-primary)"></span></span>
     <span id="toastMsg">Rule saved successfully</span>
     <button class="toast-close" onclick="document.getElementById('toast').style.display='none'">✕</button>
   </div>

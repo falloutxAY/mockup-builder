@@ -14,11 +14,11 @@
     .header-right { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
     .avatar { width: 28px; height: 28px; border-radius: 50%; background: #5B5FC7; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
     .nl-editor { width: 100%; min-height: 80px; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-base); line-height: 22px; color: var(--color-text-primary); background: var(--color-surface); outline: none; }
-    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; cursor: pointer; }
-    .nl-entity-type { color: var(--color-entity-1); text-decoration-color: var(--color-entity-1); }
-    .nl-entity-type-2 { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); }
-    .nl-entity-type-3 { color: var(--color-entity-3); text-decoration-color: var(--color-entity-3); }
-    .nl-relationship { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); text-decoration-style: dashed; }
+    /* Fluent v9: All recognized concepts use brand-color dotted underline + Tooltip on hover */
+    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--color-primary); text-underline-offset: 3px; cursor: pointer; color: var(--color-text-primary); position: relative; }
+    .nl-entity:hover { background: var(--color-state-verified-bg); border-radius: var(--radius-sm); }
+    .nl-entity .nl-tooltip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--color-header-bg); color: #fff; font-size: var(--font-size-xs); font-weight: 400; padding: 4px 8px; border-radius: var(--radius-md); white-space: nowrap; z-index: 100; pointer-events: none; box-shadow: var(--shadow-popup); }
+    .nl-entity:hover .nl-tooltip { display: block; }
     .attached-section { margin-top: var(--space-md); }
     .attached-label { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); }
     .attached-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-sm); }
@@ -26,7 +26,7 @@
     .concept-row-label { font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.4px; min-width: 90px; padding-top: 4px; flex-shrink: 0; }
     .concept-row-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
     #chipGroup { display: flex; flex-direction: column; gap: var(--space-xs); }
-    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
+    .chip-entitytype { background: var(--color-state-verified-bg); color: var(--color-primary); } /* Fluent v9: Tag appearance="brand" */
     .learn-more { font-size: var(--font-size-sm); color: var(--color-link); margin-top: var(--space-xxs); display: inline-block; }
     .section-header-row { display: flex; align-items: baseline; gap: var(--space-xs); margin-bottom: var(--space-xxs); }
 
@@ -105,11 +105,11 @@
             <div class="section-header-row"><label class="form-label">Rule definition <span class="required"></span></label></div>
             <p class="form-description">Describe the rule in plain language. Matching ontology concepts will be highlighted automatically. <a class="learn-more" href="#">Learn more</a></p>
             <div class="nl-editor" contenteditable="false">
-              A <span class="nl-entity nl-entity-type" title="Entity Type: Gate" style="text-decoration-style:dotted;color:#8A6914;text-decoration-color:#8A6914;">Gate</span>
+              A <span class="nl-entity">Gate<span class="nl-tooltip">Entity Type: Gate</span></span>
               must have at least 2
-              <span class="nl-entity nl-entity-type-2" title="Entity Type: StaffAssignment" style="color:#8764B8;text-decoration-color:#8764B8;">StaffAssignments</span>
+              <span class="nl-entity">StaffAssignments<span class="nl-tooltip">Entity Type: StaffAssignment</span></span>
               during any
-              <span class="nl-entity nl-entity-type" title="Entity Type: Event">Event</span>.
+              <span class="nl-entity">Event<span class="nl-tooltip">Entity Type: Event</span></span>.
             </div>
 
             <div class="attached-section">

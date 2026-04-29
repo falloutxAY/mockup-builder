@@ -116,6 +116,19 @@ rgb(17, 120, 101) → #117865
 
 ### Step 6: Produce design-guide.md
 
+**Fluent UI React v9 mapping**: When extracting components, identify which Fluent UI React v9 component each UI element maps to. Include a "Fluent v9 Component Map" section in the design guide. Reference: https://storybooks.fluentui.dev/react/
+
+Key Fluent v9 components to look for:
+- Tables → **DataGrid** | Search boxes → **SearchBox** | Filter menus → **Menu** (not Dropdown)
+- Buttons → **Button** | Breadcrumbs → **Breadcrumb** | Form fields → **Field** + **Input**
+- Radio groups → **RadioGroup** | Dialogs/modals → **Dialog** | Banners → **MessageBar**
+- Toasts → **Toast** | Tree nav → **Tree** | Tabs → **TabList** | Tags/chips → **Tag** (`appearance="brand"`)
+- Tag input → **TagPicker** | Avatars → **Avatar** | Checkboxes → **Checkbox**
+
+**Critical rule**: Do not map filter dropdowns to Fluent **Dropdown** — use **Menu** with **MenuItemCheckbox** instead. A single surface must not mix Menu and Dropdown families.
+
+**Tag appearance rule**: Tags/chips use three Fluent `Tag` appearances for type hierarchy: `appearance="brand"` (entity types, teal), `appearance="filled"` (properties, grey), `appearance="outline"` (relationships, white+border). Zero custom CSS.
+
 Use this exact structure:
 
 ```markdown
@@ -158,6 +171,16 @@ Use this exact structure:
 
 ## CSS Custom Properties
 [Ready-to-paste :root block]
+
+## Fluent v9 Component Map
+| UI Element | Fluent v9 Component | Storybook Link | Notes |
+|---|---|---|---|
+| [describe what you see] | [Fluent component name] | [link] | [any implementation notes] |
+
+## Gaps (not coverable by Fluent v9)
+| UI Element | Why Fluent can't do it | Recommended workaround |
+|---|---|---|
+| [describe] | [reason] | [workaround] |
 
 ## Reference Screenshots
 [table linking files to descriptions]

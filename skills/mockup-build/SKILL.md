@@ -13,6 +13,57 @@ You are a **world-class UX Designer and Mockup Builder Agent**. You combine the 
 - Surface the names of every pattern you use so the user can reference them in future feedback.
 - Great UX is invisible — but great *collaboration* requires shared vocabulary.
 
+## Fluent UI React v9 Design Constraint
+
+**All mockups must be implementable using Fluent UI React v9 components.** This is a hard constraint — it reduces dev implementation time. Before building any UI element, check whether a Fluent v9 component exists for it.
+
+### Fluent v9 Component Reference
+Storybook: https://storybooks.fluentui.dev/react/
+
+| UI Pattern | Fluent v9 Component | Key Props |
+|---|---|---|
+| Data table (sortable, row actions) | **DataGrid** | `sortable`, `DataGridHeaderCell` for sort |
+| Search input | **SearchBox** | `appearance="outline"`, `placeholder` |
+| Filter dropdowns (with checkboxes) | **Menu** + **MenuItemCheckbox** | `hasCheckmarks`, `MenuGroup`, `MenuTrigger` |
+| Buttons | **Button** | `appearance="primary"` / `"secondary"` / `"subtle"` |
+| Breadcrumb | **Breadcrumb** + **BreadcrumbItem** | Direct mapping |
+| Form fields | **Field** + **Input** | `required`, `validationState`, `validationMessage` |
+| Multi-line text | **Field** + **Textarea** | For plain text; rich-text NL editors are custom |
+| Radio selection | **Field** + **RadioGroup** + **Radio** | Direct mapping |
+| Delete/alert dialogs | **Dialog** (`modalType="alert"`) | `DialogTitle`, `DialogBody`, `DialogActions` |
+| Modal dialogs | **Dialog** (`modalType="modal"`) | Same sub-components |
+| Error/warning banners | **MessageBar** | `intent="error"` / `"warning"` / `"success"` |
+| Toast notifications | **Toast** + **Toaster** | `intent="success"`, auto-dismiss |
+| Tree navigation (sidebar) | **Tree** + **TreeItem** + **TreeItemLayout** | `selectionMode`, `defaultOpenItems` |
+| Tabs | **TabList** + **Tab** | `appearance="transparent"`, `size="medium"` |
+| Tags/chips/badges | **Tag** | `appearance="brand"` (entities), `"filled"` (properties), `"outline"` (relationships) |
+| Metadata input | **TagPicker** (`noPopover`) | Free-form tag entry + removal |
+| User avatar | **Avatar** | `initials`, `color="brand"` |
+| Row overflow menu (⋮) | **Menu** + **MenuTrigger** | Same Menu family as filter dropdowns |
+| Checkboxes | **Checkbox** | Inside dialogs, outside of Menu |
+| Two-panel picker | **Popover** + **List** + **Checkbox** | Custom composite from Fluent parts |
+
+### Critical constraint: Do not mix component families
+A single UI surface must use ONE Fluent component family for selection. Example:
+- Filter dropdowns → use **Menu** (with `MenuItemCheckbox`). Do NOT use **Dropdown** on the same surface.
+- Entity picker in dialogs → use **Checkbox** list. This is a separate surface from the toolbar, so no conflict.
+
+### Tag/chip appearance rule
+Tags use **three Fluent Tag appearances** for visual hierarchy — zero custom CSS:
+- **Entity types** → `appearance="brand"` (teal filled — most prominent)
+- **Properties** → `appearance="filled"` (grey filled — medium emphasis)
+- **Relationships** → `appearance="outline"` (white + border — lightest)
+
+This uses only built-in Fluent props. No custom color classes needed.
+
+### What Fluent v9 cannot do (build custom)
+| Pattern | Workaround |
+|---|---|
+| Rich-text NL editor with inline colored entity highlights | Custom `contenteditable` div — wrap in Fluent `Field` for label/description |
+| Two-panel concept browser (entity + property picker) | Compose from Fluent: `Popover` container + `List` + `Checkbox` |
+| Empty state illustration | Custom HTML layout with Fluent `Button` for CTA |
+| Pagination | Custom text + controls |
+
 ## Inputs
 
 1. **Design Guide** — read `output/design-guide.md` (design system extracted by the extraction agent)
@@ -258,42 +309,109 @@ After the first screenshot, add a one-liner:
 
 ## Component usage cheatsheet
 
-Use these classes from `base-styles.css`:
+Use these classes from `base-styles.css`. Each is annotated with the Fluent v9 component devs will use:
 
 ```html
 <!-- Shell layout -->
 <div class="shell">
   <header class="header">...</header>
   <div class="body">
-    <nav class="sidebar">...</nav>
+    <nav class="sidebar">...</nav> <!-- Fluent: Nav -->
     <main class="main">...</main>
   </div>
 </div>
 
-<!-- Buttons -->
-<button class="btn btn-primary">Primary</button>
-<button class="btn btn-secondary">Secondary</button>
-<button class="btn btn-subtle">Subtle</button>
-<button class="btn btn-sm btn-primary">Small</button>
+<!-- Buttons → Fluent: Button -->
+<button class="btn btn-primary">Primary</button>  <!-- appearance="primary" -->
+<button class="btn btn-secondary">Secondary</button>  <!-- appearance="secondary" -->
+<button class="btn btn-subtle">Subtle</button>  <!-- appearance="subtle" -->
+<button class="btn btn-sm btn-primary">Small</button>  <!-- size="small" -->
 
-<!-- Table -->
+<!-- Table → Fluent: DataGrid (sortable, with TableCellActions for row menu) -->
 <table class="table">
   <thead><tr><th>Column</th></tr></thead>
   <tbody><tr><td>Data</td></tr></tbody>
 </table>
 
-<!-- Tabs -->
-<div class="tab-list">
+<!-- Tabs → Fluent: TabList + Tab -->
+<div class="tab-list">  <!-- appearance="transparent" -->
   <button class="tab active">Active</button>
   <button class="tab">Inactive</button>
 </div>
 
-<!-- Form input -->
+<!-- Form input → Fluent: Field + Input -->
 <div class="input-wrapper">
   <svg class="icon">...</svg>
-  <input type="text" placeholder="Search...">
+  <input type="text" placeholder="Search...">  <!-- Fluent: SearchBox for search inputs -->
 </div>
 <label class="form-label">Field <span class="required">*</span></label>
+
+<!-- Tags/chips → Fluent: Tag — 3 appearances for concept type hierarchy -->
+<span class="chip chip-entitytype">EntityName</span>  <!-- appearance="brand" (teal) -->
+<span class="chip chip-property">property_name</span>  <!-- appearance="filled" (grey) -->
+<span class="chip chip-relationship">relationship_name</span>  <!-- appearance="outline" (white+border) -->
+<!-- Entity types are most prominent, relationships lightest. Group under labeled rows too. -->
+
+<!-- Filter dropdown → Fluent: Menu + MenuItemCheckbox (NOT Dropdown) -->
+<button class="filter-pill">Entity type ▾</button>
+<!-- Opens a Menu with hasCheckmarks, MenuGroup -->
+
+<!-- Dialog → Fluent: Dialog -->
+<div class="dialog-overlay">  <!-- modalType="modal" or "alert" -->
+  <div class="dialog">
+    <h2 class="dialog-title">Title</h2>  <!-- DialogTitle -->
+    <p class="dialog-body">Content</p>  <!-- DialogBody / DialogContent -->
+    <div class="dialog-actions">  <!-- DialogActions -->
+      <button class="btn btn-secondary">Cancel</button>
+      <button class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Error banner → Fluent: MessageBar (intent="error") -->
+<div class="dialog-blocked-msg">
+  <span>⛔</span>
+  <span>Save is blocked. Reason here.</span>
+</div>
+
+<!-- Toast → Fluent: Toast + Toaster (intent="success") -->
+<div class="toast">
+  <span class="toast-icon">✅</span>
+  <span>Rule saved successfully</span>
+  <button class="toast-close">✕</button>
+</div>
+
+<!-- Explorer panel → Fluent: Tree + TreeItem + TreeItemLayout -->
+<aside class="explorer">
+  <div class="explorer-header"><h3>Explorer</h3></div>
+  <div class="explorer-list">
+    <div class="explorer-item selected">Item 1</div>
+    <div class="explorer-item">Item 2</div>
+  </div>
+</aside>
+
+<!-- Breadcrumb → Fluent: Breadcrumb + BreadcrumbItem -->
+<div class="breadcrumb">
+  <a href="#">Home</a>
+  <span class="breadcrumb-separator">›</span>
+  <span class="breadcrumb-current">Current</span>
+</div>
+
+<!-- Avatar → Fluent: Avatar -->
+<span class="avatar">AY</span>  <!-- initials, color="brand" -->
+
+<!-- Severity radio → Fluent: RadioGroup + Radio -->
+<div class="radio-group">
+  <label class="radio-label"><input type="radio" class="radio-input" checked> Advisory</label>
+  <label class="radio-label"><input type="radio" class="radio-input"> Blocking</label>
+</div>
+
+<!-- Metadata tags → Fluent: TagPicker (noPopover) -->
+<div class="tag-group">
+  <span class="tag">Category: Security</span>
+  <button class="tag-add">＋</button>
+</div>
+```
 
 <!-- Dialog (with click-to-copy name button for easy agent-chat pasting) -->
 <div class="dialog-overlay">
