@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Business Rule — ZavaStadium Ontology</title>
+  <link rel="stylesheet" href="../base-styles.css">
+  <style>
+    .shell { grid-template-rows: var(--header-height) 1fr auto; }
+    .body { display: flex; grid-column: 1 / -1; min-height: 0; }
+    .footer { grid-column: 1 / -1; background: var(--color-surface); border-top: 1px solid var(--color-border-subtle); padding: 6px var(--space-md); display: flex; align-items: center; gap: var(--space-xs); font-size: var(--font-size-xs); color: var(--color-text-muted); }
+    .footer .fabric-icon { color: var(--color-primary); font-weight: 600; }
+    .hamburger { background: none; border: none; color: var(--color-header-text); cursor: pointer; font-size: 18px; padding: 4px 6px; line-height: 1; }
+    .header-right { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
+    .avatar { width: 28px; height: 28px; border-radius: 50%; background: #5B5FC7; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
+
+    .nl-editor { width: 100%; min-height: 80px; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-base); line-height: 22px; color: var(--color-text-primary); background: var(--color-surface); outline: none; }
+    .nl-editor:focus { border-bottom: 2px solid var(--color-primary); }
+    .nl-entity { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; cursor: pointer; }
+    .nl-entity-type { color: var(--color-entity-1); text-decoration-color: var(--color-entity-1); }
+    .nl-entity-type-2 { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); }
+    .nl-property { color: #8764B8; text-decoration-color: #8764B8; }
+    .nl-relationship { color: var(--color-entity-2); text-decoration-color: var(--color-entity-2); text-decoration-style: dashed; }
+
+    .attached-section { margin-top: var(--space-md); }
+    .attached-label { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); }
+    .attached-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-sm); }
+    .concept-row { display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-xs); width: 100%; }
+    .concept-row-label { font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.4px; min-width: 90px; padding-top: 4px; flex-shrink: 0; }
+    .concept-row-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
+    #chipGroup { display: flex; flex-direction: column; gap: var(--space-xs); }
+    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
+    .chip-property { background: #F3EEFA; color: #8764B8; }
+    .chip-relationship { background: var(--color-entity-2-bg); color: var(--color-entity-2); }
+    .learn-more { font-size: var(--font-size-sm); color: var(--color-link); margin-top: var(--space-xxs); display: inline-block; }
+    .section-header-row { display: flex; align-items: baseline; gap: var(--space-xs); margin-bottom: var(--space-xxs); }
+
+    /* Concept Browser */
+    .concept-browser-overlay { position: fixed; inset: 0; z-index: 500; }
+    .concept-browser { position: absolute; top: 460px; left: 160px; display: flex; border: 1px solid var(--color-border); border-radius: var(--radius-dialog); box-shadow: var(--shadow-popup); background: var(--color-surface); overflow: hidden; font-size: var(--font-size-sm); z-index: 501; max-height: 360px; }
+    .concept-browser-panel { width: 260px; display: flex; flex-direction: column; overflow: hidden; }
+    .concept-browser-panel + .concept-browser-panel { border-left: 1px solid var(--color-border-subtle); }
+    .concept-browser-search { padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--color-border-subtle); }
+    .concept-browser-search input { width: 100%; height: 28px; padding: 0 var(--space-xs) 0 28px; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-family); font-size: var(--font-size-sm); color: var(--color-text-primary); background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23A19F9D' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") no-repeat 8px center; outline: none; }
+    .concept-browser-list { overflow-y: auto; flex: 1; }
+    .concept-browser-row { display: flex; align-items: center; gap: var(--space-xs); padding: 7px var(--space-sm); cursor: pointer; user-select: none; }
+    .concept-browser-row:hover { background: var(--color-hover-bg); }
+    .concept-browser-row.selected { background: var(--color-selected-row); }
+    .concept-browser-row .cb-name { flex: 1; color: var(--color-text-primary); font-size: var(--font-size-sm); }
+    .concept-browser-row .cb-count { color: var(--color-text-muted); font-size: var(--font-size-xs); margin-left: auto; }
+    .concept-browser-row .cb-arrow { color: var(--color-text-muted); font-size: 10px; }
+    .cb-check { width: 16px; height: 16px; border: 1px solid var(--color-border); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--color-surface); }
+    .cb-check.checked { background: var(--color-primary); border-color: var(--color-primary); color: #fff; font-size: 11px; }
+    .concept-browser-divider { padding: 6px var(--space-sm) 4px; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-top: 1px solid var(--color-border-subtle); margin-top: 2px; }
+    .concept-browser-divider:first-child { border-top: none; margin-top: 0; }
+    .concept-browser-footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-xs); padding: var(--space-xs) var(--space-sm); border-top: 1px solid var(--color-border-subtle); background: var(--color-surface); }
+    .concept-browser-footer .change-count { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-right: auto; }
+    .badge { width: 20px; height: 20px; border-radius: 50%; font-size: var(--font-size-xs); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .badge-entity { background: var(--color-entity-3-bg); color: var(--color-entity-3); }
+    .empty-concepts { color: var(--color-text-muted); font-size: var(--font-size-sm); font-style: italic; padding: var(--space-xs) 0; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- HEADER -->
+    <header class="header">
+      <button class="hamburger" aria-label="Menu">☰</button>
+      <span class="header-brand">Fabric</span>
+      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace">✕</button></span>
+      <div class="header-search"><span style="margin-right:6px;">🔍</span> Search</div>
+      <div class="header-right">
+        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;" title="Help">?</button>
+        <button style="background:none;border:none;color:var(--color-header-text);font-size:18px;cursor:pointer;" title="Notifications">🔔</button>
+        <span class="avatar">AY</span>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="body">
+      <nav class="sidebar" aria-label="Primary navigation">
+        <a class="sidebar-item" title="Home"><span class="icon">🏠</span></a>
+        <a class="sidebar-item active" title="Ontology"><span class="icon">🔷</span></a>
+        <a class="sidebar-item" title="Data"><span class="icon">☁</span></a>
+        <a class="sidebar-item" title="Monitoring"><span class="icon">⏱</span></a>
+        <a class="sidebar-item" title="Analytics"><span class="icon">📊</span></a>
+        <a class="sidebar-item" title="Agents"><span class="icon">🤖</span></a>
+        <a class="sidebar-item" title="Settings"><span class="icon">⚙</span></a>
+      </nav>
+
+      <main class="main">
+        <div class="content" style="max-width:780px;">
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb">
+            <a class="breadcrumb-link" href="rules-list.html">← Back</a>
+            <span class="breadcrumb-separator">›</span>
+            <a class="breadcrumb-link" href="rules-list.html">ZavaStadium Ontology</a>
+            <span class="breadcrumb-separator">›</span>
+            <a class="breadcrumb-link" href="rules-list.html">Business Rules</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">New rule</span>
+          </nav>
+
+          <!-- Rule name -->
+          <section class="form-section">
+            <label class="form-label">Rule name <span class="required"></span></label>
+            <p class="form-description">A short name that describes this rule.</p>
+            <input class="input" type="text" placeholder="Enter a rule name…">
+          </section>
+
+          <!-- Rule definition -->
+          <section class="form-section">
+            <div class="section-header-row">
+              <label class="form-label">Rule definition <span class="required"></span></label>
+            </div>
+            <p class="form-description">
+              Describe the rule in plain language. Matching ontology concepts will be highlighted automatically.
+              <a class="learn-more" href="#">Learn more</a>
+            </p>
+            <div class="nl-editor" contenteditable="true" id="nlEditor" style="min-height:80px;color:var(--color-text-muted);">
+              Describe what must, must not, or should be true…
+            </div>
+
+            <!-- Linked ontology concepts (empty state) -->
+            <div class="attached-section">
+              <div class="attached-header">
+                <div class="attached-label">Linked ontology concepts</div>
+                <button class="btn btn-subtle" id="addConceptBtn" onclick="toggleBrowser()">＋ Add concept</button>
+              </div>
+              <div id="chipGroup">
+                <p class="empty-concepts">No concepts attached yet. As you type, matching entity types will be highlighted automatically. You can also manually add concepts.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Severity -->
+          <section class="form-section">
+            <label class="form-label">Severity</label>
+            <p class="form-description">Not enforced. Guides how users and AI agents prioritize violations.</p>
+            <div class="radio-group mt-xs">
+              <label class="radio-label"><input type="radio" name="severity" value="advisory" class="radio-input" checked> Advisory</label>
+              <label class="radio-label"><input type="radio" name="severity" value="blocking" class="radio-input"> Blocking</label>
+            </div>
+          </section>
+
+          <!-- Metadata -->
+          <section class="form-section">
+            <label class="form-label">Metadata</label>
+            <p class="form-description">Add optional custom labels.</p>
+            <div class="tag-group mt-xs">
+              <button class="tag-add" aria-label="Add metadata" title="Add metadata tag">＋</button>
+            </div>
+          </section>
+
+          <!-- Actions -->
+          <div style="margin-bottom:var(--space-2xl);display:flex;gap:var(--space-xs);">
+            <button class="btn btn-primary" onclick="window.location.href='rules-create--validation.html'">Save</button>
+            <button class="btn btn-secondary" onclick="window.location.href='rules-list.html'">Cancel</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer"><span class="fabric-icon">◆</span><span>Microsoft Fabric</span></footer>
+
+    <!-- Concept Browser -->
+    <div class="concept-browser-overlay" id="conceptBrowser" style="display:none;" onclick="closeBrowser(event)">
+      <div class="concept-browser" style="flex-direction:column;" onclick="event.stopPropagation()">
+        <div style="display:flex;flex:1;min-height:0;">
+          <div class="concept-browser-panel">
+            <div class="concept-browser-search"><input type="text" placeholder="Search entity types…"></div>
+            <div class="concept-browser-list">
+              <div class="concept-browser-row" onclick="selectEntity(this,'Event')"><span class="badge badge-entity">E</span><span class="cb-name">Event</span><span class="cb-count">7 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'Venue')"><span class="badge badge-entity">E</span><span class="cb-name">Venue</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'StaffMember')"><span class="badge badge-entity">E</span><span class="cb-name">StaffMember</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'SecurityCheckpoint')"><span class="badge badge-entity">E</span><span class="cb-name">SecurityCheckpoint</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'Shuttle')"><span class="badge badge-entity">E</span><span class="cb-name">Shuttle</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'ConcessionStand')"><span class="badge badge-entity">E</span><span class="cb-name">ConcessionStand</span><span class="cb-count">5 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'Gate')"><span class="badge badge-entity">E</span><span class="cb-name">Gate</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'StaffAssignment')"><span class="badge badge-entity">E</span><span class="cb-name">StaffAssignment</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'Entrance')"><span class="badge badge-entity">E</span><span class="cb-name">Entrance</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+              <div class="concept-browser-row" onclick="selectEntity(this,'ParkingLot')"><span class="badge badge-entity">E</span><span class="cb-name">ParkingLot</span><span class="cb-count">4 props</span><span class="cb-arrow">›</span></div>
+            </div>
+          </div>
+          <div class="concept-browser-panel" id="rightPanel">
+            <div style="padding:var(--space-lg) var(--space-sm);color:var(--color-text-muted);text-align:center;font-size:var(--font-size-sm);">
+              Select an entity type to see its properties and relationships.
+            </div>
+          </div>
+        </div>
+        <div class="concept-browser-footer">
+          <span class="change-count" id="changeCount"></span>
+          <button class="btn btn-secondary" style="padding:4px 14px;font-size:12px;font-weight:400;" onclick="cancelBrowser()">Cancel</button>
+          <button class="btn btn-primary" style="padding:4px 14px;font-size:12px;" onclick="applyBrowser()">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleBrowser() {
+      const b = document.getElementById('conceptBrowser');
+      b.style.display = b.style.display === 'none' ? 'flex' : 'none';
+    }
+    function closeBrowser(e) { if(e.target === e.currentTarget) document.getElementById('conceptBrowser').style.display='none'; }
+    function cancelBrowser() { document.getElementById('conceptBrowser').style.display='none'; }
+    function applyBrowser() { document.getElementById('conceptBrowser').style.display='none'; }
+    function selectEntity(el, name) {
+      el.parentElement.querySelectorAll('.concept-browser-row').forEach(r => r.classList.remove('selected'));
+      el.classList.add('selected');
+      const panel = document.getElementById('rightPanel');
+      const data = {
+        'Event': { props: ['event_id (string)','name (string)','date (date)','start_time (time)','end_time (time)','capacity (integer)','status (string)'], rels: ['held_at → Venue','staffed_by → StaffAssignment'] },
+        'Venue': { props: ['venue_id (string)','name (string)','address (string)','max_capacity (integer)','type (string)'], rels: ['hosts → Event','has_entrance → Entrance'] },
+        'StaffMember': { props: ['staff_id (string)','name (string)','role (string)','security_clearance (string)','hire_date (date)'], rels: ['assigned_to → StaffAssignment','works_at → SecurityCheckpoint'] },
+        'SecurityCheckpoint': { props: ['checkpoint_id (string)','location (string)','type (string)','status (string)'], rels: ['manned_by → StaffMember','located_at → Entrance'] },
+        'Shuttle': { props: ['shuttle_id (string)','route (string)','capacity (integer)','operating_hours (decimal)','status (string)'], rels: ['serves → ParkingLot','assigned_to → Event'] },
+        'ConcessionStand': { props: ['stand_id (string)','name (string)','location (string)','menu_type (string)','health_rating (string)'], rels: ['located_in → Concourse','serves → SeatingSection'] },
+        'Gate': { props: ['gate_id (string)','name (string)','section (string)','status (string)'], rels: ['staffed_by → StaffAssignment','connects_to → Concourse'] },
+        'StaffAssignment': { props: ['assignment_id (string)','shift_start (time)','shift_end (time)','role (string)'], rels: ['assigned_to → StaffMember','for_event → Event'] },
+        'Entrance': { props: ['entrance_id (string)','name (string)','type (string)','status (string)'], rels: ['part_of → Venue','has_checkpoint → SecurityCheckpoint'] },
+        'ParkingLot': { props: ['lot_id (string)','name (string)','capacity (integer)','status (string)'], rels: ['serves → Venue','shuttle_stop → Shuttle'] },
+      };
+      const d = data[name] || { props: [], rels: [] };
+      let html = '<div class="concept-browser-divider">Properties</div>';
+      d.props.forEach(p => { html += '<div class="concept-browser-row"><span class="cb-check"></span><span class="cb-name">'+p+'</span></div>'; });
+      html += '<div class="concept-browser-divider">Relationships</div>';
+      d.rels.forEach(r => { html += '<div class="concept-browser-row"><span class="cb-check"></span><span class="cb-name">'+r+'</span></div>'; });
+      panel.innerHTML = html;
+    }
+    // Clear placeholder on focus
+    const editor = document.getElementById('nlEditor');
+    editor.addEventListener('focus', function() {
+      if(this.style.color === 'var(--color-text-muted)') { this.textContent = ''; this.style.color = 'var(--color-text-primary)'; }
+    });
+  </script>
+</body>
+</html>

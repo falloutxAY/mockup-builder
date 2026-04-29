@@ -1,0 +1,189 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - button "App launcher" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - generic [ref=e15]:
+      - img [ref=e16]
+      - text: Microsoft Fabric
+    - button "demo_SoccerFanOps_Ontology Confidential\\Internal Only ▾" [ref=e22] [cursor=pointer]:
+      - text: demo_SoccerFanOps_Ontology
+      - generic [ref=e23]:
+        - img [ref=e24]
+        - text: Confidential\Internal Only
+      - generic [ref=e26]: ▾
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - img [ref=e29]
+        - text: Search
+      - button "Focus mode" [ref=e31] [cursor=pointer]:
+        - img [ref=e32]
+      - button "3" [ref=e34] [cursor=pointer]:
+        - img [ref=e35]
+        - generic [ref=e37]: "3"
+      - button "Settings" [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+      - button "Help" [ref=e41] [cursor=pointer]:
+        - img [ref=e42]
+      - generic "User" [ref=e44] [cursor=pointer]: AY
+  - generic [ref=e45]:
+    - navigation [ref=e46]:
+      - generic "Home" [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+      - generic "Copilot" [ref=e50] [cursor=pointer]:
+        - img [ref=e51]
+      - generic "Create" [ref=e53] [cursor=pointer]:
+        - img [ref=e54]
+      - generic "Browse" [ref=e56] [cursor=pointer]:
+        - img [ref=e57]
+      - generic "Apps" [ref=e59] [cursor=pointer]:
+        - img [ref=e60]
+      - generic "OneLake catalog" [ref=e65] [cursor=pointer]:
+        - img [ref=e66]
+      - generic "Monitor" [ref=e68] [cursor=pointer]:
+        - img [ref=e69]
+      - generic "Real-Time" [ref=e71] [cursor=pointer]:
+        - img [ref=e72]
+      - generic "Workloads" [ref=e74] [cursor=pointer]:
+        - img [ref=e75]
+      - generic [ref=e77] [cursor=pointer]:
+        - generic [ref=e78]: ay
+        - generic [ref=e79]:
+          - text: ayyOntology
+          - text: Workspace
+      - generic [ref=e80] [cursor=pointer]:
+        - img [ref=e82]
+        - generic [ref=e84]:
+          - text: demo_Soccer
+          - text: FanOps_Ontology
+      - generic "More" [ref=e85] [cursor=pointer]: ⋯
+      - generic "Power BI" [ref=e86] [cursor=pointer]:
+        - img [ref=e87]
+    - main [ref=e92]:
+      - generic [ref=e93]:
+        - navigation [ref=e94]:
+          - link "Home" [ref=e95] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e96]: ›
+          - button "StadiumSection" [ref=e97] [cursor=pointer]
+          - button "▾" [ref=e98] [cursor=pointer]
+        - generic [ref=e99]:
+          - button "Manage rules ▾" [ref=e100] [cursor=pointer]:
+            - img [ref=e101]
+            - text: Manage rules
+            - generic [ref=e103]: ▾
+          - button "⋯" [ref=e104] [cursor=pointer]
+      - generic [ref=e105]:
+        - button "Configure" [ref=e106] [cursor=pointer]
+        - button "Instances" [ref=e107] [cursor=pointer]
+        - button "Overview" [ref=e108] [cursor=pointer]
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - generic [ref=e113]:
+              - heading "Properties" [level=4] [ref=e114]
+              - button "Learn about properties" [ref=e115] [cursor=pointer]:
+                - img [ref=e116]
+            - generic [ref=e118]:
+              - button "Manage property bindings ▾" [ref=e119] [cursor=pointer]:
+                - text: Manage property bindings
+                - generic [ref=e120]: ▾
+              - button "Choose display name property ▾" [ref=e121] [cursor=pointer]:
+                - text: Choose display name property
+                - generic [ref=e122]: ▾
+          - generic [ref=e123]:
+            - generic [ref=e124]: Entity type key
+            - generic [ref=e125]:
+              - img [ref=e126]
+              - text: SectionId
+            - generic [ref=e128]:
+              - img [ref=e129]
+              - textbox "Search by property name" [ref=e131]
+            - button "None ▾" [ref=e132] [cursor=pointer]:
+              - img [ref=e133]
+              - text: None
+              - generic [ref=e135]: ▾
+          - table [ref=e136]:
+            - rowgroup [ref=e137]:
+              - row "Property name ↕ Type Data source" [ref=e138]:
+                - columnheader "Property name ↕" [ref=e139]
+                - columnheader "Type" [ref=e140]
+                - columnheader "Data source" [ref=e141]
+                - columnheader [ref=e142]
+            - rowgroup [ref=e143]:
+              - row "Section_Name String DimStadiumSection ⋯" [ref=e144]:
+                - cell "Section_Name" [ref=e145]
+                - cell "String" [ref=e146]
+                - cell "DimStadiumSection" [ref=e147]:
+                  - generic [ref=e148]:
+                    - img [ref=e150]
+                    - button "DimStadiumSection" [ref=e153] [cursor=pointer]
+                - cell "⋯" [ref=e154]:
+                  - button "⋯" [ref=e155] [cursor=pointer]
+              - row "Section_Seats Integer DimStadiumSection ⋯" [ref=e156]:
+                - cell "Section_Seats" [ref=e157]
+                - cell "Integer" [ref=e158]
+                - cell "DimStadiumSection" [ref=e159]:
+                  - generic [ref=e160]:
+                    - img [ref=e162]
+                    - button "DimStadiumSection" [ref=e165] [cursor=pointer]
+                - cell "⋯" [ref=e166]:
+                  - button "⋯" [ref=e167] [cursor=pointer]
+              - row "Section_Tier String DimStadiumSection ⋯" [ref=e168]:
+                - cell "Section_Tier" [ref=e169]
+                - cell "String" [ref=e170]
+                - cell "DimStadiumSection" [ref=e171]:
+                  - generic [ref=e172]:
+                    - img [ref=e174]
+                    - button "DimStadiumSection" [ref=e177] [cursor=pointer]
+                - cell "⋯" [ref=e178]:
+                  - button "⋯" [ref=e179] [cursor=pointer]
+              - row "SectionId String DimStadiumSection ⋯" [ref=e180]:
+                - cell "SectionId" [ref=e181]:
+                  - text: SectionId
+                  - generic "Entity type key" [ref=e182]:
+                    - img [ref=e183]
+                - cell "String" [ref=e185]
+                - cell "DimStadiumSection" [ref=e186]:
+                  - generic [ref=e187]:
+                    - img [ref=e189]
+                    - button "DimStadiumSection" [ref=e192] [cursor=pointer]
+                - cell "⋯" [ref=e193]:
+                  - button "⋯" [ref=e194] [cursor=pointer]
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e198]:
+                - heading "Resources" [level=4] [ref=e199]
+                - button "Learn about resources" [ref=e200] [cursor=pointer]:
+                  - img [ref=e201]
+              - button "Add" [ref=e204] [cursor=pointer]:
+                - img [ref=e205]
+                - text: Add
+            - paragraph [ref=e208]: No links have been added to the entity type.
+        - generic [ref=e209]:
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - heading "Relationships" [level=4] [ref=e212]
+              - button "Learn about relationships" [ref=e213] [cursor=pointer]:
+                - img [ref=e214]
+            - button "Manage relationships ▾" [ref=e216] [cursor=pointer]:
+              - text: Manage relationships
+              - generic [ref=e217]: ▾
+          - generic [ref=e218]:
+            - img:
+              - generic:
+                - generic: SECTION_OF
+                - generic: BLOCK_IN
+            - generic [ref=e219]:
+              - generic [ref=e224]: StadiumVenue
+              - generic [ref=e227]:
+                - generic [ref=e230]: StadiumSection
+                - generic [ref=e231]:
+                  - button "⋯" [ref=e232] [cursor=pointer]
+                  - button "Select entities to display" [ref=e233] [cursor=pointer]:
+                    - img [ref=e234]
+              - generic [ref=e242]: SeatBlock
+            - generic [ref=e244]:
+              - button "+" [ref=e245] [cursor=pointer]
+              - button "−" [ref=e246] [cursor=pointer]
+              - button "⊡" [ref=e247] [cursor=pointer]
+              - button "🔒" [ref=e248] [cursor=pointer]

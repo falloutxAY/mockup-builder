@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Rules — ZavaStadium Ontology</title>
+  <link rel="stylesheet" href="../base-styles.css">
+  <style>
+    .shell { grid-template-columns: var(--sidebar-width) 1fr; grid-template-rows: var(--header-height) auto 1fr auto; }
+    .body { display: flex; grid-column: 1 / -1; min-height: 0; }
+    .sub-header { grid-column: 1 / -1; background: var(--color-surface); border-bottom: 1px solid var(--color-border-subtle); display: flex; align-items: center; gap: var(--space-md); padding: 0 var(--space-md); height: 36px; font-size: var(--font-size-sm); }
+    .sub-header-btn { display: inline-flex; align-items: center; gap: var(--space-xxs); background: none; border: none; cursor: pointer; font-family: var(--font-family); font-size: var(--font-size-sm); color: var(--color-text-primary); padding: 4px 8px; border-radius: var(--radius-md); }
+    .sub-header-btn:hover { background: var(--color-hover-bg); }
+    .copilot-btn { color: var(--color-primary); }
+    .footer { grid-column: 1 / -1; background: var(--color-surface); border-top: 1px solid var(--color-border-subtle); padding: 6px var(--space-md); display: flex; align-items: center; gap: var(--space-xs); font-size: var(--font-size-xs); color: var(--color-text-muted); }
+    .footer .fabric-icon { color: var(--color-primary); font-weight: 600; }
+    .hamburger { background: none; border: none; color: var(--color-header-text); cursor: pointer; font-size: 18px; padding: 4px 6px; line-height: 1; }
+    .explorer { width: 190px; border-right: 1px solid var(--color-border-subtle); padding-top: var(--space-xs); }
+    .explorer-header { padding: var(--space-xs) var(--space-sm); font-size: var(--font-size-base); }
+    .main { padding: var(--space-lg) var(--space-2xl); flex: 1; }
+    .toolbar { padding: var(--space-sm) 0 var(--space-md) 0; }
+    .data-table .col-name { width: 38%; }
+    .data-table .col-entitytype { width: 22%; }
+    .data-table .col-severity { width: 10%; }
+    .data-table .col-actions { width: 40px; text-align: center; }
+    .rule-name-link { color: var(--color-text-primary); text-decoration: none; cursor: pointer; }
+    .rule-name-link:hover { text-decoration: underline; color: var(--color-link); }
+    .chip-entitytype { background: var(--color-entity-1-bg); color: var(--color-entity-1); }
+    .filter-pill-wrapper { position: relative; display: inline-flex; }
+    .btn-new-rule { background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); padding: 6px 16px; font-size: var(--font-size-sm); font-weight: 600; cursor: pointer; font-family: var(--font-family); display: inline-flex; align-items: center; gap: var(--space-xxs); }
+    .btn-new-rule:hover { background: var(--color-primary-hover); }
+    .explorer-ontology-toolbar { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-xxs) var(--space-sm) var(--space-xxs) 20px; margin-bottom: var(--space-xxs); }
+    .explorer-add-btn { display: inline-flex; align-items: center; gap: 2px; background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2px 8px; font-family: var(--font-family); font-size: var(--font-size-sm); color: var(--color-text-secondary); cursor: pointer; }
+    .explorer-add-btn:hover { background: var(--color-hover-bg); }
+    .explorer-icon-btn { background: none; border: none; cursor: pointer; color: var(--color-text-muted); font-size: 14px; padding: 2px; }
+    .explorer-icon-btn:hover { color: var(--color-text-primary); }
+    .explorer-item-deep { padding-left: 44px; }
+    .header-right { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
+    .header-right .trial-text { font-size: var(--font-size-xs); color: rgba(255,255,255,0.7); text-align: right; line-height: 1.2; }
+    .header-icon { color: var(--color-header-text); font-size: 16px; cursor: pointer; opacity: 0.8; background: none; border: none; padding: 4px; }
+    .header-icon:hover { opacity: 1; }
+    .share-btn { background: #0078D4; color: #fff; border: none; border-radius: var(--radius-md); padding: 4px 14px; font-size: var(--font-size-sm); font-weight: 600; cursor: pointer; font-family: var(--font-family); }
+    .share-btn:hover { background: #106EBE; }
+    .avatar { width: 28px; height: 28px; border-radius: 50%; background: #5B5FC7; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
+    .filter-dropdown { max-height: 280px; overflow-y: auto; }
+    .demo-switcher { position: fixed; bottom: 52px; right: 24px; z-index: 1000; display: flex; gap: var(--space-xxs); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-dialog); box-shadow: var(--shadow-popup); padding: var(--space-xs); }
+    .demo-switcher button { font-family: var(--font-family); font-size: var(--font-size-sm); padding: 4px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text-primary); cursor: pointer; }
+    .demo-switcher button:hover { background: var(--color-hover-bg); }
+    .demo-switcher button.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+    .page-title { font-size: var(--font-size-xl); font-weight: 600; margin-bottom: var(--space-xs); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- HEADER -->
+    <header class="header">
+      <button class="hamburger" aria-label="Menu">☰</button>
+      <span class="header-brand">Fabric</span>
+      <span class="header-workspace">ZavaStadium <button class="close-btn" aria-label="Close workspace">✕</button></span>
+      <span style="font-size:var(--font-size-sm);color:rgba(255,255,255,0.8);display:inline-flex;align-items:center;gap:4px;">🔒 Confidential\Microsoft FTE <span style="opacity:.5;font-size:10px;">▾</span></span>
+      <div class="header-search"><span style="margin-right:6px;">🔍</span> Search (Alt + Q)</div>
+      <div class="header-right">
+        <span class="trial-text">Trial activated:<br>18 days left</span>
+        <button class="header-icon" title="Dark mode">◐</button>
+        <button class="header-icon" title="Notifications">🔔</button>
+        <button class="header-icon" title="Settings">⚙</button>
+        <button class="header-icon" title="Help">?</button>
+        <button class="share-btn">↗ Share</button>
+        <span class="avatar">AY</span>
+      </div>
+    </header>
+
+    <!-- SUB-HEADER -->
+    <div class="sub-header">
+      <span style="font-size:var(--font-size-base);font-weight:600;color:var(--color-text-primary);">Home</span>
+      <button class="sub-header-btn"><span class="icon">⚙</span></button>
+      <button class="sub-header-btn"><span class="icon">＋</span> Add entity type</button>
+      <button class="sub-header-btn copilot-btn"><span class="icon">✨</span> Copilot</button>
+    </div>
+
+    <!-- BODY -->
+    <div class="body">
+      <!-- Sidebar -->
+      <nav class="sidebar" aria-label="Primary navigation">
+        <a class="sidebar-item" title="Home"><span class="icon">🏠</span></a>
+        <a class="sidebar-item" title="Workspaces"><span class="icon">📁</span></a>
+        <a class="sidebar-item" title="OneLake"><span class="icon">☁</span></a>
+        <a class="sidebar-item" title="Real-Time"><span class="icon">⚡</span></a>
+        <a class="sidebar-item" title="Monitor"><span class="icon">📊</span></a>
+        <a class="sidebar-item" title="Workloads"><span class="icon">👥</span></a>
+        <a class="sidebar-item" title="Copilot"><span class="icon">🤖</span></a>
+        <a class="sidebar-item active" title="ZavaStadium" style="flex-direction:column;font-size:8px;line-height:1.2;">
+          <span class="icon" style="font-size:16px;">🏟</span>
+          <span style="max-width:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;">Zava<br>Stadium</span>
+        </a>
+        <div style="flex:1;"></div>
+        <a class="sidebar-item" title="More"><span class="icon">⋯</span></a>
+      </nav>
+
+      <!-- Explorer -->
+      <aside class="explorer" id="explorerPanel">
+        <div class="explorer-header"><span>Explorer</span><button class="panel-toggle" title="Toggle panel">☐</button></div>
+        <div class="explorer-section">
+          <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▾</span><span>Overview</span></div>
+          <div class="explorer-section-items">
+            <a class="explorer-item" href="#">Business impact</a>
+            <a class="explorer-item" href="#">Lineage</a>
+            <a class="explorer-item" href="#">Health</a>
+          </div>
+        </div>
+        <div class="explorer-section">
+          <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▾</span><span>Ontology</span></div>
+          <div class="explorer-section-items">
+            <div class="explorer-ontology-toolbar">
+              <button class="explorer-add-btn">🔲 Add <span style="font-size:10px;">▾</span></button>
+              <button class="explorer-icon-btn" title="Search">🔍</button>
+              <button class="explorer-icon-btn" title="Filter">≡</button>
+            </div>
+            <a class="explorer-item selected" href="#">Business rules</a>
+            <div class="explorer-section" style="margin-left:8px;">
+              <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▾</span><span>Entity types</span></div>
+              <div class="explorer-section-items">
+                <a class="explorer-item explorer-item-deep" href="#">Venue</a>
+                <a class="explorer-item explorer-item-deep" href="#">ParkingLot</a>
+                <a class="explorer-item explorer-item-deep" href="#">Event</a>
+                <a class="explorer-item explorer-item-deep" href="#">Warehouse</a>
+                <a class="explorer-item explorer-item-deep" href="#">Turnstile</a>
+                <a class="explorer-item explorer-item-deep" href="#">Entrance</a>
+                <a class="explorer-item explorer-item-deep" href="#">StaffMember</a>
+                <a class="explorer-item explorer-item-deep" href="#">Shuttle</a>
+                <a class="explorer-item explorer-item-deep" href="#">Gate</a>
+                <a class="explorer-item explorer-item-deep" href="#">Concourse</a>
+                <a class="explorer-item explorer-item-deep" href="#">ConcessionStand</a>
+                <a class="explorer-item explorer-item-deep" href="#">StaffAssignment</a>
+                <a class="explorer-item explorer-item-deep" href="#">Incident</a>
+                <a class="explorer-item explorer-item-deep" href="#">SeatingSection</a>
+                <a class="explorer-item explorer-item-deep" href="#">SecurityCheckpoint</a>
+              </div>
+            </div>
+            <div class="explorer-section" style="margin-left:8px;">
+              <div class="explorer-section-header" onclick="toggleSection(this)"><span class="chevron">▸</span><span>Relationship types</span></div>
+              <div class="explorer-section-items" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main">
+        <h2 class="page-title">Business rules</h2>
+
+        <!-- EMPTY STATE -->
+        <div id="stateEmpty" style="display:none;">
+          <div class="empty-state">
+            <div class="empty-state-illustration">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="56" fill="#F0F0F0"/>
+                <rect x="35" y="30" width="50" height="62" rx="4" fill="#E1DFDD"/>
+                <rect x="38" y="33" width="44" height="56" rx="2" fill="#FFFFFF"/>
+                <rect x="44" y="42" width="32" height="3" rx="1.5" fill="#E1DFDD"/>
+                <rect x="44" y="50" width="24" height="3" rx="1.5" fill="#E1DFDD"/>
+                <rect x="44" y="58" width="28" height="3" rx="1.5" fill="#E1DFDD"/>
+                <rect x="44" y="66" width="20" height="3" rx="1.5" fill="#E1DFDD"/>
+                <circle cx="75" cy="75" r="18" fill="#117865" opacity="0.15"/>
+                <path d="M70 75 L74 79 L81 71" stroke="#117865" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="empty-state-heading">Start creating your first rule</div>
+            <a class="btn btn-primary" href="rules-create.html" style="text-decoration:none;">Create rule</a>
+          </div>
+        </div>
+
+        <!-- LIST STATE -->
+        <div id="stateList">
+          <div class="toolbar">
+            <div class="toolbar-search">
+              <span class="search-icon">🔍</span>
+              <input type="text" placeholder="Search rules by name" id="searchInput" oninput="filterRules()">
+            </div>
+            <div class="filter-pill-wrapper" id="entityFilterWrapper">
+              <button class="filter-pill" id="entityFilterBtn" onclick="toggleEntityFilter()">Entity type <span class="arrow">▾</span></button>
+              <div class="filter-dropdown" id="entityFilterDropdown" style="display:none;">
+                <span class="filter-dropdown-clear" onclick="clearEntityFilter()">Clear all</span>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="Event"> Event</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="Venue"> Venue</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="StaffMember"> StaffMember</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="SecurityCheckpoint"> SecurityCheckpoint</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="Shuttle"> Shuttle</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="ConcessionStand"> ConcessionStand</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="Gate"> Gate</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-entity="StaffAssignment"> StaffAssignment</label>
+              </div>
+            </div>
+            <div class="filter-pill-wrapper" id="severityFilterWrapper">
+              <button class="filter-pill" id="severityFilterBtn" onclick="toggleSeverityFilter()">Severity <span class="arrow">▾</span></button>
+              <div class="filter-dropdown" id="severityFilterDropdown" style="display:none;">
+                <span class="filter-dropdown-clear" onclick="clearSeverityFilter()">Clear all</span>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-sev="blocking"> Blocking</label>
+                <label class="filter-dropdown-item"><input type="checkbox" class="checkbox" checked data-sev="advisory"> Advisory</label>
+              </div>
+            </div>
+            <div class="toolbar-actions">
+              <a class="btn-new-rule" href="rules-create.html" style="text-decoration:none;">＋ Add</a>
+            </div>
+          </div>
+
+          <!-- Data Table -->
+          <table class="data-table" id="rulesTable">
+            <thead>
+              <tr>
+                <th class="col-name">Rule name <span class="sort-arrow active">↑</span></th>
+                <th class="col-entitytype">Entity type</th>
+                <th class="col-severity">Severity</th>
+                <th class="col-actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-rule="1" data-entities="ConcessionStand" data-severity="advisory">
+                <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">All ConcessionStand food items must comply with local health codes</a></td>
+                <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">ConcessionStand</span></div></td>
+                <td>Advisory</td>
+                <td><button class="row-actions" title="More actions">⋮</button></td>
+              </tr>
+              <tr data-rule="2" data-entities="Event,Venue" data-severity="blocking">
+                <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">Every Event must be assigned to a single Venue</a></td>
+                <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Event</span><span class="chip chip-sm chip-entitytype">Venue</span></div></td>
+                <td>Blocking</td>
+                <td><button class="row-actions" title="More actions">⋮</button></td>
+              </tr>
+              <tr data-rule="3" data-entities="Gate,StaffAssignment,Event" data-severity="advisory">
+                <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">A Gate must have at least 2 StaffAssignments during any Event</a></td>
+                <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Gate</span><span class="chip chip-sm chip-entitytype">StaffAssignment</span><span class="chip chip-sm chip-entitytype">Event</span></div></td>
+                <td>Advisory</td>
+                <td><button class="row-actions" title="More actions">⋮</button></td>
+              </tr>
+              <tr data-rule="4" data-entities="Shuttle" data-severity="blocking">
+                <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">Shuttles must not operate more than 16 hours in any 24-hour period</a></td>
+                <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">Shuttle</span></div></td>
+                <td>Blocking</td>
+                <td><button class="row-actions" title="More actions">⋮</button></td>
+              </tr>
+              <tr data-rule="5" data-entities="StaffMember,SecurityCheckpoint" data-severity="blocking">
+                <td class="col-rule-name"><a class="rule-name-link" href="rules-edit.html">StaffMembers must have valid security clearance to work at SecurityCheckpoints</a></td>
+                <td><div class="chip-group" style="gap:4px;"><span class="chip chip-sm chip-entitytype">StaffMember</span><span class="chip chip-sm chip-entitytype">SecurityCheckpoint</span></div></td>
+                <td>Blocking</td>
+                <td><button class="row-actions" title="More actions">⋮</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <span class="pagination-info">Showing 5 of 5 rules</span>
+            <div class="pagination-controls"><span>Page 1 of 1 · 50 per page</span></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer"><span class="fabric-icon">◆</span><span>Microsoft Fabric</span></footer>
+  </div>
+
+  <!-- Demo switcher -->
+  <div class="demo-switcher">
+    <button id="btnEmpty" onclick="switchView('empty')">Empty</button>
+    <button id="btnList" class="active" onclick="switchView('list')">List</button>
+    <button id="btnFilter" onclick="switchView('filter')">Filter open</button>
+  </div>
+
+  <script>
+    function switchView(view) {
+      document.getElementById('stateEmpty').style.display = 'none';
+      document.getElementById('stateList').style.display = 'none';
+      document.getElementById('entityFilterDropdown').style.display = 'none';
+      document.getElementById('entityFilterBtn').classList.remove('active');
+      document.querySelectorAll('.demo-switcher button').forEach(b => b.classList.remove('active'));
+      switch(view) {
+        case 'empty':
+          document.getElementById('stateEmpty').style.display = 'block';
+          document.getElementById('btnEmpty').classList.add('active');
+          break;
+        case 'list':
+          document.getElementById('stateList').style.display = 'block';
+          document.getElementById('btnList').classList.add('active');
+          break;
+        case 'filter':
+          document.getElementById('stateList').style.display = 'block';
+          document.getElementById('entityFilterDropdown').style.display = 'block';
+          document.getElementById('entityFilterBtn').classList.add('active');
+          document.getElementById('btnFilter').classList.add('active');
+          break;
+      }
+    }
+    function toggleEntityFilter() {
+      const dd = document.getElementById('entityFilterDropdown');
+      const btn = document.getElementById('entityFilterBtn');
+      if (dd.style.display === 'none') { dd.style.display = 'block'; btn.classList.add('active'); }
+      else { dd.style.display = 'none'; btn.classList.remove('active'); }
+    }
+    function toggleSeverityFilter() {
+      const dd = document.getElementById('severityFilterDropdown');
+      const btn = document.getElementById('severityFilterBtn');
+      if (dd.style.display === 'none') { dd.style.display = 'block'; btn.classList.add('active'); }
+      else { dd.style.display = 'none'; btn.classList.remove('active'); }
+    }
+    function clearEntityFilter() { document.querySelectorAll('#entityFilterDropdown .checkbox').forEach(cb => cb.checked = false); }
+    function clearSeverityFilter() { document.querySelectorAll('#severityFilterDropdown .checkbox').forEach(cb => cb.checked = false); }
+    function filterRules() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('#rulesTable tbody tr').forEach(tr => {
+        const name = tr.querySelector('.col-rule-name').textContent.toLowerCase();
+        tr.style.display = name.includes(q) ? '' : 'none';
+      });
+    }
+    function toggleSection(headerEl) {
+      const chevron = headerEl.querySelector('.chevron');
+      const items = headerEl.nextElementSibling;
+      if (!items) return;
+      if (items.style.display === 'none') { items.style.display = 'block'; chevron.textContent = '▾'; }
+      else { items.style.display = 'none'; chevron.textContent = '▸'; }
+    }
+    document.addEventListener('click', function(e) {
+      ['entityFilterWrapper','severityFilterWrapper'].forEach(id => {
+        const w = document.getElementById(id);
+        if (w && !w.contains(e.target)) {
+          const dd = w.querySelector('.filter-dropdown');
+          const btn = w.querySelector('.filter-pill');
+          if(dd) dd.style.display='none';
+          if(btn) btn.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

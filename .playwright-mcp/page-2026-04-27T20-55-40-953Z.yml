@@ -1,0 +1,1223 @@
+- generic [ref=e9]:
+  - list [ref=e11]:
+    - listitem
+    - listitem
+    - listitem [ref=e12]:
+      - generic [ref=e14] [cursor=pointer]: Skip to main content
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - button "App launcher" [ref=e26] [cursor=pointer]:
+        - img [ref=e29]
+      - link "Go to your default landing page" [ref=e32] [cursor=pointer]
+      - button "demo_SoccerFanOps_Ontology, Confidential\\Internal Only" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: demo_SoccerFanOps_Ontology
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img [ref=e43]
+            - img [ref=e46]
+          - generic [ref=e48]: Confidential\Internal Only
+        - img [ref=e49]: 
+    - generic [ref=e51]:
+      - img [ref=e53]
+      - textbox "Global search" [ref=e55]:
+        - /placeholder: Search
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - button "Focus mode" [ref=e60] [cursor=pointer]:
+          - img [ref=e63]
+        - button "Notifications" [ref=e66] [cursor=pointer]:
+          - img [ref=e69]
+          - generic [ref=e71]: "2"
+        - button "Settings" [ref=e73] [cursor=pointer]:
+          - img [ref=e76]
+        - button "Download" [ref=e79] [cursor=pointer]:
+          - img [ref=e82]
+        - button "Help & Support" [ref=e85] [cursor=pointer]:
+          - img [ref=e88]
+        - button "Help improve Fabric (preview)" [ref=e91] [cursor=pointer]:
+          - img [ref=e94]
+      - button "Account manager for" [ref=e98] [cursor=pointer]
+  - generic [ref=e105]:
+    - navigation [ref=e108]:
+      - menu "Sidebar" [ref=e109]:
+        - generic [ref=e110]:
+          - menuitem "Home" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]:
+              - img [ref=e115]
+              - generic [ref=e117]: Home
+          - generic [ref=e358]:
+            - menuitem "Copilot" [ref=e359] [cursor=pointer]:
+              - generic [ref=e362]: Copilot
+            - button "Unpin Copilot" [ref=e363] [cursor=pointer]:
+              - img [ref=e366]
+          - generic [ref=e368]:
+            - menuitem "Create" [ref=e369] [cursor=pointer]:
+              - generic [ref=e370]:
+                - img [ref=e372]
+                - generic [ref=e374]: Create
+            - button "Unpin Create" [ref=e375] [cursor=pointer]:
+              - img [ref=e378]
+          - generic [ref=e380]:
+            - menuitem "Browse" [ref=e381] [cursor=pointer]:
+              - generic [ref=e382]:
+                - img [ref=e384]
+                - generic [ref=e386]: Browse
+            - button "Unpin Browse" [ref=e387] [cursor=pointer]:
+              - img [ref=e390]
+          - generic [ref=e392]:
+            - menuitem "Apps" [ref=e393] [cursor=pointer]:
+              - generic [ref=e394]:
+                - img [ref=e396]
+                - generic [ref=e398]: Apps
+            - button "Unpin Apps" [ref=e399] [cursor=pointer]:
+              - img [ref=e402]
+          - generic [ref=e404]:
+            - menuitem "OneLake catalog" [ref=e405] [cursor=pointer]:
+              - generic [ref=e406]:
+                - img [ref=e408]
+                - generic [ref=e410]: OneLake catalog
+            - button "Unpin OneLake catalog" [ref=e411] [cursor=pointer]:
+              - img [ref=e414]
+          - generic [ref=e416]:
+            - menuitem "Monitor" [ref=e417] [cursor=pointer]:
+              - generic [ref=e418]:
+                - img [ref=e420]
+                - generic [ref=e422]: Monitor
+            - button "Unpin Monitor" [ref=e423] [cursor=pointer]:
+              - img [ref=e426]
+          - generic [ref=e428]:
+            - menuitem "Real-Time" [ref=e429] [cursor=pointer]:
+              - generic [ref=e430]:
+                - img [ref=e432]
+                - generic [ref=e434]: Real-Time
+            - button "Unpin Real-Time" [ref=e435] [cursor=pointer]:
+              - img [ref=e438]
+          - generic [ref=e440]:
+            - menuitem "Workloads" [ref=e441] [cursor=pointer]:
+              - generic [ref=e442]:
+                - img [ref=e444]
+                - generic [ref=e446]: Workloads
+            - button "Unpin Workloads" [ref=e447] [cursor=pointer]:
+              - img [ref=e450]
+          - separator [ref=e212]
+          - menuitem "Workspaces" [ref=e215] [cursor=pointer]:
+            - generic [ref=e216]:
+              - img [ref=e218]
+              - generic [ref=e220]: Workspaces
+          - menuitem "ayyOntologyWorkspace" [ref=e223] [cursor=pointer]:
+            - generic [ref=e227]: ayyOntologyWorkspace
+          - generic [ref=e228]:
+            - separator [ref=e229]
+            - menuitem "demo_SoccerFanOps_Ontology - ayyOntologyWorkspace" [ref=e232] [cursor=pointer]:
+              - generic [ref=e233]:
+                - button [ref=e234]:
+                  - generic "Close" [ref=e235]:
+                    - img [ref=e237]
+                - generic [ref=e240]: demo_SoccerFanOps_Ontology
+            - menuitem "More options" [ref=e242] [cursor=pointer]:
+              - img [ref=e245]
+        - menuitem "Power BI" [ref=e250] [cursor=pointer]:
+          - generic [ref=e253]: Power BI
+    - main [ref=e255]:
+      - iframe [active] [ref=e261]:
+        - generic [ref=f3e1]:
+          - generic [ref=f3e4]:
+            - generic [ref=f3e5]:
+              - generic [ref=f3e6]:
+                - generic [ref=f3e7]:
+                  - navigation "breadcrumb" [ref=f3e8]:
+                    - list [ref=f3e9]:
+                      - listitem [ref=f3e10]:
+                        - button "Home" [ref=f3e11]
+                      - listitem [ref=f3e12]:
+                        - img [ref=f3e13]
+                      - listitem [ref=f3e15]:
+                        - generic [ref=f3e16]:
+                          - button "StadiumSection" [ref=f3e18]:
+                            - generic [ref=f3e19]: StadiumSection
+                          - button "StadiumSection" [ref=f3e20]:
+                            - img [ref=f3e22]
+                  - generic [ref=f3e24]:
+                    - button "Add tile" [ref=f3e825]:
+                      - img [ref=f3e827]
+                      - text: Add tile
+                      - img [ref=f3e830]
+                    - button "Manage rules" [ref=f3e25]:
+                      - img [ref=f3e27]
+                      - text: Manage rules
+                      - img [ref=f3e30]
+                    - button "More actions" [ref=f3e32]:
+                      - img [ref=f3e34]
+                - banner [ref=f3e36]:
+                  - tablist [ref=f3e38]:
+                    - tab "Configure" [ref=f3e40] [cursor=pointer]:
+                      - generic [ref=f3e41]: Configure
+                    - tab "Instances" [ref=f3e42] [cursor=pointer]:
+                      - generic [ref=f3e43]: Instances
+                    - tab "Overview" [selected] [ref=f3e44] [cursor=pointer]:
+                      - generic [ref=f3e45]: Overview
+              - generic [ref=f3e832]:
+                - button "Last 30 days - 1 hour - Average" [ref=f3e834]:
+                  - text: Last 30 days - 1 hour - Average
+                  - img [ref=f3e836]
+                - generic [ref=f3e838]:
+                  - generic [ref=f3e839]:
+                    - generic [ref=f3e840]:
+                      - heading "Relationship graph" [level=3] [ref=f3e841]
+                      - generic [ref=f3e842]:
+                        - button "Expand" [ref=f3e843]:
+                          - img [ref=f3e845]
+                          - text: Expand
+                        - button "Tile options" [ref=f3e847]:
+                          - img [ref=f3e849]
+                    - generic [ref=f3e855]:
+                      - generic [ref=f3e863]:
+                        - button "Zoom in" [ref=f3e864]:
+                          - img [ref=f3e866]
+                        - slider "Zoom level" [ref=f3e869] [cursor=pointer]: "1"
+                        - button "Zoom out" [ref=f3e870]:
+                          - img [ref=f3e872]
+                        - button "Fit" [ref=f3e874]:
+                          - img [ref=f3e876]
+                      - separator [ref=f3e878]
+                      - status [ref=f3e879]
+                  - generic [ref=f3e880]:
+                    - generic [ref=f3e881]:
+                      - heading "Section_Name" [level=3] [ref=f3e882]
+                      - button "Tile options" [ref=f3e884]:
+                        - img [ref=f3e886]
+                    - region "Chart. Highcharts interactive chart." [ref=f3e888]:
+                      - generic [ref=f3e889]:
+                        - heading "Chart" [level=6] [ref=f3e890]
+                        - generic [ref=f3e891]: Bar chart with 10 bars.
+                        - generic [ref=f3e892]: Bar chart with static data
+                        - generic [ref=f3e893]: The chart has 1 X axis displaying Section_Name.
+                        - generic [ref=f3e894]: The chart has 1 Y axis displaying Count. Data ranges from 25 to 25.
+                      - img "Interactive chart" [ref=f3e900]:
+                        - generic [ref=f3e907]: Section_Name
+                        - generic [ref=f3e909]: Count
+                        - generic [ref=f3e911]:
+                          - img "Section H, 25. Count." [ref=f3e912]
+                          - img "Section D, 25. Count." [ref=f3e913]
+                          - img "Section J, 25. Count." [ref=f3e914]
+                          - img "Section E, 25. Count." [ref=f3e915]
+                          - img "Section F, 25. Count." [ref=f3e916]
+                          - img "Section C, 25. Count." [ref=f3e917]
+                          - img "Section A, 25. Count." [ref=f3e918]
+                          - img "Section I, 25. Count." [ref=f3e919]
+                          - img "Section G, 25. Count." [ref=f3e920]
+                          - img "Section B, 25. Count." [ref=f3e921]
+                        - generic [ref=f3e922]:
+                          - generic [ref=f3e924]:
+                            - generic [ref=f3e925]: "25"
+                            - text: "25"
+                          - generic [ref=f3e927]:
+                            - generic [ref=f3e928]: "25"
+                            - text: "25"
+                          - generic [ref=f3e930]:
+                            - generic [ref=f3e931]: "25"
+                            - text: "25"
+                          - generic [ref=f3e933]:
+                            - generic [ref=f3e934]: "25"
+                            - text: "25"
+                          - generic [ref=f3e936]:
+                            - generic [ref=f3e937]: "25"
+                            - text: "25"
+                          - generic [ref=f3e939]:
+                            - generic [ref=f3e940]: "25"
+                            - text: "25"
+                          - generic [ref=f3e942]:
+                            - generic [ref=f3e943]: "25"
+                            - text: "25"
+                          - generic [ref=f3e945]:
+                            - generic [ref=f3e946]: "25"
+                            - text: "25"
+                          - generic [ref=f3e948]:
+                            - generic [ref=f3e949]: "25"
+                            - text: "25"
+                          - generic [ref=f3e951]:
+                            - generic [ref=f3e952]: "25"
+                            - text: "25"
+                        - generic [ref=f3e953]:
+                          - generic [ref=f3e954]: Section H
+                          - generic [ref=f3e955]: Section D
+                          - generic [ref=f3e956]: Section J
+                          - generic [ref=f3e957]: Section E
+                          - generic [ref=f3e958]: Section F
+                          - generic [ref=f3e959]: Section C
+                          - generic [ref=f3e960]: Section A
+                          - generic [ref=f3e961]: Section I
+                          - generic [ref=f3e962]: Section G
+                          - generic [ref=f3e963]: Section B
+                        - generic [ref=f3e964]:
+                          - generic [ref=f3e965]: "0"
+                          - generic [ref=f3e966]: "10"
+                          - generic [ref=f3e967]: "20"
+                          - generic [ref=f3e968]: "30"
+                      - generic [ref=f3e970]: End of interactive chart.
+                  - generic [ref=f3e971]:
+                    - generic [ref=f3e972]:
+                      - heading "Section_Seats" [level=3] [ref=f3e973]
+                      - button "Tile options" [ref=f3e975]:
+                        - img [ref=f3e977]
+                    - region "Chart. Highcharts interactive chart." [ref=f3e979]:
+                      - generic [ref=f3e980]:
+                        - heading "Chart" [level=6] [ref=f3e981]
+                        - generic [ref=f3e982]: Bar chart with 246 bars.
+                        - generic [ref=f3e983]: Bar chart with static data
+                        - generic [ref=f3e984]: The chart has 1 X axis displaying Section_Seats.
+                        - generic [ref=f3e985]: The chart has 1 Y axis displaying Count. Data ranges from 1 to 2.
+                      - img "Interactive chart" [ref=f3e991]:
+                        - generic [ref=f3e998]: Section_Seats
+                        - generic [ref=f3e1000]: Count
+                        - region "Count, bar series 1 of 1 with 246 bars." [ref=f3e1002]
+                        - generic [ref=f3e1249]:
+                          - generic [ref=f3e1251]:
+                            - generic [ref=f3e1252]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1254]:
+                            - generic [ref=f3e1255]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1257]:
+                            - generic [ref=f3e1258]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1260]:
+                            - generic [ref=f3e1261]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1263]:
+                            - generic [ref=f3e1264]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1266]:
+                            - generic [ref=f3e1267]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1269]:
+                            - generic [ref=f3e1270]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1272]:
+                            - generic [ref=f3e1273]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1275]:
+                            - generic [ref=f3e1276]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1278]:
+                            - generic [ref=f3e1279]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1281]:
+                            - generic [ref=f3e1282]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1284]:
+                            - generic [ref=f3e1285]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1287]:
+                            - generic [ref=f3e1288]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1290]:
+                            - generic [ref=f3e1291]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1293]:
+                            - generic [ref=f3e1294]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1296]:
+                            - generic [ref=f3e1297]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1299]:
+                            - generic [ref=f3e1300]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1302]:
+                            - generic [ref=f3e1303]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1305]:
+                            - generic [ref=f3e1306]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1308]:
+                            - generic [ref=f3e1309]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1311]:
+                            - generic [ref=f3e1312]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1314]:
+                            - generic [ref=f3e1315]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1317]:
+                            - generic [ref=f3e1318]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1320]:
+                            - generic [ref=f3e1321]: "2"
+                            - text: "2"
+                          - generic [ref=f3e1323]:
+                            - generic [ref=f3e1324]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1326]:
+                            - generic [ref=f3e1327]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1329]:
+                            - generic [ref=f3e1330]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1332]:
+                            - generic [ref=f3e1333]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1335]:
+                            - generic [ref=f3e1336]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1338]:
+                            - generic [ref=f3e1339]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1341]:
+                            - generic [ref=f3e1342]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1344]:
+                            - generic [ref=f3e1345]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1347]:
+                            - generic [ref=f3e1348]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1350]:
+                            - generic [ref=f3e1351]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1353]:
+                            - generic [ref=f3e1354]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1356]:
+                            - generic [ref=f3e1357]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1359]:
+                            - generic [ref=f3e1360]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1362]:
+                            - generic [ref=f3e1363]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1365]:
+                            - generic [ref=f3e1366]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1368]:
+                            - generic [ref=f3e1369]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1371]:
+                            - generic [ref=f3e1372]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1374]:
+                            - generic [ref=f3e1375]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1377]:
+                            - generic [ref=f3e1378]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1380]:
+                            - generic [ref=f3e1381]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1383]:
+                            - generic [ref=f3e1384]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1386]:
+                            - generic [ref=f3e1387]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1389]:
+                            - generic [ref=f3e1390]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1392]:
+                            - generic [ref=f3e1393]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1395]:
+                            - generic [ref=f3e1396]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1398]:
+                            - generic [ref=f3e1399]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1401]:
+                            - generic [ref=f3e1402]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1404]:
+                            - generic [ref=f3e1405]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1407]:
+                            - generic [ref=f3e1408]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1410]:
+                            - generic [ref=f3e1411]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1413]:
+                            - generic [ref=f3e1414]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1416]:
+                            - generic [ref=f3e1417]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1419]:
+                            - generic [ref=f3e1420]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1422]:
+                            - generic [ref=f3e1423]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1425]:
+                            - generic [ref=f3e1426]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1428]:
+                            - generic [ref=f3e1429]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1431]:
+                            - generic [ref=f3e1432]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1434]:
+                            - generic [ref=f3e1435]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1437]:
+                            - generic [ref=f3e1438]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1440]:
+                            - generic [ref=f3e1441]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1443]:
+                            - generic [ref=f3e1444]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1446]:
+                            - generic [ref=f3e1447]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1449]:
+                            - generic [ref=f3e1450]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1452]:
+                            - generic [ref=f3e1453]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1455]:
+                            - generic [ref=f3e1456]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1458]:
+                            - generic [ref=f3e1459]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1461]:
+                            - generic [ref=f3e1462]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1464]:
+                            - generic [ref=f3e1465]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1467]:
+                            - generic [ref=f3e1468]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1470]:
+                            - generic [ref=f3e1471]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1473]:
+                            - generic [ref=f3e1474]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1476]:
+                            - generic [ref=f3e1477]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1479]:
+                            - generic [ref=f3e1480]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1482]:
+                            - generic [ref=f3e1483]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1485]:
+                            - generic [ref=f3e1486]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1488]:
+                            - generic [ref=f3e1489]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1491]:
+                            - generic [ref=f3e1492]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1494]:
+                            - generic [ref=f3e1495]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1497]:
+                            - generic [ref=f3e1498]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1500]:
+                            - generic [ref=f3e1501]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1503]:
+                            - generic [ref=f3e1504]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1506]:
+                            - generic [ref=f3e1507]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1509]:
+                            - generic [ref=f3e1510]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1512]:
+                            - generic [ref=f3e1513]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1515]:
+                            - generic [ref=f3e1516]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1518]:
+                            - generic [ref=f3e1519]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1521]:
+                            - generic [ref=f3e1522]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1524]:
+                            - generic [ref=f3e1525]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1527]:
+                            - generic [ref=f3e1528]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1530]:
+                            - generic [ref=f3e1531]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1533]:
+                            - generic [ref=f3e1534]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1536]:
+                            - generic [ref=f3e1537]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1539]:
+                            - generic [ref=f3e1540]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1542]:
+                            - generic [ref=f3e1543]: "2"
+                            - text: "2"
+                          - generic [ref=f3e1545]:
+                            - generic [ref=f3e1546]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1548]:
+                            - generic [ref=f3e1549]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1551]:
+                            - generic [ref=f3e1552]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1554]:
+                            - generic [ref=f3e1555]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1557]:
+                            - generic [ref=f3e1558]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1560]:
+                            - generic [ref=f3e1561]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1563]:
+                            - generic [ref=f3e1564]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1566]:
+                            - generic [ref=f3e1567]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1569]:
+                            - generic [ref=f3e1570]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1572]:
+                            - generic [ref=f3e1573]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1575]:
+                            - generic [ref=f3e1576]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1578]:
+                            - generic [ref=f3e1579]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1581]:
+                            - generic [ref=f3e1582]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1584]:
+                            - generic [ref=f3e1585]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1587]:
+                            - generic [ref=f3e1588]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1590]:
+                            - generic [ref=f3e1591]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1593]:
+                            - generic [ref=f3e1594]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1596]:
+                            - generic [ref=f3e1597]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1599]:
+                            - generic [ref=f3e1600]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1602]:
+                            - generic [ref=f3e1603]: "2"
+                            - text: "2"
+                          - generic [ref=f3e1605]:
+                            - generic [ref=f3e1606]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1608]:
+                            - generic [ref=f3e1609]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1611]:
+                            - generic [ref=f3e1612]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1614]:
+                            - generic [ref=f3e1615]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1617]:
+                            - generic [ref=f3e1618]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1620]:
+                            - generic [ref=f3e1621]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1623]:
+                            - generic [ref=f3e1624]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1626]:
+                            - generic [ref=f3e1627]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1629]:
+                            - generic [ref=f3e1630]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1632]:
+                            - generic [ref=f3e1633]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1635]:
+                            - generic [ref=f3e1636]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1638]:
+                            - generic [ref=f3e1639]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1641]:
+                            - generic [ref=f3e1642]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1644]:
+                            - generic [ref=f3e1645]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1647]:
+                            - generic [ref=f3e1648]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1650]:
+                            - generic [ref=f3e1651]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1653]:
+                            - generic [ref=f3e1654]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1656]:
+                            - generic [ref=f3e1657]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1659]:
+                            - generic [ref=f3e1660]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1662]:
+                            - generic [ref=f3e1663]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1665]:
+                            - generic [ref=f3e1666]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1668]:
+                            - generic [ref=f3e1669]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1671]:
+                            - generic [ref=f3e1672]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1674]:
+                            - generic [ref=f3e1675]: "2"
+                            - text: "2"
+                          - generic [ref=f3e1677]:
+                            - generic [ref=f3e1678]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1680]:
+                            - generic [ref=f3e1681]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1683]:
+                            - generic [ref=f3e1684]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1686]:
+                            - generic [ref=f3e1687]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1689]:
+                            - generic [ref=f3e1690]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1692]:
+                            - generic [ref=f3e1693]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1695]:
+                            - generic [ref=f3e1696]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1698]:
+                            - generic [ref=f3e1699]: "1"
+                            - text: "1"
+                          - generic:
+                            - generic:
+                              - generic: "1"
+                              - text: "1"
+                          - generic [ref=f3e1701]:
+                            - generic [ref=f3e1702]: "1"
+                            - text: "1"
+                          - generic [ref=f3e1704]:
+                            - generic [ref=f3e1705]: "1"
+                            - text: "1"
+                        - generic [ref=f3e1706]:
+                          - generic [ref=f3e1707]: "505"
+                          - generic [ref=f3e1708]: "659"
+                          - generic [ref=f3e1709]: "713"
+                          - generic [ref=f3e1710]: "754"
+                          - generic [ref=f3e1711]: "830"
+                          - generic [ref=f3e1712]: "938"
+                          - generic [ref=f3e1713]: "999"
+                          - generic [ref=f3e1714]: "1103"
+                          - generic [ref=f3e1715]: "1218"
+                          - generic [ref=f3e1716]: "1253"
+                          - generic [ref=f3e1717]: "1329"
+                          - generic [ref=f3e1718]: "1385"
+                          - generic [ref=f3e1719]: "1503"
+                          - generic [ref=f3e1720]: "1617"
+                          - generic [ref=f3e1721]: "1664"
+                          - generic [ref=f3e1722]: "1790"
+                          - generic [ref=f3e1723]: "1851"
+                          - generic [ref=f3e1724]: "1915"
+                          - generic [ref=f3e1725]: "1938"
+                          - generic [ref=f3e1726]: "1991"
+                          - generic [ref=f3e1727]: "2123"
+                          - generic [ref=f3e1728]: "2217"
+                          - generic [ref=f3e1729]: "2297"
+                          - generic [ref=f3e1730]: "2405"
+                          - generic [ref=f3e1731]: "2513"
+                          - generic [ref=f3e1732]: "2546"
+                          - generic [ref=f3e1733]: "2670"
+                          - generic [ref=f3e1734]: "2752"
+                          - generic [ref=f3e1735]: "2915"
+                          - generic [ref=f3e1736]: "3013"
+                          - generic [ref=f3e1737]: "3105"
+                          - generic [ref=f3e1738]: "3134"
+                          - generic [ref=f3e1739]: "3216"
+                          - generic [ref=f3e1740]: "3291"
+                          - generic [ref=f3e1741]: "3377"
+                          - generic [ref=f3e1742]: "3423"
+                          - generic [ref=f3e1743]: "3489"
+                          - generic [ref=f3e1744]: "3599"
+                          - generic [ref=f3e1745]: "3661"
+                          - generic [ref=f3e1746]: "3746"
+                          - generic [ref=f3e1747]: "3875"
+                          - generic [ref=f3e1748]: "4033"
+                          - generic [ref=f3e1749]: "4132"
+                          - generic [ref=f3e1750]: "4204"
+                          - generic [ref=f3e1751]: "4415"
+                          - generic [ref=f3e1752]: "4470"
+                          - generic [ref=f3e1753]: "4564"
+                          - generic [ref=f3e1754]: "4811"
+                          - generic [ref=f3e1755]: "4924"
+                          - generic [ref=f3e1756]: "4981"
+                        - generic [ref=f3e1757]:
+                          - generic [ref=f3e1758]: "0"
+                          - generic [ref=f3e1759]: "1"
+                          - generic [ref=f3e1760]: "2"
+                          - generic [ref=f3e1761]: "3"
+                      - generic [ref=f3e1763]: End of interactive chart.
+                  - generic [ref=f3e1764]:
+                    - generic [ref=f3e1765]:
+                      - heading "Section_Tier" [level=3] [ref=f3e1766]
+                      - button "Tile options" [ref=f3e1768]:
+                        - img [ref=f3e1770]
+                    - region "Chart. Highcharts interactive chart." [ref=f3e1772]:
+                      - generic [ref=f3e1773]:
+                        - heading "Chart" [level=6] [ref=f3e1774]
+                        - generic [ref=f3e1775]: Bar chart with 5 bars.
+                        - generic [ref=f3e1776]: Bar chart with static data
+                        - generic [ref=f3e1777]: The chart has 1 X axis displaying Section_Tier.
+                        - generic [ref=f3e1778]: The chart has 1 Y axis displaying Count. Data ranges from 50 to 50.
+                      - img "Interactive chart" [ref=f3e1784]:
+                        - generic [ref=f3e1791]: Section_Tier
+                        - generic [ref=f3e1793]: Count
+                        - generic [ref=f3e1795]:
+                          - img "Family, 50. Count." [ref=f3e1796]
+                          - img "VIP, 50. Count." [ref=f3e1797]
+                          - img "Upper, 50. Count." [ref=f3e1798]
+                          - img "Middle, 50. Count." [ref=f3e1799]
+                          - img "Lower, 50. Count." [ref=f3e1800]
+                        - generic [ref=f3e1801]:
+                          - generic [ref=f3e1803]:
+                            - generic [ref=f3e1804]: "50"
+                            - text: "50"
+                          - generic [ref=f3e1806]:
+                            - generic [ref=f3e1807]: "50"
+                            - text: "50"
+                          - generic [ref=f3e1809]:
+                            - generic [ref=f3e1810]: "50"
+                            - text: "50"
+                          - generic [ref=f3e1812]:
+                            - generic [ref=f3e1813]: "50"
+                            - text: "50"
+                          - generic [ref=f3e1815]:
+                            - generic [ref=f3e1816]: "50"
+                            - text: "50"
+                        - generic [ref=f3e1817]:
+                          - generic [ref=f3e1818]: Family
+                          - generic [ref=f3e1819]: VIP
+                          - generic [ref=f3e1820]: Upper
+                          - generic [ref=f3e1821]: Middle
+                          - generic [ref=f3e1822]: Lower
+                        - generic [ref=f3e1823]:
+                          - generic [ref=f3e1824]: "0"
+                          - generic [ref=f3e1825]: "20"
+                          - generic [ref=f3e1826]: "40"
+                          - generic [ref=f3e1827]: "60"
+                      - generic [ref=f3e1829]: End of interactive chart.
+            - log [ref=f3e309]
+          - dialog "Overview" [active] [ref=f3e1835]:
+            - generic [ref=f3e1837]:
+              - heading "Overview" [level=3] [ref=f3e1839]
+              - paragraph [ref=f3e1841]: Preview your ontology data from your bindings and see how entity types and relationship types connect.
+              - generic [ref=f3e1842]:
+                - generic [ref=f3e1843]: 1 of 5
+                - button "Next" [ref=f3e1845] [cursor=pointer]:
+                  - generic [ref=f3e1848]: Next
+              - button "Close" [ref=f3e1849] [cursor=pointer]:
+                - img [ref=f3e1852]

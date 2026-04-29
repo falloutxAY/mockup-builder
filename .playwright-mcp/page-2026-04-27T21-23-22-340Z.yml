@@ -1,0 +1,172 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4] [cursor=pointer]: ☰
+    - generic [ref=e5]: Microsoft Fabric
+    - generic [ref=e6]:
+      - text: demo_SoccerFanOps_Ontology
+      - button "Close" [ref=e7] [cursor=pointer]: ✕
+    - generic [ref=e9]: Confidential\Internal Only
+    - generic [ref=e10]:
+      - generic [ref=e11]: 🔍
+      - text: Search
+    - generic "Help" [ref=e12] [cursor=pointer]: "?"
+    - generic "Notifications" [ref=e13] [cursor=pointer]: 🔔
+    - generic [ref=e14]: AY
+  - generic [ref=e15]:
+    - navigation [ref=e16]:
+      - generic "Home" [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: 🏠
+      - generic "Ontology" [ref=e19] [cursor=pointer]:
+        - generic [ref=e20]: 🔷
+      - generic "OneLake" [ref=e21] [cursor=pointer]:
+        - generic [ref=e22]: 📦
+      - generic "Data" [ref=e23] [cursor=pointer]:
+        - generic [ref=e24]: ☁
+      - generic "Monitor" [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: 📊
+      - generic "Real-Time" [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]: ⚡
+      - generic "Workloads" [ref=e29] [cursor=pointer]:
+        - generic [ref=e30]: ⚙
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - navigation [ref=e33]:
+          - link "Home" [ref=e34] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e35]: ›
+          - generic [ref=e36]: StadiumSection
+          - generic [ref=e37] [cursor=pointer]: ▾
+        - generic [ref=e38]:
+          - button "🏛 Manage rules ▾" [ref=e39] [cursor=pointer]:
+            - text: 🏛 Manage rules
+            - generic [ref=e40]: ▾
+          - button "⋯" [ref=e41] [cursor=pointer]
+      - generic [ref=e42]:
+        - button "Configure" [ref=e43] [cursor=pointer]
+        - button "Instances" [ref=e44] [cursor=pointer]
+        - button "Overview" [ref=e45] [cursor=pointer]
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e50]:
+              - heading "Properties" [level=4] [ref=e51]
+              - button "ⓘ" [ref=e52] [cursor=pointer]
+            - generic [ref=e53]:
+              - button "Manage property bindings ▾" [ref=e54] [cursor=pointer]:
+                - text: Manage property bindings
+                - generic [ref=e55]: ▾
+              - button "Choose display name property ▾" [ref=e56] [cursor=pointer]:
+                - text: Choose display name property
+                - generic [ref=e57]: ▾
+          - generic [ref=e58]:
+            - generic [ref=e59]: Entity type key
+            - generic [ref=e60]: 🔑 SectionId
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - textbox "Search by property name" [ref=e64]
+            - button "🔽 None ▾" [ref=e65] [cursor=pointer]:
+              - text: 🔽 None
+              - generic [ref=e66]: ▾
+          - table [ref=e67]:
+            - rowgroup [ref=e68]:
+              - row "Property name ↕ Type Data source" [ref=e69]:
+                - columnheader "Property name ↕" [ref=e70]
+                - columnheader "Type" [ref=e71]
+                - columnheader "Data source" [ref=e72]
+                - columnheader [ref=e73]
+            - rowgroup [ref=e74]:
+              - row "Section_Name String DimStadiumSection ⋯" [ref=e75]:
+                - cell "Section_Name" [ref=e76]
+                - cell "String" [ref=e77]
+                - cell "DimStadiumSection" [ref=e78]:
+                  - generic [ref=e79]:
+                    - img [ref=e81]
+                    - button "DimStadiumSection" [ref=e84] [cursor=pointer]
+                - cell "⋯" [ref=e85]:
+                  - button "⋯" [ref=e86] [cursor=pointer]
+              - row "Section_Seats Integer DimStadiumSection ⋯" [ref=e87]:
+                - cell "Section_Seats" [ref=e88]
+                - cell "Integer" [ref=e89]
+                - cell "DimStadiumSection" [ref=e90]:
+                  - generic [ref=e91]:
+                    - img [ref=e93]
+                    - button "DimStadiumSection" [ref=e96] [cursor=pointer]
+                - cell "⋯" [ref=e97]:
+                  - button "⋯" [ref=e98] [cursor=pointer]
+              - row "Section_Tier String DimStadiumSection ⋯" [ref=e99]:
+                - cell "Section_Tier" [ref=e100]
+                - cell "String" [ref=e101]
+                - cell "DimStadiumSection" [ref=e102]:
+                  - generic [ref=e103]:
+                    - img [ref=e105]
+                    - button "DimStadiumSection" [ref=e108] [cursor=pointer]
+                - cell "⋯" [ref=e109]:
+                  - button "⋯" [ref=e110] [cursor=pointer]
+              - row "SectionId 🔑 String DimStadiumSection ⋯" [ref=e111]:
+                - cell "SectionId 🔑" [ref=e112]:
+                  - text: SectionId
+                  - generic "Entity type key" [ref=e113]: 🔑
+                - cell "String" [ref=e114]
+                - cell "DimStadiumSection" [ref=e115]:
+                  - generic [ref=e116]:
+                    - img [ref=e118]
+                    - button "DimStadiumSection" [ref=e121] [cursor=pointer]
+                - cell "⋯" [ref=e122]:
+                  - button "⋯" [ref=e123] [cursor=pointer]
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e127]:
+                - heading "Rules (3)" [level=4] [ref=e128]
+                - button "ⓘ" [ref=e129] [cursor=pointer]
+              - button "＋ Add rule" [ref=e131] [cursor=pointer]
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - generic [ref=e134]:
+                  - generic [ref=e135]: Match day alert
+                  - button "✏️" [ref=e136] [cursor=pointer]
+                  - button "🗑️" [ref=e137] [cursor=pointer]
+                - generic [ref=e138]: Triggered 8 times in the last week – 250 instances
+              - generic [ref=e139]:
+                - generic [ref=e140]:
+                  - generic [ref=e141]: Capacity warning
+                  - button "✏️" [ref=e142] [cursor=pointer]
+                  - button "🗑️" [ref=e143] [cursor=pointer]
+                - generic [ref=e144]: Triggered 12 times in the last week – 250 instances
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: Section reassignment
+                  - button "✏️" [ref=e148] [cursor=pointer]
+                  - button "🗑️" [ref=e149] [cursor=pointer]
+                - generic [ref=e150]: Triggered 3 times in the last week – 250 instances
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - generic [ref=e154]:
+                - heading "Resources" [level=4] [ref=e155]
+                - button "ⓘ" [ref=e156] [cursor=pointer]
+              - button "＋ Add" [ref=e158] [cursor=pointer]
+            - paragraph [ref=e159]: No links have been added to the entity type.
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e163]:
+              - heading "Relationships" [level=4] [ref=e164]
+              - button "ⓘ" [ref=e165] [cursor=pointer]
+            - button "Manage relationships ▾" [ref=e167] [cursor=pointer]:
+              - text: Manage relationships
+              - generic [ref=e168]: ▾
+          - generic [ref=e169]:
+            - img:
+              - generic: SECTION_OF
+              - generic: BLOCK_IN
+            - generic [ref=e170]:
+              - generic [ref=e174]: StadiumVenue
+              - generic [ref=e177]:
+                - generic [ref=e180]: StadiumSection
+                - generic [ref=e181]:
+                  - button "⋯" [ref=e182] [cursor=pointer]
+                  - button "✓" [ref=e183] [cursor=pointer]
+              - generic [ref=e189]: SeatBlock
+            - generic [ref=e191]:
+              - button "+" [ref=e192] [cursor=pointer]
+              - button "−" [ref=e193] [cursor=pointer]
+              - button "⊡" [ref=e194] [cursor=pointer]
+              - button "🔒" [ref=e195] [cursor=pointer]

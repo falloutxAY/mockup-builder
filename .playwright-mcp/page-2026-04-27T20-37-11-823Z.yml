@@ -1,0 +1,304 @@
+- generic [ref=e9]:
+  - list [ref=e11]:
+    - listitem
+    - listitem
+    - listitem [ref=e12]:
+      - generic [ref=e14] [cursor=pointer]: Skip to main content
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - button "App launcher" [ref=e26] [cursor=pointer]:
+        - img [ref=e29]
+      - link "Go to your default landing page" [ref=e32] [cursor=pointer]
+      - button "demo_SoccerFanOps_Ontology, Confidential\\Internal Only" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: demo_SoccerFanOps_Ontology
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img [ref=e43]
+            - img [ref=e46]
+          - generic [ref=e48]: Confidential\Internal Only
+        - img [ref=e49]: 
+    - generic [ref=e51]:
+      - img [ref=e53]
+      - textbox "Global search" [ref=e55]:
+        - /placeholder: Search
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - button "Focus mode" [ref=e60] [cursor=pointer]:
+          - img [ref=e63]
+        - button "Notifications" [ref=e66] [cursor=pointer]:
+          - img [ref=e69]
+          - generic [ref=e71]: "2"
+        - button "Settings" [ref=e73] [cursor=pointer]:
+          - img [ref=e76]
+        - button "Download" [ref=e79] [cursor=pointer]:
+          - img [ref=e82]
+        - button "Help & Support" [ref=e85] [cursor=pointer]:
+          - img [ref=e88]
+        - button "Help improve Fabric (preview)" [ref=e91] [cursor=pointer]:
+          - img [ref=e94]
+      - button "Account manager for" [ref=e98] [cursor=pointer]
+  - generic [ref=e105]:
+    - navigation [ref=e108]:
+      - menu "Sidebar" [ref=e109]:
+        - generic [ref=e110]:
+          - menuitem "Home" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]:
+              - img [ref=e115]
+              - generic [ref=e117]: Home
+          - generic [ref=e118]:
+            - menuitem "Copilot" [ref=e119] [cursor=pointer]:
+              - generic [ref=e122]: Copilot
+            - button "Unpin Copilot" [ref=e123] [cursor=pointer]:
+              - img [ref=e126]
+          - generic [ref=e128]:
+            - menuitem "Create" [ref=e129] [cursor=pointer]:
+              - generic [ref=e130]:
+                - img [ref=e132]
+                - generic [ref=e134]: Create
+            - button "Unpin Create" [ref=e135] [cursor=pointer]:
+              - img [ref=e138]
+          - generic [ref=e140]:
+            - menuitem "Browse" [ref=e141] [cursor=pointer]:
+              - generic [ref=e142]:
+                - img [ref=e144]
+                - generic [ref=e146]: Browse
+            - button "Unpin Browse" [ref=e147] [cursor=pointer]:
+              - img [ref=e150]
+          - generic [ref=e152]:
+            - menuitem "Apps" [ref=e153] [cursor=pointer]:
+              - generic [ref=e154]:
+                - img [ref=e156]
+                - generic [ref=e158]: Apps
+            - button "Unpin Apps" [ref=e159] [cursor=pointer]:
+              - img [ref=e162]
+          - generic [ref=e164]:
+            - menuitem "OneLake catalog" [ref=e165] [cursor=pointer]:
+              - generic [ref=e166]:
+                - img [ref=e168]
+                - generic [ref=e170]: OneLake catalog
+            - button "Unpin OneLake catalog" [ref=e171] [cursor=pointer]:
+              - img [ref=e174]
+          - generic [ref=e176]:
+            - menuitem "Monitor" [ref=e177] [cursor=pointer]:
+              - generic [ref=e178]:
+                - img [ref=e180]
+                - generic [ref=e182]: Monitor
+            - button "Unpin Monitor" [ref=e183] [cursor=pointer]:
+              - img [ref=e186]
+          - generic [ref=e188]:
+            - menuitem "Real-Time" [ref=e189] [cursor=pointer]:
+              - generic [ref=e190]:
+                - img [ref=e192]
+                - generic [ref=e194]: Real-Time
+            - button "Unpin Real-Time" [ref=e195] [cursor=pointer]:
+              - img [ref=e198]
+          - generic [ref=e200]:
+            - menuitem "Workloads" [ref=e201] [cursor=pointer]:
+              - generic [ref=e202]:
+                - img [ref=e204]
+                - generic [ref=e206]: Workloads
+            - button "Unpin Workloads" [ref=e207] [cursor=pointer]:
+              - img [ref=e210]
+          - separator [ref=e212]
+          - menuitem "Workspaces" [ref=e215] [cursor=pointer]:
+            - generic [ref=e216]:
+              - img [ref=e218]
+              - generic [ref=e220]: Workspaces
+          - menuitem "ayyOntologyWorkspace" [ref=e223] [cursor=pointer]:
+            - generic [ref=e227]: ayyOntologyWorkspace
+          - generic [ref=e228]:
+            - separator [ref=e229]
+            - menuitem "demo_SoccerFanOps_Ontology - ayyOntologyWorkspace" [ref=e232] [cursor=pointer]:
+              - generic [ref=e233]:
+                - button [ref=e234]:
+                  - generic "Close" [ref=e235]:
+                    - img [ref=e237]
+                - generic [ref=e240]: demo_SoccerFanOps_Ontology
+            - menuitem "More options" [ref=e242] [cursor=pointer]:
+              - img [ref=e245]
+        - menuitem "Power BI" [ref=e250] [cursor=pointer]:
+          - generic [ref=e253]: Power BI
+    - main [ref=e255]:
+      - iframe [active] [ref=e261]:
+        - generic [ref=f3e4]:
+          - generic [ref=f3e5]:
+            - generic [ref=f3e6]:
+              - generic [ref=f3e7]:
+                - navigation "breadcrumb" [ref=f3e8]:
+                  - list [ref=f3e9]:
+                    - listitem [ref=f3e10]:
+                      - button "Home" [ref=f3e11]
+                    - listitem [ref=f3e12]:
+                      - img [ref=f3e13]
+                    - listitem [ref=f3e15]:
+                      - generic [ref=f3e16]:
+                        - button "StadiumSection" [ref=f3e18]:
+                          - generic [ref=f3e19]: StadiumSection
+                        - button "StadiumSection" [ref=f3e20]:
+                          - img [ref=f3e22]
+                - generic [ref=f3e24]:
+                  - button "Manage rules" [ref=f3e25]:
+                    - img [ref=f3e27]
+                    - text: Manage rules
+                    - img [ref=f3e30]
+                  - button "More actions" [ref=f3e32]:
+                    - img [ref=f3e34]
+              - banner [ref=f3e36]:
+                - tablist [ref=f3e38]:
+                  - tab "Configure" [selected] [ref=f3e40] [cursor=pointer]:
+                    - generic [ref=f3e41]: Configure
+                  - tab "Instances" [ref=f3e42] [cursor=pointer]:
+                    - generic [ref=f3e43]: Instances
+                  - tab "Overview" [ref=f3e44] [cursor=pointer]:
+                    - generic [ref=f3e45]: Overview
+            - generic [ref=f3e48]:
+              - generic [ref=f3e49]:
+                - generic [ref=f3e50]:
+                  - heading "Properties information" [level=4] [ref=f3e52]:
+                    - generic [ref=f3e53]:
+                      - text: Properties
+                      - button "Properties information" [ref=f3e54]:
+                        - img [ref=f3e55]
+                  - button "Manage property bindings" [ref=f3e57]:
+                    - text: Manage property bindings
+                    - img [ref=f3e59]
+                  - button "Choose display name property" [ref=f3e61]:
+                    - text: Choose display name property
+                    - img [ref=f3e63]
+                - generic [ref=f3e65]:
+                  - generic [ref=f3e66]:
+                    - generic [ref=f3e67]: Entity type key
+                    - button "Entity type key" [ref=f3e68]:
+                      - img [ref=f3e70]
+                      - generic [ref=f3e72]: SectionId
+                    - generic [ref=f3e73]:
+                      - img [ref=f3e75]
+                      - textbox "Search by property name" [ref=f3e77]
+                    - button "None" [ref=f3e78]:
+                      - img [ref=f3e80]
+                      - text: None
+                      - img [ref=f3e83]
+                  - grid [ref=f3e86]:
+                    - rowgroup [ref=f3e87]:
+                      - row "Property name Type Data source" [ref=f3e88]:
+                        - columnheader "Property name" [ref=f3e89]:
+                          - button "Property name" [ref=f3e90] [cursor=pointer]:
+                            - text: Property name
+                            - img [ref=f3e92]
+                        - columnheader "Type" [ref=f3e94]:
+                          - button "Type" [ref=f3e95] [cursor=pointer]
+                        - columnheader "Data source" [ref=f3e96]:
+                          - button "Data source" [ref=f3e97] [cursor=pointer]
+                    - rowgroup [ref=f3e98]:
+                      - row "Section_Name String DimStadiumSection Actions for property Section_Name" [ref=f3e99]:
+                        - gridcell "Section_Name" [ref=f3e100]:
+                          - generic [ref=f3e104]: Section_Name
+                        - gridcell "String" [ref=f3e105]
+                        - gridcell "DimStadiumSection" [ref=f3e106]:
+                          - generic [ref=f3e107]:
+                            - img [ref=f3e109]
+                            - button "DimStadiumSection" [ref=f3e118] [cursor=pointer]
+                        - gridcell "Actions for property Section_Name" [ref=f3e119]:
+                          - button "Actions for property Section_Name" [ref=f3e122]:
+                            - img [ref=f3e124]
+                      - row "Section_Seats Integer DimStadiumSection Actions for property Section_Seats" [ref=f3e127]:
+                        - gridcell "Section_Seats" [ref=f3e128]:
+                          - generic [ref=f3e132]: Section_Seats
+                        - gridcell "Integer" [ref=f3e133]
+                        - gridcell "DimStadiumSection" [ref=f3e134]:
+                          - generic [ref=f3e135]:
+                            - img [ref=f3e137]
+                            - button "DimStadiumSection" [ref=f3e146] [cursor=pointer]
+                        - gridcell "Actions for property Section_Seats" [ref=f3e147]:
+                          - button "Actions for property Section_Seats" [ref=f3e150]:
+                            - img [ref=f3e152]
+                      - row "Section_Tier String DimStadiumSection Actions for property Section_Tier" [ref=f3e155]:
+                        - gridcell "Section_Tier" [ref=f3e156]:
+                          - generic [ref=f3e160]: Section_Tier
+                        - gridcell "String" [ref=f3e161]
+                        - gridcell "DimStadiumSection" [ref=f3e162]:
+                          - generic [ref=f3e163]:
+                            - img [ref=f3e165]
+                            - button "DimStadiumSection" [ref=f3e174] [cursor=pointer]
+                        - gridcell "Actions for property Section_Tier" [ref=f3e175]:
+                          - button "Actions for property Section_Tier" [ref=f3e178]:
+                            - img [ref=f3e180]
+                      - row "SectionId Property is an entity type key String DimStadiumSection Actions for property SectionId" [ref=f3e183]:
+                        - gridcell "SectionId Property is an entity type key" [ref=f3e184]:
+                          - generic [ref=f3e185]:
+                            - generic [ref=f3e188]: SectionId
+                            - img "Property is an entity type key" [ref=f3e189]
+                        - gridcell "String" [ref=f3e191]
+                        - gridcell "DimStadiumSection" [ref=f3e192]:
+                          - generic [ref=f3e193]:
+                            - img [ref=f3e195]
+                            - button "DimStadiumSection" [ref=f3e204] [cursor=pointer]
+                        - gridcell "Actions for property SectionId" [ref=f3e205]:
+                          - button "Actions for property SectionId" [ref=f3e208]:
+                            - img [ref=f3e210]
+              - generic [ref=f3e214]:
+                - generic [ref=f3e215]:
+                  - heading "Relationships information" [level=4] [ref=f3e217]:
+                    - generic [ref=f3e218]:
+                      - text: Relationships
+                      - button "Relationships information" [ref=f3e219]:
+                        - img [ref=f3e220]
+                  - button "Manage relationships" [ref=f3e222]:
+                    - text: Manage relationships
+                    - img [ref=f3e224]
+                - generic [ref=f3e227]:
+                  - generic [ref=f3e229]:
+                    - generic:
+                      - img:
+                        - generic:
+                          - img "Edge from 1000000000033 to 1000000000010" [ref=f3e230] [cursor=pointer]: "0"
+                          - img "Edge from 1000000000033 to 1000000000012" [ref=f3e231] [cursor=pointer]: "0"
+                      - generic:
+                        - button "BLOCK_IN" [ref=f3e233] [cursor=pointer]
+                        - button "SECTION_OF" [ref=f3e235] [cursor=pointer]
+                      - generic:
+                        - generic [ref=f3e237]:
+                          - generic [ref=f3e239]:
+                            - button "StadiumSection" [ref=f3e240] [cursor=pointer]:
+                              - img [ref=f3e241]
+                              - generic [ref=f3e243]: StadiumSection
+                            - button "More actions for entity type" [ref=f3e244]:
+                              - img [ref=f3e246]
+                          - button "select entities to display" [ref=f3e248]:
+                            - img [ref=f3e249]
+                            - img [ref=f3e252]
+                        - generic [ref=f3e256]:
+                          - button "SeatBlock" [ref=f3e257] [cursor=pointer]:
+                            - img [ref=f3e258]
+                            - generic [ref=f3e260]: SeatBlock
+                          - button "More actions for entity type" [ref=f3e261]:
+                            - img [ref=f3e263]
+                        - generic [ref=f3e267]:
+                          - button "StadiumVenue" [ref=f3e268] [cursor=pointer]:
+                            - img [ref=f3e269]
+                            - generic [ref=f3e271]: StadiumVenue
+                          - button "More actions for entity type" [ref=f3e272]:
+                            - img [ref=f3e274]
+                  - img "React Flow mini map" [ref=f3e277]
+                  - generic [ref=f3e281]:
+                    - button "zoom in" [ref=f3e282] [cursor=pointer]:
+                      - img [ref=f3e283]
+                    - button "zoom out" [ref=f3e285] [cursor=pointer]:
+                      - img [ref=f3e286]
+                    - button "fit view" [ref=f3e288] [cursor=pointer]:
+                      - img [ref=f3e289]
+                    - button "toggle interactivity" [ref=f3e291] [cursor=pointer]:
+                      - img [ref=f3e292]
+              - separator [ref=f3e295]
+              - generic [ref=f3e296]:
+                - generic [ref=f3e297]:
+                  - heading "Resources information" [level=4] [ref=f3e299]:
+                    - generic [ref=f3e300]:
+                      - text: Resources
+                      - button "Resources information" [ref=f3e301]:
+                        - img [ref=f3e302]
+                  - button "Add" [ref=f3e304]:
+                    - img [ref=f3e306]
+                    - text: Add
+                - paragraph [ref=f3e308]: No links have been added to the entity type.
+          - log [ref=f3e309]

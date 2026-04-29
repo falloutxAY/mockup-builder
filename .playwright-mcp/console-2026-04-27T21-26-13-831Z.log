@@ -1,0 +1,23 @@
+[     381ms] [ERROR] Error while attempting to measure start/end of 'AdServiceCall.SuperFeed'. Error: SyntaxError: Failed to execute 'measure' on 'Performance': The mark 'AdServiceCall.SuperFeed-start' does not exist. c Mon Apr 27 2026 14:26:14 GMT-0700 (Pacific Daylight Time) @ https://assets.msn.com/bundles/v1/edgeChromium/latest/vendors.ad2b39bcb0bcdc02e781.js:1
+[     925ms] [ERROR] Mon Apr 27 2026 14:26:14 GMT-0700 (Pacific Daylight Time): 1777325174755 {"id":91005,"severity":0,"pb":{"build":"20260427.242","appType":"edgeChromium","pcsVersion":"20260426.2","pcsEnv":"prod","buildAlias":"latest","shouldSampleErrorsForTreatement1":false,"networkStatus":"connected","pcsMuid":"notfound","oneServiceMuid":"24c79e4ec072626432a88906c18363c2","pcsFlightBlobVersion":"53589441","oneServiceFlightBlobVersion":"53589441","oneServiceDebugId":"99c0d337-fb74-4cbe-8fb7-7cfab1697593|2026-04-27T21:26:14.7967404Z|fabric_msn|WUS2-A|News_853","w":1},"message":"Muid mismatch between PCS and 1S"} @ https://assets.msn.com/bundles/v1/edgeChromium/latest/common.11300f3d0a0449ab62a2.js:77
+[     927ms] [ERROR] Mon Apr 27 2026 14:26:14 GMT-0700 (Pacific Daylight Time): 1777325174757 {"id":91002,"severity":0,"pb":{"build":"20260427.242","appType":"edgeChromium","pcsVersion":"20260426.2","pcsEnv":"prod","buildAlias":"latest","shouldSampleErrorsForTreatement1":false,"networkStatus":"connected","missingIn1S":"","missingInPCS":"prg-1sw-ghr3,prg-1sw-ntf-rel,prg-1sw-sa-vgemt21,prg-lrgeflpprs,prg-mon-sgca,prg-msn-asgp1,prg-ntp-vision,prg-pcs-cghp-ctrl,prg-phnews-t,prg-rb-greettitle","commonProps":{"pcsMuid":"notfound","oneServiceMuid":"24c79e4ec072626432a88906c18363c2","pcsFlightBlobVersion":"53589441","oneServiceFlightBlobVersion":"53589441","oneServiceDebugId":"99c0d337-fb74-4cbe-8fb7-7cfab1697593|2026-04-27T21:26:14.7967404Z|fabric_msn|WUS2-A|News_853"},"w":1},"message":"Flight mismatch between PCS and 1S"} @ https://assets.msn.com/bundles/v1/edgeChromium/latest/common.11300f3d0a0449ab62a2.js:77
+[     932ms] [ERROR] {"id":40341,"severity":1,"pb":{"build":"20260427.242","appType":"edgeChromium","pcsVersion":"20260426.2","pcsEnv":"prod","buildAlias":"latest","shouldSampleErrorsForTreatement1":false,"networkStatus":"connected","cardIdList":["UIT-List"],"cardTypeList":["UserInterestTopic"],"debugIdList":["99c0d337-fb74-4cbe-8fb7-7cfab1697593|2026-04-27T21:26:14.7967404Z|fabric_msn|WUS2-A|News_853"],"w":1},"message":"Duplicate cards found in feed response"} @ https://assets.msn.com/bundles/v1/edgeChromium/latest/common.11300f3d0a0449ab62a2.js:77
+[     932ms] [ERROR] This App error Id: 40341 will not be sent due to app error sampling! @ https://assets.msn.com/bundles/v1/edgeChromium/latest/common.11300f3d0a0449ab62a2.js:77
+[   81348ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[   82044ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[   82548ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[   83725ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[   84039ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[   84248ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:215:105)
+[  905072ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:211:105)
+[  905950ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:211:105)
+[  908926ms] ReferenceError: switchView is not defined
+    at HTMLAnchorElement.onclick (file:///C:/Users/ansyeo/OneDrive%20-%20Microsoft/Documents/mockup-builder/output/mockups/index.html:211:105)

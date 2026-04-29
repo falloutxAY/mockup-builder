@@ -1,0 +1,284 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - button "Menu" [ref=e4] [cursor=pointer]: ☰
+      - generic [ref=e5]: Fabric
+      - generic [ref=e6]:
+        - text: ZavaStadium
+        - button "Close workspace" [ref=e7] [cursor=pointer]: ✕
+      - generic [ref=e8]:
+        - text: 🔒 Confidential\Microsoft FTE
+        - generic [ref=e9]: ▾
+      - generic [ref=e10]:
+        - generic [ref=e11]: 🔍
+        - text: Search (Alt + Q)
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - text: "Trial activated:"
+          - text: 18 days left
+        - button "◐" [ref=e14] [cursor=pointer]
+        - button "🔔" [ref=e15] [cursor=pointer]
+        - button "⚙" [ref=e16] [cursor=pointer]
+        - button "⬇" [ref=e17] [cursor=pointer]
+        - button "?" [ref=e18] [cursor=pointer]
+        - button "↗ Share" [ref=e19] [cursor=pointer]
+        - generic [ref=e20]: AY
+    - generic [ref=e21]:
+      - generic [ref=e22]: Home
+      - button "⚙" [ref=e23] [cursor=pointer]:
+        - generic [ref=e24]: ⚙
+      - button "＋ Add entity type" [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: ＋
+        - text: Add entity type
+      - button "✨ Copilot" [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]: ✨
+        - text: Copilot
+    - generic [ref=e29]:
+      - navigation "Primary navigation" [ref=e30]:
+        - generic "Home" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: 🏠
+        - generic "Workspaces" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34]: 📁
+        - generic "OneLake" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: ☁
+        - generic "Real-Time" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: ⚡
+        - generic "Monitor" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40]: 📊
+        - generic "Workloads" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42]: 👥
+        - generic "Copilot" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: 🤖
+        - generic "ZavaStadium" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: 🏟
+          - generic [ref=e47]:
+            - text: Zava
+            - text: Stadium
+        - generic "More" [ref=e48] [cursor=pointer]:
+          - generic [ref=e49]: ⋯
+      - complementary [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]: Explorer
+          - button "☐" [ref=e53] [cursor=pointer]
+        - generic [ref=e54]:
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: ▾
+            - generic [ref=e57]: Overview
+          - generic [ref=e58]:
+            - link "Business impact" [ref=e59] [cursor=pointer]:
+              - /url: "#"
+            - link "Lineage" [ref=e60] [cursor=pointer]:
+              - /url: "#"
+            - link "Health" [ref=e61] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e62]:
+          - generic [ref=e63] [cursor=pointer]:
+            - generic [ref=e64]: ▾
+            - generic [ref=e65]: Ontology
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - button "🔲 Add ▾" [ref=e68] [cursor=pointer]:
+                - text: 🔲 Add
+                - generic [ref=e69]: ▾
+              - button "🔍" [ref=e70] [cursor=pointer]
+              - button "≡" [ref=e71] [cursor=pointer]
+            - link "Business rules" [ref=e72] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e73]:
+              - generic [ref=e74] [cursor=pointer]:
+                - generic [ref=e75]: ▾
+                - generic [ref=e76]: Entity types
+              - generic [ref=e77]:
+                - link "Venue" [ref=e78] [cursor=pointer]:
+                  - /url: "#"
+                - link "ParkingLot" [ref=e79] [cursor=pointer]:
+                  - /url: "#"
+                - link "Event" [ref=e80] [cursor=pointer]:
+                  - /url: "#"
+                - link "Warehouse" [ref=e81] [cursor=pointer]:
+                  - /url: "#"
+                - link "Turnstile" [ref=e82] [cursor=pointer]:
+                  - /url: "#"
+                - link "Entrance" [ref=e83] [cursor=pointer]:
+                  - /url: "#"
+                - link "StaffMember" [ref=e84] [cursor=pointer]:
+                  - /url: "#"
+                - link "Shuttle" [ref=e85] [cursor=pointer]:
+                  - /url: "#"
+                - link "Gate" [ref=e86] [cursor=pointer]:
+                  - /url: "#"
+                - link "Concourse" [ref=e87] [cursor=pointer]:
+                  - /url: "#"
+                - link "ConcessionStand" [ref=e88] [cursor=pointer]:
+                  - /url: "#"
+                - link "StaffAssignment" [ref=e89] [cursor=pointer]:
+                  - /url: "#"
+                - link "Incident" [ref=e90] [cursor=pointer]:
+                  - /url: "#"
+                - link "SeatingSection" [ref=e91] [cursor=pointer]:
+                  - /url: "#"
+                - link "SecurityCheckpoint" [ref=e92] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e94] [cursor=pointer]:
+              - generic [ref=e95]: ▸
+              - generic [ref=e96]: Relationship types
+      - main [ref=e97]:
+        - heading "Business rules" [level=2] [ref=e98]
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: 🔍
+              - textbox "Search rules by name" [ref=e103]
+            - generic [ref=e104]:
+              - button "Entity type ▾" [ref=e105] [cursor=pointer]:
+                - text: Entity type
+                - generic [ref=e106]: ▾
+              - text: ✓ ✓ ✓
+            - button "Severity ▾" [ref=e108] [cursor=pointer]:
+              - text: Severity
+              - generic [ref=e109]: ▾
+            - button "State ▾" [ref=e111] [cursor=pointer]:
+              - text: State
+              - generic [ref=e112]: ▾
+            - button "New rule" [ref=e114] [cursor=pointer]
+          - table [ref=e115]:
+            - rowgroup [ref=e116]:
+              - row "Rule name ↑ Entity types Severity State" [ref=e117]:
+                - columnheader "Rule name ↑" [ref=e118]
+                - columnheader "Entity types" [ref=e119]
+                - columnheader "Severity" [ref=e120]
+                - columnheader "State" [ref=e121]
+                - columnheader [ref=e122]
+            - rowgroup [ref=e123]:
+              - row "Truck license must be valid Driver ✕ Truck ✕ Truck license ✕ ● Blocking ✓ Verified ⋮" [ref=e124]:
+                - cell "Truck license must be valid" [ref=e125]:
+                  - link "Truck license must be valid" [ref=e126] [cursor=pointer]:
+                    - /url: "#"
+                - cell "Driver ✕ Truck ✕ Truck license ✕" [ref=e127]:
+                  - generic [ref=e128]:
+                    - generic [ref=e129]:
+                      - text: Driver
+                      - button "✕" [ref=e130] [cursor=pointer]
+                    - generic [ref=e131]:
+                      - text: Truck
+                      - button "✕" [ref=e132] [cursor=pointer]
+                    - generic [ref=e133]:
+                      - text: Truck license
+                      - button "✕" [ref=e134] [cursor=pointer]
+                - cell "● Blocking" [ref=e135]:
+                  - generic [ref=e136]:
+                    - generic [ref=e137]: ●
+                    - text: Blocking
+                - cell "✓ Verified" [ref=e138]:
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: ✓
+                    - text: Verified
+                - cell "⋮" [ref=e141]:
+                  - button "⋮" [ref=e142] [cursor=pointer]
+              - row "Truck license must be valid Driver ✕ Truck ✕ ● Blocking Intent ⋮" [ref=e143]:
+                - cell "Truck license must be valid" [ref=e144]:
+                  - link "Truck license must be valid" [ref=e145] [cursor=pointer]:
+                    - /url: "#"
+                - cell "Driver ✕ Truck ✕" [ref=e146]:
+                  - generic [ref=e147]:
+                    - generic [ref=e148]:
+                      - text: Driver
+                      - button "✕" [ref=e149] [cursor=pointer]
+                    - generic [ref=e150]:
+                      - text: Truck
+                      - button "✕" [ref=e151] [cursor=pointer]
+                - cell "● Blocking" [ref=e152]:
+                  - generic [ref=e153]:
+                    - generic [ref=e154]: ●
+                    - text: Blocking
+                - cell "Intent" [ref=e155]:
+                  - generic [ref=e156]: Intent
+                - cell "⋮" [ref=e157]:
+                  - button "⋮" [ref=e158] [cursor=pointer]
+              - row "Truck license must be valid Driver ✕ Truck ✕ Truck license ✕ ● Blocking ✓ Verified ⋮" [ref=e159]:
+                - cell "Truck license must be valid" [ref=e160]:
+                  - link "Truck license must be valid" [ref=e161] [cursor=pointer]:
+                    - /url: "#"
+                - cell "Driver ✕ Truck ✕ Truck license ✕" [ref=e162]:
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - text: Driver
+                      - button "✕" [ref=e165] [cursor=pointer]
+                    - generic [ref=e166]:
+                      - text: Truck
+                      - button "✕" [ref=e167] [cursor=pointer]
+                    - generic [ref=e168]:
+                      - text: Truck license
+                      - button "✕" [ref=e169] [cursor=pointer]
+                - cell "● Blocking" [ref=e170]:
+                  - generic [ref=e171]:
+                    - generic [ref=e172]: ●
+                    - text: Blocking
+                - cell "✓ Verified" [ref=e173]:
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: ✓
+                    - text: Verified
+                - cell "⋮" [ref=e176]:
+                  - button "⋮" [ref=e177] [cursor=pointer]
+              - row "Truck license must be valid Driver ✕ Truck ✕ Truck license ✕ ● Blocking ✓ Verified ⋮" [ref=e178]:
+                - cell "Truck license must be valid" [ref=e179]:
+                  - link "Truck license must be valid" [ref=e180] [cursor=pointer]:
+                    - /url: "#"
+                - cell "Driver ✕ Truck ✕ Truck license ✕" [ref=e181]:
+                  - generic [ref=e182]:
+                    - generic [ref=e183]:
+                      - text: Driver
+                      - button "✕" [ref=e184] [cursor=pointer]
+                    - generic [ref=e185]:
+                      - text: Truck
+                      - button "✕" [ref=e186] [cursor=pointer]
+                    - generic [ref=e187]:
+                      - text: Truck license
+                      - button "✕" [ref=e188] [cursor=pointer]
+                - cell "● Blocking" [ref=e189]:
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: ●
+                    - text: Blocking
+                - cell "✓ Verified" [ref=e192]:
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: ✓
+                    - text: Verified
+                - cell "⋮" [ref=e195]:
+                  - button "⋮" [ref=e196] [cursor=pointer]
+              - row "Truck license must be valid Driver ✕ Truck ✕ Truck license ✕ ⚠ advisory ✓ Verified ⋮" [ref=e197]:
+                - cell "Truck license must be valid" [ref=e198]:
+                  - link "Truck license must be valid" [ref=e199] [cursor=pointer]:
+                    - /url: "#"
+                - cell "Driver ✕ Truck ✕ Truck license ✕" [ref=e200]:
+                  - generic [ref=e201]:
+                    - generic [ref=e202]:
+                      - text: Driver
+                      - button "✕" [ref=e203] [cursor=pointer]
+                    - generic [ref=e204]:
+                      - text: Truck
+                      - button "✕" [ref=e205] [cursor=pointer]
+                    - generic [ref=e206]:
+                      - text: Truck license
+                      - button "✕" [ref=e207] [cursor=pointer]
+                - cell "⚠ advisory" [ref=e208]:
+                  - generic [ref=e209]:
+                    - generic [ref=e210]: ⚠
+                    - text: advisory
+                - cell "✓ Verified" [ref=e211]:
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: ✓
+                    - text: Verified
+                - cell "⋮" [ref=e214]:
+                  - button "⋮" [ref=e215] [cursor=pointer]
+          - generic [ref=e216]:
+            - generic [ref=e217]: Showing 5 of 12 rules
+            - generic [ref=e218]:
+              - generic [ref=e219]: Page 1 of 1 · 50 per page
+              - generic [ref=e220] [cursor=pointer]: ▾
+    - contentinfo [ref=e221]:
+      - generic [ref=e222]: ◆
+      - generic [ref=e223]: Fabric
+  - generic [ref=e224]:
+    - button "Empty" [ref=e225] [cursor=pointer]
+    - button "List" [ref=e226] [cursor=pointer]
+    - button "Filter open" [ref=e227] [cursor=pointer]

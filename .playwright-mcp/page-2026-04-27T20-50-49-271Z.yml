@@ -1,0 +1,431 @@
+- generic [ref=e9]:
+  - list [ref=e11]:
+    - listitem
+    - listitem
+    - listitem [ref=e12]:
+      - generic [ref=e14] [cursor=pointer]: Skip to main content
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - button "App launcher" [ref=e26] [cursor=pointer]:
+        - img [ref=e29]
+      - link "Go to your default landing page" [ref=e32] [cursor=pointer]
+      - button "demo_SoccerFanOps_Ontology, Confidential\\Internal Only" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: demo_SoccerFanOps_Ontology
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img [ref=e43]
+            - img [ref=e46]
+          - generic [ref=e48]: Confidential\Internal Only
+        - img [ref=e49]: 
+    - generic [ref=e51]:
+      - img [ref=e53]
+      - textbox "Global search" [ref=e55]:
+        - /placeholder: Search
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - button "Focus mode" [ref=e60] [cursor=pointer]:
+          - img [ref=e63]
+        - button "Notifications" [ref=e66] [cursor=pointer]:
+          - img [ref=e69]
+          - generic [ref=e71]: "2"
+        - button "Settings" [ref=e73] [cursor=pointer]:
+          - img [ref=e76]
+        - button "Download" [ref=e79] [cursor=pointer]:
+          - img [ref=e82]
+        - button "Help & Support" [ref=e85] [cursor=pointer]:
+          - img [ref=e88]
+        - button "Help improve Fabric (preview)" [ref=e91] [cursor=pointer]:
+          - img [ref=e94]
+      - button "Account manager for" [ref=e98] [cursor=pointer]
+  - generic [ref=e105]:
+    - navigation [ref=e108]:
+      - menu "Sidebar" [ref=e109]:
+        - generic [ref=e110]:
+          - menuitem "Home" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]:
+              - img [ref=e115]
+              - generic [ref=e117]: Home
+          - generic [ref=e264]:
+            - menuitem "Copilot" [ref=e265] [cursor=pointer]:
+              - generic [ref=e268]: Copilot
+            - button "Unpin Copilot" [ref=e269] [cursor=pointer]:
+              - img [ref=e272]
+          - generic [ref=e274]:
+            - menuitem "Create" [ref=e275] [cursor=pointer]:
+              - generic [ref=e276]:
+                - img [ref=e278]
+                - generic [ref=e280]: Create
+            - button "Unpin Create" [ref=e281] [cursor=pointer]:
+              - img [ref=e284]
+          - generic [ref=e286]:
+            - menuitem "Browse" [ref=e287] [cursor=pointer]:
+              - generic [ref=e288]:
+                - img [ref=e290]
+                - generic [ref=e292]: Browse
+            - button "Unpin Browse" [ref=e293] [cursor=pointer]:
+              - img [ref=e296]
+          - generic [ref=e298]:
+            - menuitem "Apps" [ref=e299] [cursor=pointer]:
+              - generic [ref=e300]:
+                - img [ref=e302]
+                - generic [ref=e304]: Apps
+            - button "Unpin Apps" [ref=e305] [cursor=pointer]:
+              - img [ref=e308]
+          - generic [ref=e310]:
+            - menuitem "OneLake catalog" [ref=e311] [cursor=pointer]:
+              - generic [ref=e312]:
+                - img [ref=e314]
+                - generic [ref=e316]: OneLake catalog
+            - button "Unpin OneLake catalog" [ref=e317] [cursor=pointer]:
+              - img [ref=e320]
+          - generic [ref=e322]:
+            - menuitem "Monitor" [ref=e323] [cursor=pointer]:
+              - generic [ref=e324]:
+                - img [ref=e326]
+                - generic [ref=e328]: Monitor
+            - button "Unpin Monitor" [ref=e329] [cursor=pointer]:
+              - img [ref=e332]
+          - generic [ref=e334]:
+            - menuitem "Real-Time" [ref=e335] [cursor=pointer]:
+              - generic [ref=e336]:
+                - img [ref=e338]
+                - generic [ref=e340]: Real-Time
+            - button "Unpin Real-Time" [ref=e341] [cursor=pointer]:
+              - img [ref=e344]
+          - generic [ref=e346]:
+            - menuitem "Workloads" [ref=e347] [cursor=pointer]:
+              - generic [ref=e348]:
+                - img [ref=e350]
+                - generic [ref=e352]: Workloads
+            - button "Unpin Workloads" [ref=e353] [cursor=pointer]:
+              - img [ref=e356]
+          - separator [ref=e212]
+          - menuitem "Workspaces" [ref=e215] [cursor=pointer]:
+            - generic [ref=e216]:
+              - img [ref=e218]
+              - generic [ref=e220]: Workspaces
+          - menuitem "ayyOntologyWorkspace" [ref=e223] [cursor=pointer]:
+            - generic [ref=e227]: ayyOntologyWorkspace
+          - generic [ref=e228]:
+            - separator [ref=e229]
+            - menuitem "demo_SoccerFanOps_Ontology - ayyOntologyWorkspace" [ref=e232] [cursor=pointer]:
+              - generic [ref=e233]:
+                - button [ref=e234]:
+                  - generic "Close" [ref=e235]:
+                    - img [ref=e237]
+                - generic [ref=e240]: demo_SoccerFanOps_Ontology
+            - menuitem "More options" [ref=e242] [cursor=pointer]:
+              - img [ref=e245]
+        - menuitem "Power BI" [ref=e250] [cursor=pointer]:
+          - generic [ref=e253]: Power BI
+    - main [ref=e255]:
+      - iframe [active] [ref=e261]:
+        - generic [ref=f3e1]:
+          - generic [ref=f3e4]:
+            - generic [ref=f3e5]:
+              - generic [ref=f3e6]:
+                - generic [ref=f3e7]:
+                  - navigation "breadcrumb" [ref=f3e8]:
+                    - list [ref=f3e9]:
+                      - listitem [ref=f3e10]:
+                        - button "Home" [ref=f3e11]
+                      - listitem [ref=f3e12]:
+                        - img [ref=f3e13]
+                      - listitem [ref=f3e15]:
+                        - generic [ref=f3e16]:
+                          - button "StadiumSection" [ref=f3e18]:
+                            - generic [ref=f3e19]: StadiumSection
+                          - button "StadiumSection" [ref=f3e20]:
+                            - img [ref=f3e22]
+                  - generic [ref=f3e24]:
+                    - button "Manage rules" [ref=f3e25]:
+                      - img [ref=f3e27]
+                      - text: Manage rules
+                      - img [ref=f3e30]
+                    - button "More actions" [ref=f3e32]:
+                      - img [ref=f3e34]
+                - banner [ref=f3e36]:
+                  - tablist [ref=f3e38]:
+                    - tab "Configure" [ref=f3e40] [cursor=pointer]:
+                      - generic [ref=f3e41]: Configure
+                    - tab "Instances" [selected] [ref=f3e42] [cursor=pointer]:
+                      - generic [ref=f3e43]: Instances
+                    - tab "Overview" [ref=f3e44] [cursor=pointer]:
+                      - generic [ref=f3e45]: Overview
+              - generic [ref=f3e311]:
+                - generic [ref=f3e312]:
+                  - generic [ref=f3e314]: "Count: 250"
+                  - generic [ref=f3e315]:
+                    - img [ref=f3e317]
+                    - textbox "Filter by keyword" [ref=f3e319]
+                - grid [ref=f3e322]:
+                  - rowgroup [ref=f3e324]:
+                    - row "SectionId Section_Name Section_Seats Section_Tier" [ref=f3e325]:
+                      - columnheader "SectionId" [ref=f3e326]:
+                        - generic [ref=f3e327]: SectionId
+                        - separator [ref=f3e328]
+                      - columnheader "Section_Name" [ref=f3e329]:
+                        - generic [ref=f3e330]: Section_Name
+                        - separator [ref=f3e331]
+                      - columnheader "Section_Seats" [ref=f3e332]:
+                        - generic [ref=f3e333]: Section_Seats
+                        - separator [ref=f3e334]
+                      - columnheader "Section_Tier" [ref=f3e335]:
+                        - generic [ref=f3e336]: Section_Tier
+                        - separator [ref=f3e337]
+                  - rowgroup [ref=f3e338]:
+                    - generic [ref=f3e340]:
+                      - row "SEC-205 Section E 894 Family" [ref=f3e341]:
+                        - gridcell "SEC-205" [ref=f3e343]:
+                          - generic [ref=f3e344]: SEC-205
+                        - gridcell "Section E" [ref=f3e347]:
+                          - generic [ref=f3e348]: Section E
+                        - gridcell "894" [ref=f3e351]:
+                          - generic [ref=f3e352]: "894"
+                        - gridcell "Family" [ref=f3e355]:
+                          - generic [ref=f3e356]: Family
+                      - row "SEC-002 Section B 3830 Middle" [ref=f3e358]:
+                        - gridcell "SEC-002" [ref=f3e360]:
+                          - generic [ref=f3e361]: SEC-002
+                        - gridcell "Section B" [ref=f3e364]:
+                          - generic [ref=f3e365]: Section B
+                        - gridcell "3830" [ref=f3e368]:
+                          - generic [ref=f3e369]: "3830"
+                        - gridcell "Middle" [ref=f3e372]:
+                          - generic [ref=f3e373]: Middle
+                      - row "SEC-203 Section C 1385 Upper" [ref=f3e375]:
+                        - gridcell "SEC-203" [ref=f3e377]:
+                          - generic [ref=f3e378]: SEC-203
+                        - gridcell "Section C" [ref=f3e381]:
+                          - generic [ref=f3e382]: Section C
+                        - gridcell "1385" [ref=f3e385]:
+                          - generic [ref=f3e386]: "1385"
+                        - gridcell "Upper" [ref=f3e389]:
+                          - generic [ref=f3e390]: Upper
+                      - row "SEC-224 Section D 664 VIP" [ref=f3e392]:
+                        - gridcell "SEC-224" [ref=f3e394]:
+                          - generic [ref=f3e395]: SEC-224
+                        - gridcell "Section D" [ref=f3e398]:
+                          - generic [ref=f3e399]: Section D
+                        - gridcell "664" [ref=f3e402]:
+                          - generic [ref=f3e403]: "664"
+                        - gridcell "VIP" [ref=f3e406]:
+                          - generic [ref=f3e407]: VIP
+                      - row "SEC-225 Section E 3110 Family" [ref=f3e409]:
+                        - gridcell "SEC-225" [ref=f3e411]:
+                          - generic [ref=f3e412]: SEC-225
+                        - gridcell "Section E" [ref=f3e415]:
+                          - generic [ref=f3e416]: Section E
+                        - gridcell "3110" [ref=f3e419]:
+                          - generic [ref=f3e420]: "3110"
+                        - gridcell "Family" [ref=f3e423]:
+                          - generic [ref=f3e424]: Family
+                      - row "SEC-017 Section G 3185 Middle" [ref=f3e426]:
+                        - gridcell "SEC-017" [ref=f3e428]:
+                          - generic [ref=f3e429]: SEC-017
+                        - gridcell "Section G" [ref=f3e432]:
+                          - generic [ref=f3e433]: Section G
+                        - gridcell "3185" [ref=f3e436]:
+                          - generic [ref=f3e437]: "3185"
+                        - gridcell "Middle" [ref=f3e440]:
+                          - generic [ref=f3e441]: Middle
+                      - row "SEC-135 Section E 810 Family" [ref=f3e443]:
+                        - gridcell "SEC-135" [ref=f3e445]:
+                          - generic [ref=f3e446]: SEC-135
+                        - gridcell "Section E" [ref=f3e449]:
+                          - generic [ref=f3e450]: Section E
+                        - gridcell "810" [ref=f3e453]:
+                          - generic [ref=f3e454]: "810"
+                        - gridcell "Family" [ref=f3e457]:
+                          - generic [ref=f3e458]: Family
+                      - row "SEC-022 Section B 3746 Middle" [ref=f3e460]:
+                        - gridcell "SEC-022" [ref=f3e462]:
+                          - generic [ref=f3e463]: SEC-022
+                        - gridcell "Section B" [ref=f3e466]:
+                          - generic [ref=f3e467]: Section B
+                        - gridcell "3746" [ref=f3e470]:
+                          - generic [ref=f3e471]: "3746"
+                        - gridcell "Middle" [ref=f3e474]:
+                          - generic [ref=f3e475]: Middle
+                      - row "SEC-073 Section C 783 Upper" [ref=f3e477]:
+                        - gridcell "SEC-073" [ref=f3e479]:
+                          - generic [ref=f3e480]: SEC-073
+                        - gridcell "Section C" [ref=f3e483]:
+                          - generic [ref=f3e484]: Section C
+                        - gridcell "783" [ref=f3e487]:
+                          - generic [ref=f3e488]: "783"
+                        - gridcell "Upper" [ref=f3e491]:
+                          - generic [ref=f3e492]: Upper
+                      - row "SEC-228 Section H 1107 Upper" [ref=f3e494]:
+                        - gridcell "SEC-228" [ref=f3e496]:
+                          - generic [ref=f3e497]: SEC-228
+                        - gridcell "Section H" [ref=f3e500]:
+                          - generic [ref=f3e501]: Section H
+                        - gridcell "1107" [ref=f3e504]:
+                          - generic [ref=f3e505]: "1107"
+                        - gridcell "Upper" [ref=f3e508]:
+                          - generic [ref=f3e509]: Upper
+                      - row "SEC-131 Section A 4941 Lower" [ref=f3e511]:
+                        - gridcell "SEC-131" [ref=f3e513]:
+                          - generic [ref=f3e514]: SEC-131
+                        - gridcell "Section A" [ref=f3e517]:
+                          - generic [ref=f3e518]: Section A
+                        - gridcell "4941" [ref=f3e521]:
+                          - generic [ref=f3e522]: "4941"
+                        - gridcell "Lower" [ref=f3e525]:
+                          - generic [ref=f3e526]: Lower
+                      - row "SEC-023 Section C 4706 Upper" [ref=f3e528]:
+                        - gridcell "SEC-023" [ref=f3e530]:
+                          - generic [ref=f3e531]: SEC-023
+                        - gridcell "Section C" [ref=f3e534]:
+                          - generic [ref=f3e535]: Section C
+                        - gridcell "4706" [ref=f3e538]:
+                          - generic [ref=f3e539]: "4706"
+                        - gridcell "Upper" [ref=f3e542]:
+                          - generic [ref=f3e543]: Upper
+                      - row "SEC-115 Section E 2683 Family" [ref=f3e545]:
+                        - gridcell "SEC-115" [ref=f3e547]:
+                          - generic [ref=f3e548]: SEC-115
+                        - gridcell "Section E" [ref=f3e551]:
+                          - generic [ref=f3e552]: Section E
+                        - gridcell "2683" [ref=f3e555]:
+                          - generic [ref=f3e556]: "2683"
+                        - gridcell "Family" [ref=f3e559]:
+                          - generic [ref=f3e560]: Family
+                      - row "SEC-211 Section A 4539 Lower" [ref=f3e562]:
+                        - gridcell "SEC-211" [ref=f3e564]:
+                          - generic [ref=f3e565]: SEC-211
+                        - gridcell "Section A" [ref=f3e568]:
+                          - generic [ref=f3e569]: Section A
+                        - gridcell "4539" [ref=f3e572]:
+                          - generic [ref=f3e573]: "4539"
+                        - gridcell "Lower" [ref=f3e576]:
+                          - generic [ref=f3e577]: Lower
+                      - row "SEC-080 Section J 1218 Family" [ref=f3e579]:
+                        - gridcell "SEC-080" [ref=f3e581]:
+                          - generic [ref=f3e582]: SEC-080
+                        - gridcell "Section J" [ref=f3e585]:
+                          - generic [ref=f3e586]: Section J
+                        - gridcell "1218" [ref=f3e589]:
+                          - generic [ref=f3e590]: "1218"
+                        - gridcell "Family" [ref=f3e593]:
+                          - generic [ref=f3e594]: Family
+                      - row "SEC-090 Section J 3633 Family" [ref=f3e596]:
+                        - gridcell "SEC-090" [ref=f3e598]:
+                          - generic [ref=f3e599]: SEC-090
+                        - gridcell "Section J" [ref=f3e602]:
+                          - generic [ref=f3e603]: Section J
+                        - gridcell "3633" [ref=f3e606]:
+                          - generic [ref=f3e607]: "3633"
+                        - gridcell "Family" [ref=f3e610]:
+                          - generic [ref=f3e611]: Family
+                      - row "SEC-066 Section F 3399 Lower" [ref=f3e613]:
+                        - gridcell "SEC-066" [ref=f3e615]:
+                          - generic [ref=f3e616]: SEC-066
+                        - gridcell "Section F" [ref=f3e619]:
+                          - generic [ref=f3e620]: Section F
+                        - gridcell "3399" [ref=f3e623]:
+                          - generic [ref=f3e624]: "3399"
+                        - gridcell "Lower" [ref=f3e627]:
+                          - generic [ref=f3e628]: Lower
+                      - row "SEC-041 Section A 2123 Lower" [ref=f3e630]:
+                        - gridcell "SEC-041" [ref=f3e632]:
+                          - generic [ref=f3e633]: SEC-041
+                        - gridcell "Section A" [ref=f3e636]:
+                          - generic [ref=f3e637]: Section A
+                        - gridcell "2123" [ref=f3e640]:
+                          - generic [ref=f3e641]: "2123"
+                        - gridcell "Lower" [ref=f3e644]:
+                          - generic [ref=f3e645]: Lower
+                      - row "SEC-074 Section D 2513 VIP" [ref=f3e647]:
+                        - gridcell "SEC-074" [ref=f3e649]:
+                          - generic [ref=f3e650]: SEC-074
+                        - gridcell "Section D" [ref=f3e653]:
+                          - generic [ref=f3e654]: Section D
+                        - gridcell "2513" [ref=f3e657]:
+                          - generic [ref=f3e658]: "2513"
+                        - gridcell "VIP" [ref=f3e661]:
+                          - generic [ref=f3e662]: VIP
+                      - row "SEC-212 Section B 3602 Middle" [ref=f3e664]:
+                        - gridcell "SEC-212" [ref=f3e666]:
+                          - generic [ref=f3e667]: SEC-212
+                        - gridcell "Section B" [ref=f3e670]:
+                          - generic [ref=f3e671]: Section B
+                        - gridcell "3602" [ref=f3e674]:
+                          - generic [ref=f3e675]: "3602"
+                        - gridcell "Middle" [ref=f3e678]:
+                          - generic [ref=f3e679]: Middle
+                      - row "SEC-118 Section H 2297 Upper" [ref=f3e681]:
+                        - gridcell "SEC-118" [ref=f3e683]:
+                          - generic [ref=f3e684]: SEC-118
+                        - gridcell "Section H" [ref=f3e687]:
+                          - generic [ref=f3e688]: Section H
+                        - gridcell "2297" [ref=f3e691]:
+                          - generic [ref=f3e692]: "2297"
+                        - gridcell "Upper" [ref=f3e695]:
+                          - generic [ref=f3e696]: Upper
+                      - row "SEC-204 Section D 510 VIP" [ref=f3e698]:
+                        - gridcell "SEC-204" [ref=f3e700]:
+                          - generic [ref=f3e701]: SEC-204
+                        - gridcell "Section D" [ref=f3e704]:
+                          - generic [ref=f3e705]: Section D
+                        - gridcell "510" [ref=f3e708]:
+                          - generic [ref=f3e709]: "510"
+                        - gridcell "VIP" [ref=f3e712]:
+                          - generic [ref=f3e713]: VIP
+                      - row "SEC-096 Section F 4615 Lower" [ref=f3e715]:
+                        - gridcell "SEC-096" [ref=f3e717]:
+                          - generic [ref=f3e718]: SEC-096
+                        - gridcell "Section F" [ref=f3e721]:
+                          - generic [ref=f3e722]: Section F
+                        - gridcell "4615" [ref=f3e725]:
+                          - generic [ref=f3e726]: "4615"
+                        - gridcell "Lower" [ref=f3e729]:
+                          - generic [ref=f3e730]: Lower
+                      - row "SEC-227 Section G 1357 Middle" [ref=f3e732]:
+                        - gridcell "SEC-227" [ref=f3e734]:
+                          - generic [ref=f3e735]: SEC-227
+                        - gridcell "Section G" [ref=f3e738]:
+                          - generic [ref=f3e739]: Section G
+                        - gridcell "1357" [ref=f3e742]:
+                          - generic [ref=f3e743]: "1357"
+                        - gridcell "Middle" [ref=f3e746]:
+                          - generic [ref=f3e747]: Middle
+                      - row "SEC-233 Section C 1114 Upper" [ref=f3e749]:
+                        - gridcell "SEC-233" [ref=f3e751]:
+                          - generic [ref=f3e752]: SEC-233
+                        - gridcell "Section C" [ref=f3e755]:
+                          - generic [ref=f3e756]: Section C
+                        - gridcell "1114" [ref=f3e759]:
+                          - generic [ref=f3e760]: "1114"
+                        - gridcell "Upper" [ref=f3e763]:
+                          - generic [ref=f3e764]: Upper
+                      - row "SEC-242 Section B 1786 Middle" [ref=f3e766]:
+                        - gridcell "SEC-242" [ref=f3e768]:
+                          - generic [ref=f3e769]: SEC-242
+                        - gridcell "Section B" [ref=f3e772]:
+                          - generic [ref=f3e773]: Section B
+                        - gridcell "1786" [ref=f3e776]:
+                          - generic [ref=f3e777]: "1786"
+                        - gridcell "Middle" [ref=f3e780]:
+                          - generic [ref=f3e781]: Middle
+                      - row "SEC-003 Section C 1489 Upper" [ref=f3e783]:
+                        - gridcell "SEC-003" [ref=f3e785]:
+                          - generic [ref=f3e786]: SEC-003
+                        - gridcell "Section C" [ref=f3e789]:
+                          - generic [ref=f3e790]: Section C
+                        - gridcell "1489" [ref=f3e793]:
+                          - generic [ref=f3e794]: "1489"
+                        - gridcell "Upper" [ref=f3e797]:
+                          - generic [ref=f3e798]: Upper
+            - log [ref=f3e309]
+          - dialog "Instances" [active] [ref=f3e806]:
+            - generic [ref=f3e808]:
+              - heading "Instances" [level=3] [ref=f3e810]
+              - paragraph [ref=f3e812]: Search for, find, and check instances, the real-world items from your data points, and verify keys and property bindings.
+              - generic [ref=f3e813]:
+                - generic [ref=f3e814]: 1 of 2
+                - button "Next" [ref=f3e816] [cursor=pointer]:
+                  - generic [ref=f3e819]: Next
+              - button "Close" [ref=f3e820] [cursor=pointer]:
+                - img [ref=f3e823]
