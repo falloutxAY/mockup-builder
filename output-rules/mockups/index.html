@@ -119,7 +119,7 @@
       <div>
         <div style="font-size:var(--font-size-sm);font-weight:600;color:var(--color-text-primary);margin-bottom:var(--space-xs);">Flow 4 — Discover rules from entity type</div>
         <div class="flow-row">
-          <a class="flow-node" href="../../output-entity-type-view/mockups/entity-type-configure-v2.html"><span class="fi fi-sm fi-entity"></span> Entity Type Detail</a>
+          <a class="flow-node" href="entity-type-configure-v2.html"><span class="fi fi-sm fi-entity"></span> Entity Type Detail</a>
           <span class="flow-arrow">→</span>
           <span class="flow-label">[Click rule in Business Rules section]</span>
           <span class="flow-arrow">→</span>
@@ -193,7 +193,7 @@
         </a>
       </div>
       <div class="screen-card">
-        <a href="../../output-entity-type-view/mockups/entity-type-configure-v2.html">
+        <a href="entity-type-configure-v2.html">
           <div class="screen-thumb"><div class="screen-thumb-placeholder"><span class="fi fi-lg fi-entity"></span></div></div>
           <div class="screen-info">
             <div class="screen-name">7. Entity Type Detail (SecurityCheckpoint)</div>
@@ -226,12 +226,6 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Icons -->
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">All icons (header, sidebar, toolbar, actions)</td><td style="padding:6px 8px;font-weight:600;">@fluentui/react-icons</td><td style="padding:6px 8px;color:var(--color-text-secondary);">Mockups use CSS mask-image icons via <code>fluent-icons.css</code>. In production use <code>bundleIcon()</code> for filled/regular pairs. No emoji anywhere.</td></tr>
-          <!-- Layout shell -->
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Header bar</td><td style="padding:6px 8px;font-weight:600;">Toolbar + ToolbarButton</td><td style="padding:6px 8px;color:var(--color-text-secondary);">Fabric shell header; icons via FluentProvider tokens</td></tr>
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Sidebar navigation</td><td style="padding:6px 8px;font-weight:600;">NavDrawer + NavItem</td><td style="padding:6px 8px;color:var(--color-text-secondary);">Vertical icon rail; selectedValue for active item</td></tr>
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Explorer tree panel</td><td style="padding:6px 8px;font-weight:600;">Tree + TreeItem + TreeItemLayout</td><td style="padding:6px 8px;color:var(--color-text-secondary);">selectionMode="single", defaultOpenItems; Toolbar inside for add/search/filter</td></tr>
           <!-- Data table -->
           <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Rules list table</td><td style="padding:6px 8px;font-weight:600;">DataGrid + DataGridHeader + DataGridRow + DataGridCell</td><td style="padding:6px 8px;color:var(--color-text-secondary);">sortable columns, TableCellActions for overflow menu</td></tr>
           <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Row overflow menu</td><td style="padding:6px 8px;font-weight:600;">Menu + MenuTrigger + MenuPopover + MenuItem</td><td style="padding:6px 8px;color:var(--color-text-secondary);">MenuTrigger wraps ToolbarButton with MoreVerticalRegular icon. Edit + Delete items.</td></tr>
@@ -254,10 +248,8 @@
           <!-- Notifications -->
           <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Success toast</td><td style="padding:6px 8px;font-weight:600;">Toaster + Toast + ToastTitle</td><td style="padding:6px 8px;color:var(--color-text-secondary);">intent="success", auto-dismiss 5s, CheckmarkCircleRegular icon</td></tr>
           <!-- Misc -->
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Avatar</td><td style="padding:6px 8px;font-weight:600;">Avatar</td><td style="padding:6px 8px;color:var(--color-text-secondary);">initials="AY", color="brand"</td></tr>
           <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Tabs (entity type detail)</td><td style="padding:6px 8px;font-weight:600;">TabList + Tab</td><td style="padding:6px 8px;color:var(--color-text-secondary);">appearance="transparent"</td></tr>
-          <tr style="border-bottom:1px solid var(--color-border-subtle);"><td style="padding:6px 8px;">Empty state</td><td style="padding:6px 8px;font-weight:600;">Custom (implemented)</td><td style="padding:6px 8px;color:var(--color-text-secondary);">SVG illustration + heading + Button CTA. Already shipped in product.</td></tr>
-          <tr><td style="padding:6px 8px;">Pagination</td><td style="padding:6px 8px;font-weight:600;">Custom (implemented)</td><td style="padding:6px 8px;color:var(--color-text-secondary);">"Showing N of N" info + page controls. Already shipped in product.</td></tr>
+        </tbody>
         </tbody>
       </table>
 

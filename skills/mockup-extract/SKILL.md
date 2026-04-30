@@ -18,29 +18,35 @@ The user provides:
 - A live URL (or multiple URLs) to explore
 - Optionally: screenshots (analyze visually)
 - Optionally: brief context ("this is a dashboard app", "focus on the settings page")
+- A **demo name** (kebab-case, e.g. `business-rules`, `entity-type-view`). If the user didn't give one, ask: *"What should I name this demo folder? Use kebab-case — e.g. `<feature-or-product-area>`."*
 
 ## Output location
 
-All output goes to the `output/` folder in the current workspace (create if missing):
+**Convention:** every demo lives in its own self-contained folder at the workspace root, named after the demo. This makes each demo a single zip-and-share unit (see [Sharing](#sharing-the-demo) below).
+
+All output goes to a `<demo-name>/` folder in the current workspace (create if missing). Throughout this doc, `<demo>/` is shorthand for that folder.
+
 ```
-output/
-├── design-guide.md     ← structured design system doc
-├── base-styles.css     ← CSS custom properties + component classes
-├── reference/          ← screenshots from the live app
+<demo-name>/                  # e.g. business-rules/
+├── design-guide.md            ← structured design system doc
+├── base-styles.css            ← CSS custom properties + component classes
+├── reference/                 ← screenshots from the live app
 │   ├── page-1.png
 │   └── page-2.png
-└── mockups/            ← built by mockup-build agent (leave untouched)
+└── mockups/                   ← built by mockup-build agent (leave untouched)
     ├── <name>.html
     ├── screenshots/
     └── tools/
 ```
+
+**Do not** create a generic `output/` folder. Every demo gets its own named folder so it can be zipped and shared independently.
 
 ## Extraction workflow
 
 ### Step 1: Navigate & screenshot
 1. Use `browser_navigate` to open the URL.
 2. If it lands on a login page, **stop and ask the user** — don't guess credentials.
-3. Take a full-page screenshot → save to `output/reference/`.
+3. Take a full-page screenshot → save to `<demo>/reference/`.
 4. Take an accessibility snapshot to understand the page structure.
 
 ### Step 2: Handle iframes
@@ -105,7 +111,7 @@ Click on elements to reveal additional UI states:
 - Hover buttons → note hover states
 - Open dropdowns → capture menu styles
 
-Take a screenshot after each interaction → save to `output/reference/`.
+Take a screenshot after each interaction → save to `<demo>/reference/`.
 
 ### Step 5: Convert RGB to Hex
 All colors in the guide should be hex (`#242424`), not `rgb()`. Convert:
@@ -205,3 +211,22 @@ The CSS must be self-contained — another agent should be able to create a mock
 - **Self-contained output**: another agent reading ONLY `design-guide.md` + `base-styles.css` should produce visually consistent mockups without seeing the original app.
 - **Don't ask unnecessary questions**: if you can figure it out by exploring, do so. Only ask the user about auth walls or ambiguous scope.
 - **Multiple pages**: if given multiple URLs, extract from all of them and merge into one unified design system. Note page-specific variations.
+
+## Sharing the demo
+
+Every `<demo-name>/` folder is **self-contained** — design system + mockups + reference + screenshots all live in one place. To share:
+
+```powershell
+# From the workspace root — one-line zip:
+.\package.ps1 <demo-name>
+# Produces <demo-name>.zip in the workspace root.
+```
+
+Or manually:
+```powershell
+Compress-Archive -Path <demo-name> -DestinationPath <demo-name>.zip -Force
+```
+
+Recipient unzips and opens `<demo-name>/mockups/index.html` (or any `*.html` file) in any modern browser. No build step, no server, no internet required — icons are inline SVG and there are no external font/CDN dependencies.
+
+**One folder = one shareable demo.** Don't link across demo folders with `../` paths; if a screen needs to live in two demos, duplicate it. The portability of the zip is worth the duplication.

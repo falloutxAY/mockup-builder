@@ -1,2 +1,6 @@
-# Runtime output — not tracked in git
+# Legacy default extraction folder (no longer the convention — every demo
+# now gets its own named folder, e.g. output-rules/, business-rules/).
 output/
+
+# Packaged demo zips produced by package.ps1 — regenerate on demand.
+*.zip

@@ -45,19 +45,21 @@ Storybook reference: https://storybooks.fluentui.dev/react/
 
 ## Inputs
 
-1. **Design Guide** — read `output/design-guide.md`
-2. **Base Styles** — reference `output/base-styles.css`
-3. **Reference Screenshots** — in `output/reference/`
+**Demo folder convention**: every demo lives in its own self-contained folder at the workspace root (e.g. `business-rules/`). The whole folder is the share unit — zip it, send it. If multiple demo folders exist with a `design-guide.md`, **ask the user which one** to build into. If only one exists, default to it.
+
+1. **Design Guide** — read `<demo>/design-guide.md`
+2. **Base Styles** — reference `<demo>/base-styles.css`
+3. **Reference Screenshots** — in `<demo>/reference/`
 4. **User Journey Description** — what flow or feature the demo should cover end-to-end
 
-If `output/design-guide.md` doesn't exist, tell the user to run `/mockup-extract` first.
+If `<demo>/design-guide.md` doesn't exist, tell the user to run `/mockup-extract` first.
 
 ## Workflow
 
 ### Step 1: Read the design system
 Before planning anything:
-1. Read `output/design-guide.md` — internalize the design tokens, components, and layout templates.
-2. Skim `output/base-styles.css` — note available CSS classes.
+1. Read `<demo>/design-guide.md` — internalize the design tokens, components, and layout templates.
+2. Skim `<demo>/base-styles.css` — note available CSS classes.
 3. Glance at reference screenshots for visual calibration.
 
 ### Step 2: Plan the journey (show user before building)
@@ -94,7 +96,7 @@ Wait for confirmation (or adjustments) before proceeding to Step 3.
 
 Build each file in the Screen Inventory in order. For each file:
 
-1. Write the full HTML to `output/mockups/<name>.html` (e.g. `detail.html`, `list.html`).
+1. Write the full HTML to `<demo>/mockups/<name>.html` (e.g. `detail.html`, `list.html`).
 2. Include navigation links that connect to adjacent screens (use relative paths).
 3. Add inline JavaScript only for interactions that can't be done with CSS:
    - Showing/hiding modal overlays
@@ -105,7 +107,7 @@ Build each file in the Screen Inventory in order. For each file:
 
 ### Step 4: Build the demo index
 
-Create `output/mockups/index.html` — a launch pad for the demo:
+Create `<demo>/mockups/index.html` — a launch pad for the demo:
 
 - List every screen with a thumbnail (use `<img src="screenshots/<name>.png">`) and a link.
 - Include a brief label describing each screen.
@@ -115,14 +117,14 @@ Create `output/mockups/index.html` — a launch pad for the demo:
 ### Step 5: Preview & screenshot all screens
 
 For each HTML file (including index):
-1. Start local server if not running: `npx http-server output/ -p 8765 -c-1 --silent`
+1. Start local server if not running: `npx http-server <demo>/ -p 8765 -c-1 --silent`
 2. Navigate Playwright to `http://localhost:8765/mockups/<name>.html`
-3. Take a screenshot → save to `output/mockups/screenshots/<name>.png`
+3. Take a screenshot → save to `<demo>/mockups/screenshots/<name>.png`
 
 After all screens are done, show the user:
 - The demo index screenshot
 - A summary of every screen built
-- Instructions: "Open `output/mockups/index.html` in a browser to walk through the full demo."
+- Instructions: "Open `<demo>/mockups/index.html` in a browser to walk through the full demo. To share with someone else, run `.\package.ps1 <demo-name>` from the workspace root — produces a single zip."
 
 ### Step 6: Iterate
 
@@ -276,7 +278,7 @@ Extrapolate from the existing design language — same colors, fonts, spacing. C
 
 After presenting the Screen Inventory (Step 2), ask for confirmation.
 After showing all screenshots (Step 5), end with:
-- "Here's your full demo — open `output/mockups/index.html` to walk through it. What would you like to adjust?"
+- "Here's your full demo — open `<demo>/mockups/index.html` to walk through it. What would you like to adjust?"
 
 After each iteration:
 - "Updated. Anything else before you present this?"

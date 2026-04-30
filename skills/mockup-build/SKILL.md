@@ -66,12 +66,14 @@ This uses only built-in Fluent props. No custom color classes needed.
 
 ## Inputs
 
-1. **Design Guide** — read `output/design-guide.md` (design system extracted by the extraction agent)
-2. **Base Styles** — reference `output/base-styles.css` (CSS custom properties + component classes)
-3. **Reference Screenshots** — in `output/reference/` (visual ground truth)
+**Demo folder convention**: every demo lives in its own self-contained folder at the workspace root (e.g. `business-rules/`, `entity-type-view/`). All inputs and outputs for this skill live inside the chosen `<demo>/` folder so it can be zipped and shared as one unit. If multiple demo folders exist, **ask the user which one** to build into. If only one demo folder with a `design-guide.md` exists, default to it.
+
+1. **Design Guide** — read `<demo>/design-guide.md` (design system extracted by the extraction agent)
+2. **Base Styles** — reference `<demo>/base-styles.css` (CSS custom properties + component classes)
+3. **Reference Screenshots** — in `<demo>/reference/` (visual ground truth)
 4. **User Requirements** — what the mockup should show
 
-If `output/design-guide.md` doesn't exist, tell the user to run `/mockup-extract` first.
+If `<demo>/design-guide.md` doesn't exist, tell the user to run `/mockup-extract` first.
 
 ## Workflow
 
@@ -98,8 +100,8 @@ Translate informal language into design vocabulary:
 
 ### Step 1: Read the design guide
 Before writing ANY code:
-1. Read `output/design-guide.md` — understand the color palette, typography, component styles, layout templates.
-2. Note the CSS class names in `base-styles.css` so you can reuse them.
+1. Read `<demo>/design-guide.md` — understand the color palette, typography, component styles, layout templates.
+2. Note the CSS class names in `<demo>/base-styles.css` so you can reuse them.
 3. Glance at reference screenshots to calibrate visual expectations.
 
 ### Step 2: Build the mockup
@@ -107,15 +109,15 @@ Based on the user's requirements:
 1. Choose the right layout template from the design guide.
 2. Compose the page using existing CSS classes (`.btn-primary`, `.table`, `.dialog`, etc.).
 3. Use **realistic placeholder data** — not "Lorem ipsum". Use plausible names, numbers, dates, status labels that match the domain.
-4. Write a **single self-contained HTML file** that references `../base-styles.css`.
+4. Write a **single self-contained HTML file** that references `../base-styles.css` (relative path from inside `mockups/`).
 5. **Always include the Design Vocabulary Overlay** — see the snippet in the [Overlay section](#design-vocabulary-overlay) below. This is a floating toggle that labels every component with its design system name, helping the user iterate with the right vocabulary.
-6. Save to `output/mockups/<descriptive-name>.html`.
+6. Save to `<demo>/mockups/<descriptive-name>.html`.
 
 ### Step 3: Preview & screenshot
-1. Start a local server if not running: `npx http-server output/ -p 8765 -c-1 --silent`
+1. Start a local server if not running: `npx http-server <demo>/ -p 8765 -c-1 --silent`
 2. Navigate Playwright to `http://localhost:8765/mockups/<name>.html`
-3. Take a screenshot → save to `output/mockups/screenshots/<name>.png`
-4. Save any helper scripts (e.g. Playwright screenshot scripts) to `output/mockups/tools/`.
+3. Take a screenshot → save to `<demo>/mockups/screenshots/<name>.png`
+4. Save any helper scripts (e.g. Playwright screenshot scripts) to `<demo>/mockups/tools/`.
 5. Show to user.
 
 ### Step 4: Iterate on feedback
@@ -536,3 +538,7 @@ After showing each mockup or revision, end with ONE of:
 - Accessibility: "The status badge colors rely only on hue — want me to add an icon for colorblind users?"
 
 Never ask more than one question. Keep momentum high.
+
+## Sharing
+
+The whole `<demo>/` folder is a self-contained, zip-and-share unit. From the workspace root: `.\package.ps1 <demo-name>` produces `<demo-name>.zip`. See `mockup-extract` for full sharing details.

@@ -195,6 +195,7 @@ Each iteration takes ~30 seconds for small changes.
 ```
 mockup-builder/
 ├── README.md                           ← you are here
+├── package.ps1                         ← one-line zip helper for sharing demos
 ├── skills/
 │   ├── mockup-extract/
 │   │   └── SKILL.md                    ← Agent 1: design extraction prompt
@@ -207,15 +208,19 @@ mockup-builder/
 ├── docs/
 │   ├── design-guide-template.md        ← template for the design guide output
 │   └── architecture.md                 ← detailed system architecture
-└── output/                             ← created at runtime (gitignored)
-    ├── design-guide.md
-    ├── base-styles.css
-    ├── reference/
+└── <demo-name>/                        ← ONE per demo (e.g. output-rules/, business-rules/)
+    ├── design-guide.md                 ← design system
+    ├── base-styles.css                 ← CSS tokens + component classes
+    ├── fluent-icons.css                ← (optional) Fluent icon set
+    ├── reference/                      ← source screenshots
     └── mockups/
-        ├── <name>.html
+        ├── index.html                  ← launch pad linking every screen
+        ├── <name>.html                 ← individual mockups
         ├── screenshots/
         └── tools/
 ```
+
+**Each `<demo-name>/` folder is a self-contained, zip-and-share unit.** See [Sharing a demo](#sharing-a-demo) below.
 
 ## How It Works
 
@@ -259,7 +264,7 @@ Requires no extracted design system. Creates stunning, innovative UX from scratc
 3. **Presents a Screen Inventory** for the user to approve before building starts
 4. Builds every screen as a separate HTML file with consistent placeholder data across all files
 5. Links screens together with navigation links and inline JavaScript (modals, confirmations, form submissions → redirect)
-6. Generates `output/mockups/index.html` — a thumbnail launch pad for the complete demo
+6. Generates `<demo>/mockups/index.html` — a thumbnail launch pad for the complete demo
 7. Screenshots every screen and presents them all at once
 8. Iterates at the journey level (add/remove screens) or screen level (tweak individual files)
 
@@ -293,6 +298,56 @@ A working standalone demo is available at [`docs/examples/overlay-demo.html`](do
 
 > 💡 After the first screenshot, the agent will remind you: "Click **Show Labels** (bottom-right) to see the name of every component — use those names when giving feedback."
 
+## Sharing a demo
+
+Every `<demo-name>/` folder is self-contained — design system + mockups + reference + screenshots in one place. There are no external runtime dependencies, no build step, and no CDN/font requirements (icons are inline SVG).
+
+### One-line zip (recommended)
+
+From the workspace root:
+
+```powershell
+.\package.ps1 <demo-name>
+```
+
+Produces `<demo-name>.zip` in the workspace root. Default mode includes everything in the demo folder. Use `-Lean` to drop reference screenshots and helper tools (≈70 KB instead of ≈1.3 MB on a typical demo):
+
+```powershell
+.\package.ps1 <demo-name> -Lean
+```
+
+Override the destination path:
+
+```powershell
+.\package.ps1 <demo-name> -OutputPath C:\Temp\demo-for-stakeholder.zip
+```
+
+### Manual zip (no script)
+
+```powershell
+Compress-Archive -Path <demo-name> -DestinationPath <demo-name>.zip -Force
+```
+
+### What the recipient does
+
+1. Unzip anywhere.
+2. Open `<demo-name>/mockups/index.html` in any modern browser (Edge, Chrome, Firefox, Safari).
+3. Click around — every screen is fully interactive (modals, tabs, navigation).
+
+No install. No server. Works offline.
+
+### What to share for what audience
+
+| Audience | Use | Why |
+|---|---|---|
+| Engineer building it | Default zip | Includes design-guide.md + base-styles.css + reference screenshots |
+| PM/exec walkthrough | `-Lean` zip | Just the live HTML — smaller, focused on the demo not the source material |
+| Public link / wide share | Host the demo folder on GitHub Pages or Azure Static Web Apps | Persistent URL, no re-share required when you update |
+
+### Tier check (Microsoft hygiene)
+
+Demos using public sample domains (e.g. ZavaStadium) are tier-1 / public-safe. Before sharing externally, verify the demo contains no customer names, tenant IDs, ICM references, codenames, or unannounced strategy. If it does, treat the zip as tier-3 and don't share outside Microsoft.
+
 ## Auth-Protected Pages
 
 If the target URL requires login:
@@ -304,21 +359,29 @@ If the target URL requires login:
 
 ## Customization
 
-### Output location
+### Demo folder convention
 
-By default, output goes to the `output/` folder in the current workspace. To change this, edit the output path in all four `SKILL.md` files.
+Every demo lives in its own self-contained folder at the workspace root. Pick a kebab-case name when you start a new one (e.g. `business-rules/`, `entity-type-view/`). All four agents read and write inside `<demo-name>/`. The folder structure is fixed (see [Project Structure](#project-structure)), so any agent can pick up where another left off.
+
+**Why one folder per demo:**
+- Each demo is independently shareable as a single zip.
+- No cross-demo coupling — you can delete or rename one without breaking another.
+- Stakeholders only get the demo they care about, not your whole workspace.
 
 ### Adding components
 
-If the extracted design system doesn't cover a component you need, Agent 2 will extrapolate from the existing design language. You can also manually add component styles to `base-styles.css`.
+If the extracted design system doesn't cover a component you need, Agent 2 will extrapolate from the existing design language. You can also manually add component styles to `<demo>/base-styles.css`.
 
-### Multiple design systems
+### Multiple demos in one workspace
 
-For multiple apps, use separate output directories:
+Normal pattern. Each demo gets its own folder:
 ```
-~/mockup-app-a/    ← Design system for App A
-~/mockup-app-b/    ← Design system for App B
+mockup-builder/
+├── business-rules/
+├── entity-type-view/
+└── dashboard-redesign/
 ```
+Agents will ask which one to build into when more than one exists.
 
 ## License
 

@@ -108,7 +108,7 @@ Write a **single self-contained HTML file**:
 - Use CSS custom properties in a `:root` block at the top of your `<style>`.
 - No external framework dependencies — pure HTML + CSS (+ minimal vanilla JS for toggles/tabs/modals if needed).
 - **Realistic placeholder data**: plausible names, emails, dates, numbers, charts-as-SVG, status labels — never "Lorem ipsum" or "User 1".
-- Save to `output/mockups/<descriptive-name>-wow.html`.
+- Save to `<demo>/mockups/<descriptive-name>-wow.html`. Pick (or ask for) a kebab-case `<demo-name>` if no demo folder exists yet — every demo gets its own folder at the workspace root so it can be zipped and shared as one unit.
 
 #### Required CSS starting skeleton
 
@@ -228,10 +228,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 ```
 
 ### Step 4: Preview & screenshot
-1. Start a local server if not running: `npx http-server output/ -p 8765 -c-1 --silent`
+1. Start a local server if not running: `npx http-server <demo>/ -p 8765 -c-1 --silent`
 2. Navigate Playwright to `http://localhost:8765/mockups/<name>-wow.html`
-3. Take a full-page screenshot → save to `output/mockups/screenshots/<name>-wow.png`
-4. Save any helper scripts to `output/mockups/tools/`.
+3. Take a full-page screenshot → save to `<demo>/mockups/screenshots/<name>-wow.png`
+4. Save any helper scripts to `<demo>/mockups/tools/`.
 5. Show to user.
 
 ### Step 5: Iterate on feedback
