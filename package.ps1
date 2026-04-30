@@ -64,7 +64,9 @@ if (Test-Path $OutputPath) {
 Push-Location $root
 try {
   if ($Lean) {
-    # Filter out heavy folders, then zip only the surviving relative paths.
+    # Filter out heavy folders, then stage the survivors in a temp dir that
+    # mirrors the original structure so Compress-Archive preserves paths.
+    # (Compress-Archive flattens when given a list of file paths directly.)
     $excludePatterns = @('\\screenshots\\', '\\tools\\', '\\reference\\')
     $files = Get-ChildItem -Path $demoPath -Recurse -File | Where-Object {
       $path = $_.FullName
@@ -78,9 +80,26 @@ try {
       Write-Error "No files left after -Lean exclusions."
       exit 1
     }
-    $relativePaths = $files | ForEach-Object { Resolve-Path -Path $_.FullName -Relative }
-    Compress-Archive -Path $relativePaths -DestinationPath $OutputPath -Force
-    $fileCount = $files.Count
+
+    $stagingRoot = Join-Path ([System.IO.Path]::GetTempPath()) "mockup-pkg-$([guid]::NewGuid().ToString('N'))"
+    $stagingDemo = Join-Path $stagingRoot $Demo
+    New-Item -ItemType Directory -Path $stagingDemo -Force | Out-Null
+    try {
+      foreach ($f in $files) {
+        $relativeFromDemo = $f.FullName.Substring($demoPath.Length).TrimStart('\','/')
+        $destPath = Join-Path $stagingDemo $relativeFromDemo
+        $destDir = Split-Path $destPath -Parent
+        if (-not (Test-Path $destDir)) {
+          New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+        }
+        Copy-Item -Path $f.FullName -Destination $destPath
+      }
+      Compress-Archive -Path $stagingDemo -DestinationPath $OutputPath -Force
+      $fileCount = $files.Count
+    }
+    finally {
+      Remove-Item $stagingRoot -Recurse -Force -ErrorAction SilentlyContinue
+    }
   }
   else {
     # Default: zip the whole folder verbatim, structure preserved.
