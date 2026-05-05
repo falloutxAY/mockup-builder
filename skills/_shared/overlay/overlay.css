@@ -1,0 +1,66 @@
+/* ============================================================================
+   Design Vocabulary Overlay — styles
+   Drop this file into <demo>/ and link from each mockup:
+     <link rel="stylesheet" href="../overlay.css">
+     <script src="../overlay.js" defer></script>
+   See skills/_shared/overlay/README.md for usage.
+   ============================================================================ */
+
+#dv-toggle {
+  position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+  background: #1a1a2e; color: #fff;
+  border-radius: 24px; padding: 8px 16px;
+  cursor: pointer; font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: background 0.15s, transform 0.15s;
+  font-family: inherit; user-select: none;
+}
+#dv-toggle:hover,
+#dv-toggle:focus-visible {
+  background: #16213e;
+  transform: translateY(-1px);
+  outline: 2px solid #6ea8fe;
+  outline-offset: 2px;
+}
+#dv-toggle.active { background: #0f3460; }
+
+#dv-legend {
+  position: fixed; bottom: 72px; right: 20px; z-index: 10000;
+  background: #1a1a2e; color: #e8f0fe;
+  border-radius: 10px; padding: 16px; max-width: 280px;
+  font-size: 13px; line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+#dv-legend code {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1px 4px; border-radius: 3px;
+}
+#dv-legend button {
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #e8f0fe;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Label chips — injected as child <span> elements by overlay.js
+   so we never touch the host element's own positioning. */
+.dv-chip {
+  position: absolute; top: 0; left: 0;
+  background: #0f3460; color: #e8f0fe;
+  font-size: 10px; font-weight: 700; font-family: monospace;
+  padding: 1px 6px; border-radius: 0 0 4px 0;
+  white-space: nowrap; z-index: 9999;
+  pointer-events: none; line-height: 18px;
+}
+
+body.dv-on [data-dv] {
+  outline: 2px dashed rgba(15, 52, 96, 0.55);
+  outline-offset: 1px;
+}
+/* Only set position:relative on statically-positioned hosts so chips anchor correctly. */
+body.dv-on [data-dv].dv-pos-set { position: relative; }

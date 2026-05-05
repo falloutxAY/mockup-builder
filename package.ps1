@@ -67,7 +67,8 @@ try {
     # Filter out heavy folders, then stage the survivors in a temp dir that
     # mirrors the original structure so Compress-Archive preserves paths.
     # (Compress-Archive flattens when given a list of file paths directly.)
-    $excludePatterns = @('\\screenshots\\', '\\tools\\', '\\reference\\')
+    # Regex uses [\\/]+ so the patterns work on both Windows and *nix paths.
+    $excludePatterns = @('[\\/]+screenshots[\\/]+', '[\\/]+tools[\\/]+', '[\\/]+reference[\\/]+')
     $files = Get-ChildItem -Path $demoPath -Recurse -File | Where-Object {
       $path = $_.FullName
       $skip = $false

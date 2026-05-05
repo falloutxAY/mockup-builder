@@ -2,5 +2,11 @@
 # now gets its own named folder, e.g. output-rules/, business-rules/).
 output/
 
+# Generated demo folders. Convention is one named folder per demo (see README.md
+# "Repository structure" section). Pattern below covers the output-* family
+# (output-rules/, output-foo/, ...). Other naming conventions like
+# business-rules/ should be added here explicitly when introduced.
+output-*/
+
 # Packaged demo zips produced by package.ps1 — regenerate on demand.
 *.zip

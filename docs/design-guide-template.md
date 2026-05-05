@@ -149,6 +149,26 @@ font-size: 14px;
 }
 ```
 
+## Fluent v9 Component Map
+
+For every UI element in the catalog, identify the Fluent UI React v9 component a developer will use to implement it. This is what makes the design guide a handoff artifact, not just a visual record.
+
+Reference: <https://storybooks.fluentui.dev/react/>
+
+| UI Element | Fluent v9 Component | Storybook Link | Notes |
+|---|---|---|---|
+| [describe what you see, e.g. "Sortable rules table"] | [Fluent component, e.g. **DataGrid**] | [link to Storybook page] | [implementation notes — props, variants, gotchas] |
+
+Follow the rules in `skills/_shared/fluent-v9-mapping.md`:
+- Don't mix Menu and Dropdown on the same surface.
+- Tags use three Fluent appearances (`brand` / `filled` / `outline`) for visual hierarchy — zero custom CSS.
+
+## Gaps (not coverable by Fluent v9)
+
+| UI Element | Why Fluent can't do it | Recommended workaround |
+|---|---|---|
+| [e.g. "NL editor with inline colored entity highlights"] | [reason, e.g. "Fluent has no rich-text editor with token highlighting"] | [e.g. "Custom `contenteditable` div wrapped in Fluent `Field` for label/description"] |
+
 ## Reference Screenshots
 
 | File                  | Description          |

@@ -4,34 +4,35 @@
 
 Mockup Builder is a four-agent system. Agent 1 (extraction) and Agents 2 & 4 (building) are decoupled through a file-based handoff contract. Agent 3 (WOW Mode) operates independently — no extraction step required.
 
-```
-                          ┌─────────────────────────────┐
-                          │     Handoff Artifacts        │
-                          │                             │
-  ┌───────────┐           │  design-guide.md            │           ┌───────────┐
-  │ Agent 1:  │──writes──▶│  base-styles.css            │──reads──▶│ Agent 2:  │
-  │ Extract   │           │  reference/*.png            │           │ Build     │
-  └───────────┘           │                             │           └───────────┘
-       ▲                  └──────────────┬──────────────┘                │
-       │                                │                               │
-  URL / screenshots                     │reads                   HTML mockups
-  from user                             ▼                         + screenshots
-                                  ┌───────────┐                        │
-                                  │ Agent 4:  │──▶ Multi-screen demo   │
-                                  │ End-to-End│    + index.html        │
-                                  └───────────┘                        │
-                                       ▲                               │
-                                       │ journey description           ▼
-                                                                  to user
+```mermaid
+flowchart LR
+    URL[URL or screenshots] --> A1["Agent 1: Extract"]
+    A1 -- writes --> H[(Handoff artifacts:<br/>design-guide.md<br/>base-styles.css<br/>fluent-icons.css<br/>overlay.css/.js<br/>reference/*.png)]
 
-  ┌───────────┐
-  │ Agent 3:  │──────────────────────────────────────────────▶ HTML mockups
-  │ WOW Mode  │    (no extraction step; invents design         + screenshots
-  └───────────┘     from first principles)                     to user
-       ▲
-       │
-  requirements +
-  optional theme hint
+    REQ[User requirements + feedback] --> A2["Agent 2: Build (single)"]
+    H -- reads --> A2
+    A2 --> M2[HTML mockup + screenshot]
+
+    JOURNEY[User journey description] --> A4["Agent 4: End-to-End"]
+    H -- reads --> A4
+    A4 --> M4[Multi-screen demo + index.html]
+
+    REQW[Requirements + theme hint] --> A3["Agent 3: WOW Mode<br/>(no extraction needed)"]
+    A3 --> M3[Stunning HTML mockup + screenshot]
+```
+
+Plain-text fallback for viewers without Mermaid:
+
+```
+URL/screenshots ──► Agent 1: Extract ──► design-guide.md, base-styles.css,
+                                          fluent-icons.css, overlay.css/.js,
+                                          reference/*.png
+                                                  │
+                                                  ├──► Agent 2: Build (single) ──► HTML mockup
+                                                  └──► Agent 4: End-to-End ──► Multi-screen demo
+
+Requirements + theme hint ──► Agent 3: WOW Mode ──► Stunning HTML mockup
+                              (no extraction needed)
 ```
 
 ### Why files, not API calls?
@@ -199,7 +200,7 @@ warn user → wait for confirmation
 ### Multi-screen output structure
 
 ```
-output/mockups/
+<demo-name>/mockups/
 ├── index.html                   ← Demo launch pad (thumbnails + flow)
 ├── list.html                    ← Entity list view
 ├── detail.html                  ← Detail / edit form
@@ -227,11 +228,16 @@ output/mockups/
 
 ## Output directory structure
 
+Every demo lives in its own self-contained folder at the workspace root. The folder name is whatever the user provided (kebab-case, e.g. `business-rules`, `entity-type-view`). All four agents read from and write into the same `<demo-name>/` folder so the whole thing zips and ships as one unit.
+
 ```
-output/
+<demo-name>/
 ├── design-guide.md          ← Agent 1 output (human-readable design system)
 ├── base-styles.css          ← Agent 1 output (CSS custom properties + classes)
-├── reference/               ← Agent 1 output (screenshots from live app)
+├── fluent-icons.css         ← Agent 1 output (CSS mask-image icon system, when applicable)
+├── overlay.css              ← seeded from skills/_shared/overlay/ — used by Agents 2 & 4
+├── overlay.js               ← seeded from skills/_shared/overlay/ — used by Agents 2 & 4
+├── reference/               ← (optional) Agent 1 output: screenshots from live app
 │   ├── home.png
 │   └── detail.png
 └── mockups/                 ← Agent 2 / 3 / 4 output (HTML mockup files)
@@ -243,13 +249,15 @@ output/
     ├── detail.html              ← Agent 4
     ├── detail--delete-confirm.html  ← Agent 4
     ├── detail--success.html     ← Agent 4
-    ├── screenshots/             ← screenshots for all agents
+    ├── screenshots/             ← (optional) Playwright screenshots
     │   ├── settings-page.png
     │   ├── dashboard-wow.png
     │   ├── index.png
     │   └── list.png
-    └── tools/                   ← helper scripts (e.g. Playwright screenshot scripts)
+    └── tools/                   ← (optional) helper scripts (e.g. Playwright screenshot scripts)
 ```
+
+`reference/`, `mockups/screenshots/`, and `mockups/tools/` are generated as needed and aren't required for the demo to work.
 
 ## Extensibility
 

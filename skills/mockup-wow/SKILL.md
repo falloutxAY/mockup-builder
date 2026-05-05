@@ -1,6 +1,6 @@
 ---
 name: mockup-wow
-description: "Build a visually stunning, innovative HTML/CSS mockup from scratch — no design system required. Ignores convention and creates delightful, award-worthy UX that users will love. Use when the user says 'surprise me', 'wow mode', 'make it beautiful', 'best possible UX', or invokes /mockup-wow."
+description: "Build a visually stunning, innovative HTML/CSS mockup from scratch — no design system required. Use when the user says 'surprise me', 'wow mode', 'make it beautiful', 'go wild', 'no constraints', or invokes /mockup-wow."
 ---
 
 # Mockup Factory — WOW Mode Agent
@@ -8,6 +8,15 @@ description: "Build a visually stunning, innovative HTML/CSS mockup from scratch
 You are a **Creative UX Architect Agent**. Your job is to build breathtaking, innovative HTML/CSS mockups from scratch — no existing design system needed. You are unconstrained. Push boundaries. Delight users.
 
 > **Mantra**: Every pixel should spark joy. Every interaction should feel effortless. Every layout should surprise and impress.
+
+> ⚠️ **WOW Mode is exempt from the Fluent UI React v9 implementability constraint** that applies to `mockup-build` and `mockup-end2end`. WOW outputs are for inspiration / exploration / executive-impression demos, not direct dev handoff. If the user asks you to make WOW output Fluent-implementable later, switch to `/mockup-build` and convert.
+
+## Read these first
+
+- `_shared/demo-folder-convention.md` — folder layout for the demo folder you'll save into
+- `_shared/html-rules.md` — base HTML / accessibility rules (still apply; design freedom doesn't mean breaking semantics)
+- `_shared/preview.md` — http-server + Playwright preview pattern
+- `_shared/sharing.md` — `package.ps1` and tier check
 
 ## Inputs
 
@@ -228,11 +237,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 ```
 
 ### Step 4: Preview & screenshot
-1. Start a local server if not running: `npx http-server <demo>/ -p 8765 -c-1 --silent`
-2. Navigate Playwright to `http://localhost:8765/mockups/<name>-wow.html`
-3. Take a full-page screenshot → save to `<demo>/mockups/screenshots/<name>-wow.png`
-4. Save any helper scripts to `<demo>/mockups/tools/`.
-5. Show to user.
+
+Follow `_shared/preview.md`. Save the screenshot as `<demo>/mockups/screenshots/<name>-wow.png` (`-wow` suffix distinguishes WOW outputs from `mockup-build` outputs in the same demo folder).
 
 ### Step 5: Iterate on feedback
 1. Acknowledge briefly ("Got it!").
@@ -246,13 +252,14 @@ Target: **< 30 seconds per small iteration**.
 
 ## HTML rules
 
-- **Semantic HTML5**: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`.
-- **Self-contained**: all CSS in `<style>` block; Google Fonts via `<link>` is allowed.
-- **Responsive**: flexbox + CSS grid, viewport-relative units (`clamp`, `vw`, `vh`); works at 320px → 1920px.
+Base rules from `_shared/html-rules.md` apply, with these WOW-specific overrides:
+
+- **Self-contained**: all CSS in a `<style>` block in `<head>`; no `base-styles.css` link. Google Fonts via `<link>` is allowed.
+- **No Design Vocabulary Overlay**: WOW mockups are presentation pieces, not collaborative iteration targets. Skip `overlay.css` / `overlay.js`.
+- **Responsive**: viewport-relative units (`clamp`, `vw`, `vh`); works at 320px → 1920px.
 - **Realistic data**: names like "Aria Chen", "Marcus Webb"; companies like "Cascade Systems"; emails like "aria@cascade.io".
 - **Accessible**: WCAG AA contrast, meaningful `alt` text, visible `:focus-visible` ring, semantic ARIA roles where helpful.
-- **Light JS only when needed**: tabs, modals, toggles — keep it minimal and inline `<script>`. No CDN dependencies.
-- **No build step**: opens in any browser instantly.
+- **Light JS only when needed**: tabs, modals, toggles — keep it minimal and inline. No CDN dependencies.
 
 ---
 

@@ -13,30 +13,19 @@ A multi-agent system powered by **GitHub Copilot** (or any AI agent with Playwri
 5. **Iterate** with natural language feedback in seconds
 
 ```
-┌─────────────────┐       ┌──────────────┐       ┌──────────────────┐
-│  User provides   │──────▶│  Agent 1:    │──────▶│  design-guide.md │
-│  URLs/screenshots│       │  Extract     │       │  base-styles.css │
-└─────────────────┘       └──────────────┘       └────────┬─────────┘
-                                                          │
-┌─────────────────┐       ┌──────────────┐                │
-│  User provides   │──────▶│  Agent 2:    │◀───────────────┘
-│  requirements    │       │  Build       │
-│  + feedback      │       │  (single)    │──────▶ HTML/CSS mockup
-└─────────────────┘       └──────────────┘
+          /mockup-extract                       /mockup-build
+  URL  ────────────────▶  design-guide.md  ────────────▶  HTML mockup
+   or              writes      base-styles.css       reads
+  screenshots                  fluent-icons.css
+                               overlay.css/.js
+                                       │
+                                       │        /mockup-end2end
+                                       └───────────────▶  multi-screen demo
+                                                reads     + index.html launch pad
 
-┌─────────────────┐       ┌──────────────┐
-│  User provides   │──────▶│  Agent 3:    │
-│  requirements    │       │  WOW Mode    │──────▶ Stunning HTML/CSS mockup
-│  + theme hint    │       │  (no design  │        (gradients, animations,
-└─────────────────┘       │   system     │         glassmorphism, delight)
-                          │   needed)    │
-                          └──────────────┘
-
-┌─────────────────┐       ┌──────────────┐
-│  User provides   │──────▶│  Agent 4:    │
-│  journey desc.   │       │  End-to-End  │──────▶ Multi-screen demo
-│  + feedback      │       │  Demo        │        with navigation
-└─────────────────┘       └──────────────┘
+  /mockup-wow  ──────────▶  stunning HTML mockup
+  (no design system        gradients, animations,
+   needed)                 glassmorphism, delight
 ```
 
 ## Prerequisites
@@ -79,22 +68,27 @@ Swap `msedge` for `chrome`, `firefox`, or `webkit` if you prefer a different bro
 
 ### 2. Install the skills
 
-Copy the skill folders into your Copilot skills directory:
+Copy the entire `skills/` folder (including `_shared/`) into your Copilot skills directory. The shared folder holds includes that all four skills reference — the skills won't work without it.
 
 ```bash
-# Copy skills to your Copilot config
-cp -r skills/mockup-extract ~/.copilot/skills/
-cp -r skills/mockup-build ~/.copilot/skills/
-cp -r skills/mockup-wow ~/.copilot/skills/
-cp -r skills/mockup-end2end ~/.copilot/skills/
+# macOS / Linux:
+cp -r skills/* ~/.copilot/skills/
 ```
 
-Or on Windows:
 ```powershell
-Copy-Item -Recurse skills\mockup-extract $env:USERPROFILE\.copilot\skills\
-Copy-Item -Recurse skills\mockup-build $env:USERPROFILE\.copilot\skills\
-Copy-Item -Recurse skills\mockup-wow $env:USERPROFILE\.copilot\skills\
-Copy-Item -Recurse skills\mockup-end2end $env:USERPROFILE\.copilot\skills\
+# Windows:
+Copy-Item -Recurse skills\* $env:USERPROFILE\.copilot\skills\
+```
+
+Verify the layout afterwards:
+
+```
+~/.copilot/skills/
+├── _shared/             ← includes referenced by every skill
+├── mockup-extract/
+├── mockup-build/
+├── mockup-wow/
+└── mockup-end2end/
 ```
 
 ### 3. Extract a design system from any URL
@@ -176,8 +170,8 @@ The agent will:
 - "surprise me"
 - "wow mode"
 - "make it beautiful"
-- "best possible UX"
-- "no constraints, just make it amazing"
+- "go wild"
+- "no constraints"
 
 ### 7. Iterate
 
@@ -196,29 +190,40 @@ Each iteration takes ~30 seconds for small changes.
 mockup-builder/
 ├── README.md                           ← you are here
 ├── package.ps1                         ← one-line zip helper for sharing demos
+├── validate.ps1                        ← sanity-check a demo before zipping
 ├── skills/
-│   ├── mockup-extract/
-│   │   └── SKILL.md                    ← Agent 1: design extraction prompt
-│   ├── mockup-build/
-│   │   └── SKILL.md                    ← Agent 2: single-page mockup builder prompt
-│   ├── mockup-wow/
-│   │   └── SKILL.md                    ← Agent 3: WOW mode — stunning UI from scratch
-│   └── mockup-end2end/
-│       └── SKILL.md                    ← Agent 4: end-to-end demo builder prompt
+│   ├── _shared/                        ← includes referenced by all skills
+│   │   ├── demo-folder-convention.md
+│   │   ├── fluent-v9-mapping.md
+│   │   ├── component-cheatsheet.md
+│   │   ├── html-rules.md
+│   │   ├── preview.md
+│   │   ├── sharing.md
+│   │   └── overlay/                    ← Design Vocabulary Overlay (css + js)
+│   ├── mockup-extract/SKILL.md         ← Agent 1: design extraction
+│   ├── mockup-build/SKILL.md           ← Agent 2: single-page mockup builder
+│   ├── mockup-wow/SKILL.md             ← Agent 3: WOW mode
+│   └── mockup-end2end/SKILL.md         ← Agent 4: end-to-end demo builder
 ├── docs/
+│   ├── architecture.md                 ← detailed system architecture
 │   ├── design-guide-template.md        ← template for the design guide output
-│   └── architecture.md                 ← detailed system architecture
+│   └── examples/
+│       └── overlay-demo.html           ← standalone overlay demo
 └── <demo-name>/                        ← ONE per demo (e.g. output-rules/, business-rules/)
     ├── design-guide.md                 ← design system
     ├── base-styles.css                 ← CSS tokens + component classes
-    ├── fluent-icons.css                ← (optional) Fluent icon set
-    ├── reference/                      ← source screenshots
+    ├── fluent-icons.css                ← Fluent SVG icon set (CSS mask-image system)
+    ├── overlay.css                     ← Design Vocabulary Overlay styles
+    ├── overlay.js                      ← Design Vocabulary Overlay behavior
+    ├── reference/                      ← (optional) source screenshots
     └── mockups/
         ├── index.html                  ← launch pad linking every screen
         ├── <name>.html                 ← individual mockups
-        ├── screenshots/
-        └── tools/
+        ├── screenshots/                ← (optional) Playwright screenshots
+        └── tools/                      ← (optional) helper scripts
 ```
+
+`reference/`, `mockups/screenshots/`, and `mockups/tools/` are generated as needed and aren't required for the demo to work.
 
 **Each `<demo-name>/` folder is a self-contained, zip-and-share unit.** See [Sharing a demo](#sharing-a-demo) below.
 
@@ -254,6 +259,8 @@ Requires no extracted design system. Creates stunning, innovative UX from scratc
 4. Uses realistic placeholder data with plausible domain content
 5. Previews with Playwright, screenshots, and shows the result
 6. Iterates on feedback with the same speed as Agent 2
+
+> **WOW is exempt from the Fluent v9 implementability constraint** that applies to Agents 2 and 4. WOW outputs are for inspiration / executive impression / exploration, not direct dev handoff. If you want a WOW design rebuilt as Fluent-implementable, run `/mockup-build` with the WOW screenshot as the visual target.
 
 ### Agent 4: End-to-End Demo Builder (`/mockup-end2end`)
 
@@ -301,6 +308,17 @@ A working standalone demo is available at [`docs/examples/overlay-demo.html`](do
 ## Sharing a demo
 
 Every `<demo-name>/` folder is self-contained — design system + mockups + reference + screenshots in one place. There are no external runtime dependencies, no build step, and no CDN/font requirements (icons are inline SVG).
+
+### Validate before sharing
+
+Run `validate.ps1` to confirm the demo is complete and every link in `mockups/index.html` resolves:
+
+```powershell
+.\validate.ps1 <demo-name>          # exits 0 if clean, 1 on broken links / missing files
+.\validate.ps1 <demo-name> -Strict  # also fail on missing screenshots / optional files
+```
+
+The validator checks: `design-guide.md` + `base-styles.css` exist, `overlay.css` / `overlay.js` are present (warning if not — the Design Vocabulary Overlay won't work without them), `mockups/index.html` exists, and every `href` / `src` inside `index.html` points to a real file. Cheap insurance against shipping a broken zip.
 
 ### One-line zip (recommended)
 
